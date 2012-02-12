@@ -1,45 +1,19 @@
 ---
 layout: page
-title: Hello World!
+title: About
 ---
-{% include JB/setup %}
+<div class="entry-content">
+	<p><a href="http://girishvarma.files.wordpress.com/2009/05/me1.jpg"><img class="alignleft size-full wp-image-363" title="Girish Varma" src="http://girishvarma.files.wordpress.com/2009/05/me1.jpg?w=658" alt=""   /></a></p>
 
-Read [Jekyll Quick Start](http://jekyllbootstrap.com/usage/jekyll-quick-start.html)
+	<h2>hello, i am girish.</h2>
 
-Complete usage and documentation available at: [Jekyll Bootstrap](http://jekyllbootstrap.com)
+	<p>I am a Phd Student in Computer Science at <a href="http://en.wikipedia.org/wiki/Tata_Institute_of_Fundamental_Research">Tata Institute of Fundamental Research</a>, <a href="http://en.wikipedia.org/wiki/Mumbai">Mumbai</a>.</p>
 
-## Update Author Attributes
+	<p>I am passionate about computer science and mathematics. Currently i spend a lot of time studying them sometimes because i like it and sometimes because i have to. See <a href="http://docs.google.com/Doc?id=dq6zxpq_473cvj8ggfx">this</a> if you want to know exactly what i do. In an abandoned phase of my life i used to be a c++ programmer, web developer, <a href="http://www.fossmeet.in/">free software activist</a> and a linux hacker.</p>
+	
+	<p>Other than these, i love reading science fiction(<a href="http://girishvarma.wordpress.com/2008/11/24/science-fiction-book-recommendations/">favorites</a>) and play badminton.</p>
 
-In `_config.yml` remember to specify your own data:
-    
-    title : My Blog =)
-    
-    author :
-      name : Name Lastname
-      email : blah@email.test
-      github : username
-      twitter : username
+</div>
 
-The theme should reference these variables whenever needed.
-    
-## Sample Posts
-
-This blog contains sample posts which help stage pages and blog data.
-When you don't need the samples anymore just delete the `_posts/core-samples` folder.
-
-    $ rm -rf _posts/core-samples
-
-Here's a sample "posts list".
-
-<ul class="posts">
-  {% for post in site.posts %}
-    <li><span>{{ post.date | date_to_string }}</span> &raquo; <a href="{{ BASE_PATH }}{{ post.url }}">{{ post.title }}</a></li>
-  {% endfor %}
-</ul>
-
-## To-Do
-
-This theme is still unfinished. If you'd like to be added as a contributor, [please fork](http://github.com/plusjade/jekyll-bootstrap)!
-We need to clean up the themes, make theme usage guides with theme-specific markup examples.
 
 
