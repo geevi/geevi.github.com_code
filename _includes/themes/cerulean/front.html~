@@ -21,17 +21,17 @@
        </div>
         <div class="span4">
           <h2>Contact</h2>
-         <h4>My Address is</h4>
+         <h3>My Address is</h3>
 Girish R Varma,
 A212, School of Technology and Computer Science,
 Tata Institute of Fundamental Research,
 Colaba, Mumbai – 400005,
 Maharashtra, India
 
-<h4>Mobile</h4>
+<h3>Mobile</h3>
 09769335204
 
-<h4>Landline</h4>
+<h3>Landline</h3>
 91-22-2278 2912
           <p><a class="btn" href="/contact/#email">Email »</a></p>
         </div>
