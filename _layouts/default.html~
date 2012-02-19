@@ -1,7 +1,0 @@
----
-theme :
-  name : cerulean
----
-{% include JB/setup %}
-{% include themes/cerulean/default.html %}
-
