@@ -68,19 +68,19 @@
     <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="{{ ASSET_PATH }}/js/jquery.js"></script>
-    <script src="{{ ASSET_PATH }}/js/bootstrap-transition.js"></script>
-    <script src="{{ ASSET_PATH }}/js/bootstrap-alert.js"></script>
-    <script src="{{ ASSET_PATH }}/js/bootstrap-modal.js"></script>
-    <script src="{{ ASSET_PATH }}/js/bootstrap-dropdown.js"></script>
-    <script src="{{ ASSET_PATH }}/js/bootstrap-scrollspy.js"></script>
-    <script src="{{ ASSET_PATH }}/js/bootstrap-tab.js"></script>
-    <script src="{{ ASSET_PATH }}/js/bootstrap-tooltip.js"></script>
-    <script src="{{ ASSET_PATH }}/js/bootstrap-popover.js"></script>
-    <script src="{{ ASSET_PATH }}/js/bootstrap-button.js"></script>
-    <script src="{{ ASSET_PATH }}/js/bootstrap-collapse.js"></script>
-    <script src="{{ ASSET_PATH }}/js/bootstrap-carousel.js"></script>
-    <script src="{{ ASSET_PATH }}/js/bootstrap-typeahead.js"></script>
+    <script src="./Bootstrap, from Twitter_files/jquery.js"></script>
+    <script src="./Bootstrap, from Twitter_files/bootstrap-transition.js"></script>
+    <script src="./Bootstrap, from Twitter_files/bootstrap-alert.js"></script>
+    <script src="./Bootstrap, from Twitter_files/bootstrap-modal.js"></script>
+    <script src="./Bootstrap, from Twitter_files/bootstrap-dropdown.js"></script>
+    <script src="./Bootstrap, from Twitter_files/bootstrap-scrollspy.js"></script>
+    <script src="./Bootstrap, from Twitter_files/bootstrap-tab.js"></script>
+    <script src="./Bootstrap, from Twitter_files/bootstrap-tooltip.js"></script>
+    <script src="./Bootstrap, from Twitter_files/bootstrap-popover.js"></script>
+    <script src="./Bootstrap, from Twitter_files/bootstrap-button.js"></script>
+    <script src="./Bootstrap, from Twitter_files/bootstrap-collapse.js"></script>
+    <script src="./Bootstrap, from Twitter_files/bootstrap-carousel.js"></script>
+    <script src="./Bootstrap, from Twitter_files/bootstrap-typeahead.js"></script>
 
   
 

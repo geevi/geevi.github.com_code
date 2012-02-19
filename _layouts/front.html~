@@ -2,4 +2,4 @@
 layout: default
 ---
 {% include JB/setup %}
-{% include themes/cerulean/post.html %}
+{% include themes/cerulean/front.html %}
