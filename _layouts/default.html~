@@ -1,5 +1,5 @@
 ---
-theme.name : cerulean
+theme: 	name : cerulean
 ---
 {% include JB/setup %}
 <!DOCTYPE html>

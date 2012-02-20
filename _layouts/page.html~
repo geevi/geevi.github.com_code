@@ -1,0 +1,6 @@
+---
+layout: default
+theme: cerulean
+---
+{% include JB/setup %}
+{% include themes/cerulean/page.html %}
