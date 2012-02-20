@@ -1,13 +1,14 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<html lang="en">
+  <head>
     <meta charset="utf-8">
-    <title>{{ page.title }}</title>
+    <title>{{page.title}}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    {% if page.description %}<meta name="description" content="{{ page.description }}">{% endif %}
-    <meta name="author" content="{{ site.author.name }}">
+	{% if page.description %}<meta name="description" content="{{ page.description }}">{% endif %}
+     <meta name="author" content="{{ site.author.name }}">
 
     <!-- Le styles -->
-    <link href="{{ ASSET_PATH }}/css/bootstrap.css" rel="stylesheet">
+    <link href="{{ ASSET_PATH }}/css/bootstrap.min.css" rel="stylesheet">
     <style type="text/css">
       body {
         padding-top: 60px;
@@ -22,10 +23,10 @@
     <![endif]-->
 
     <!-- Le fav and touch icons -->
-    <link rel="shortcut icon" href="http://twitter.github.com/bootstrap/examples/images/favicon.ico">
-    <link rel="apple-touch-icon" href="http://twitter.github.com/bootstrap/examples/images/apple-touch-icon.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="http://twitter.github.com/bootstrap/examples/images/apple-touch-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="http://twitter.github.com/bootstrap/examples/images/apple-touch-icon-114x114.png">
+    <link rel="shortcut icon" href="{{ ASSET_PATH }}/img/favicon.ico">
+    <link rel="apple-touch-icon" href="{{ ASSET_PATH }}/img/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="{{ ASSET_PATH }}/img/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="{{ ASSET_PATH }}/img/apple-touch-icon-114x114.png">
   </head>
 
   <body>
@@ -51,13 +52,14 @@
     </div>
 
     <div class="container">
-	<div class="content">
+	  <div class="content">
         {{ content }}
       </div>
-      <hr>
+      
+	  <hr>
 
       <footer>
-           <p>&copy; {{ site.author.name }} 2012 
+        <p>&copy; {{ site.author.name }} 2012 
           with help from <a href="http://jekyllbootstrap.com" target="_blank" title="The Definitive Jekyll Blogging Framework">Jekyll Bootstrap</a>
           and <a href="http://twitter.github.com/bootstrap/" target="_blank">Twitter Bootstrap</a>
         </p>
@@ -82,6 +84,5 @@
     <script src="{{ ASSET_PATH }}/js/bootstrap-carousel.js"></script>
     <script src="{{ ASSET_PATH }}/js/bootstrap-typeahead.js"></script>
 
-  
-
-</body></html>
+  </body>
+</html>
