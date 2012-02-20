@@ -5,20 +5,25 @@ group: navigation
 ---
 {% include JB/setup %}
 
-<div class="entry-content">
-			<link rel='stylesheet' id='grunion.css-css'  href='http://s0.wp.com/wp-content/mu-plugins/grunion-contact-form-2.0/css/grunion.css?m=1317694073g&#038;ver=3.4-alpha-19827' type='text/css' media='all' />
-			<h2>My Address is</h2>
-			<p>Girish R Varma,<br />
-			A212, School of Technology and Computer Science,<br />
-			Tata Institute of Fundamental Research,<br />
-			Colaba, Mumbai &#8211; 400005,<br />
-			Maharashtra, India</p>
-			<h2>Mobile</h2>
-			<p>09769335204</p>
-			<h2>Landline</h2>
-			<p>91-22-2278 2912</p>
-			<h2>Email</h2>
-			<div id='contact-form-337'>
+### My Address is
+
+Girish R Varma,\
+A212, School of Technology and Computer Science,\
+Tata Institute of Fundamental Research,\
+Colaba, Mumbai &#8211; 400005,\
+Maharashtra, India\
+
+### Mobile
+
+09769335204
+
+### Landline
+
+91-22-2278 2912
+
+### Email
+
+	<div id='contact-form-337'>
 				<form action='http://girishvarma.wordpress.com/contact/#contact-form-337' method='post' class='contact-form commentsblock'>
 
 							
@@ -51,5 +56,4 @@ group: navigation
 																																					</p>
 																																				</form>
 																																			</div>
-																																			<div class="sharedaddy sd-like-enabled sd-sharing-enabled"></div>			</div><!-- .entry-content -->
-
+																																			<div class="sharedaddy sd-like-enabled sd-sharing-enabled"></div>
