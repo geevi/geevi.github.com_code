@@ -1,0 +1,51 @@
+--- 
+layout: post
+title: Simpler proof for Chernoff Bound using Bernstein's Trick
+published: true
+meta: 
+  _edit_last: "5862988"
+tags: []
+
+type: post
+status: publish
+---
+<em>Kudos to <a href="http://www.tcs.tifr.res.in/~jaikumar/">Jaikumar</a> who pointed this out in his Information Theory Class, and Nutan who made me work this out in an assignment.</em>
+
+Chernoff bound is by far the most used result in randomized algorithms. But there are many different versions of it, with very ugly proofs involving playing with inequalities relating to functions. Here is a simple proof for the additive version of the same.
+
+$ \overline{Y_i}$'s are iid 0-1 random variables with expectation $ \delta$. Then
+
+<img src="http://www.codecogs.com/gif.latex?%5CPr%5Cleft%5B%5Csum_%7Bi%3D1%7D%5Et%20%5Coverline%7BY%7D_i%20%5Cgeq%20%5Cell%20%5Cright%5D%20%3D%20%5Csum_%7Bi%3D%5Cell%7D%5Et%20%7Bt%20%5Cchoose%20i%7D%5Cdelta%5Ei%20%281-%5Cdelta%29%5E%7Bt-i%7D%20%5Cleq%20%5Csum_%7Bi%3D%5Cell%7D%5Et%20%7Bt%20%5Cchoose%20i%7D%5Cdelta%5Ei%20%281-%5Cdelta%29%5E%7Bt-i%7D%20x%5E%7Bi-%5Cell%7D" alt="\Pr\left[\sum_{i=1}^t \overline{Y}_i \geq \ell \right] = \sum_{i=\ell}^t {t \choose i}\delta^i (1-\delta)^{t-i} \leq \sum_{i=\ell}^t {t \choose i}\delta^i (1-\delta)^{t-i} x^{i-\ell}" /> for all <img src="http://meyer.fm/cgi-bin/mathtex.cgi?x%20%5Cgeq%201" alt="x \geq 1" />
+
+<img src="http://www.codecogs.com/gif.latex?%5Cleq%20%5Csum_%7Bi%3D0%7D%5Et%20%7Bt%20%5Cchoose%20i%7D%5Cdelta%5Ei%20%281-%5Cdelta%29%5E%7Bt-i%7D%20x%5E%7Bi-%5Cell%7D%20%3D%20x%5E%7B-%5Cell%7D%281-%5Cdelta%2B%5Cdelta%20x%29%5Et%20%3D%20x%5E%7B-%5Cell%7D%281%2B%5Cdelta%20%28x-1%29%29%5Et%20" alt="\leq \sum_{i=0}^t {t \choose i}\delta^i (1-\delta)^{t-i} x^{i-\ell} = x^{-\ell}(1-\delta+\delta x)^t = x^{-\ell}(1+\delta (x-1))^t " />
+
+This is the Bernstein's trick. That is multiplying by $ x^{i-\ell}$ and then doing the full summation starting from 0. For terms in the full summation from 0 to $ \ell-1$, $ i-\ell &lt; 0 $ and we are multiplying by a small quantity. For terms $ \ell$ to $ t$, we are multiplying by a large quantiy. But if $ \ell &gt;&gt; t\delta$, what we hope is these terms are extremely small and even multiplying with $ x^{i-\ell}$ will not increase them by much. And both these facts hopefully give a good bound. Now we choose an $ x$ minimizing above.
+
+Above is minimized for <img src="http://www.codecogs.com/gif.latex?x%3D%20%5Cfrac%7B%5Cell%20%281-%20%5Cdelta%29%7D%20%7B%28t-%5Cell%20%29%20%5Cdelta%20%7D" alt="x= \frac{\ell (1- \delta)} {(t-\ell ) \delta }" /> , for <img src="http://www.codecogs.com/gif.latex?%5Cell%20%3D%20t%2F2" alt="\ell = t/2" /> , this is <img src="http://www.codecogs.com/gif.latex?%5Cfrac%7B1-%5Cdelta%20%7D%7B%5Cdelta%20%7D%20%3E%201" alt="\frac{1-\delta }{\delta } &gt; 1" /> for <img src="http://www.codecogs.com/gif.latex?%5Cdelta%20%3C%201%2F2" alt="\delta &lt; 1/2" /> .
+
+Then <img src="http://www.codecogs.com/gif.latex?x%5E%7B-%5Cell%20%7D%281%2B%5Cdelta%20%28x-1%29%29%5Et%20%3D%20%28%5Cfrac%7B1-%5Cdelta%20%7D%7B%5Cdelta%20%7D%29%5E%7B-t%2F2%7D%20%282-2%5Cdelta%20%29%5Et%20%3D%202%5Et%20%28%5Cdelta%20%281-%5Cdelta%20%29%29%5E%7Bt%2F2%7D" alt="x^{-\ell }(1+\delta (x-1))^t = (\frac{1-\delta }{\delta })^{-t/2} (2-2\delta )^t = 2^t (\delta (1-\delta ))^{t/2}" /><img src="http://www.codecogs.com/gif.latex?%3De%5E%7Bt%5Cleft%28%5Clog%202%20-%20%5Cfrac%7B%5Clog%20%281%2F%5Cdelta%20%28%201-%5Cdelta%29%29%7D%7B2%7D%5Cright%29%7D" alt="=e^{t\left(\log 2 - \frac{\log (1/\delta ( 1-\delta))}{2}\right)}" />
+
+For <img src="http://www.codecogs.com/gif.latex?%5Cdelta%20%3C%201%2F2" alt="\delta &lt; 1/2" /> , <img src="http://www.codecogs.com/gif.latex?%5Clog%20%28%5Cfrac%7B1%7D%7B%5Cdelta%20%281-%5Cdelta%20%29%7D%29%20%3E%202%5Clog%202" alt="\log (\frac{1}{\delta (1-\delta )}) &gt; 2\log 2" /> .
+
+So the coefficient of <img src="http://www.codecogs.com/gif.latex?t" alt="t" /> in the exponent in the formula above is <img src="http://www.codecogs.com/gif.latex?%5Cleft%28%5Clog%202%20-%20%5Cfrac%7B%5Clog%20%281%2F%5Cdelta%20%28%201-%5Cdelta%20%29%29%7D%7B2%7D%5Cright%29%20%3D%20-c%20%3C0" alt="\left(\log 2 - \frac{\log (1/\delta ( 1-\delta ))}{2}\right) = -c &lt;0" /> .
+
+Hence <img src="http://www.codecogs.com/gif.latex?%5CPr%5Cleft%5B%5Csum_%7Bi%3D1%7D%5Et%20%5Coverline%7BY%7D_i%20%5Cgeq%20t%2F2%20%5Cright%5D%20%5Cleq%20e%5E%7B-ct%7D" alt="\Pr\left[\sum_{i=1}^t \overline{Y}_i \geq t/2 \right] \leq e^{-ct}" />.
+<h2>If you want to see the longer ugly proof, here it is:</h2>
+The usual proof for Chernoff bound(see <a href="http://en.wikipedia.org/wiki/Chernoff_bound#Theorem_for_additive_form_.28absolute_error.29">this</a>) gives
+
+<img src="http://meyer.fm/cgi-bin/mathtex.cgi?%20%5CPr%5Cleft[%5Cfrac%7B1%7D%7Bt%7D%5Csum%20Y_i%20%5Cge%20p%20+%20%5Cgamma%20%5Cright]%20%5Cle%20e%5E%7B-D%28p+%5Cgamma%7C%7C%20p%29%20t%7D" alt=" \Pr\left[\frac{1}{t}\sum Y_i \ge p + \gamma \right] \le e^{-D(p+\gamma|| p) t}" /> where <img src="http://meyer.fm/cgi-bin/mathtex.cgi?D%28p+%5Cgamma%7C%7C%20p%29" alt="D(p+\gamma|| p)" /> is the binary relative entropy, <img src="http://meyer.fm/cgi-bin/mathtex.cgi?p=E[Y_i]" alt="p=E[Y_i]" /> <img src="http://meyer.fm/cgi-bin/mathtex.cgi?%3C%201/2" alt="&lt; 1/2" />.
+
+If i take <img src="http://meyer.fm/cgi-bin/mathtex.cgi?f%28x%29%20=%20D%28p+x%7C%7C%20p%29" alt="f(x) = D(p+x|| p)" />, then <img src="http://meyer.fm/cgi-bin/mathtex.cgi?f%280%29=0=f%5E%7B%27%7D%280%29=%5Clog%28%5Cfrac%7Bp+0%7D%7Bp%7D%29%20+%20%5Clog%28%5Cfrac%7B1-p-0%7D%7B1-p%7D%29" alt="f(0)=0=f^{'}(0)=\log(\frac{p+0}{p}) + \log(\frac{1-p-0}{1-p})" /> and <img src="http://meyer.fm/cgi-bin/mathtex.cgi?f%5E%7B%27%27%7D%28x%29=1/%28p+x%29%281-p-x%29%20%5Cgeq%204" alt="f^{''}(x)=1/(p+x)(1-p-x) \geq 4" />(sum of 2 numbers in the denominator are 1).
+
+So Taylor's Theorem says that  <img src="http://meyer.fm/cgi-bin/mathtex.cgi?%5Cexists%20%5Ceta%5C%20st%5C%20f%28x%29%20%5Cgeq%20f%280%29%20+%20f%5E%7B%27%7D%280%29x%20+%20f%5E%7B%27%27%7D%28%5Ceta%29%5Cfrac%7Bx%5E2%7D%7B2%21%7D" alt="\exists \eta\ st\ f(x) \geq f(0) + f^{'}(0)x + f^{''}(\eta)\frac{x^2}{2!}" /> for nice functions.
+
+Therefore <img src="http://meyer.fm/cgi-bin/mathtex.cgi?f%28x%29%20%5Cgeq%202x%5E2" alt="f(x) \geq 2x^2" /> which gives
+
+<img src="http://meyer.fm/cgi-bin/mathtex.cgi?Pr%5Cleft[%5Cfrac%7B1%7D%7Bt%7D%20%5Csum%20Y_i%20%20%5Cge%20p+%20%5Cgamma%20%5Cright]%20%5Cle%20e%5E%7B-%5Cgamma%5E2%20t%7D" alt="Pr\left[\frac{1}{t} \sum Y_i  \ge p+ \gamma \right] \le e^{-\gamma^2 t}" />
+
+Now plug complement <img src="http://meyer.fm/cgi-bin/mathtex.cgi?Y_i" alt="Y_i" /> in the original proof as the <img src="http://meyer.fm/cgi-bin/mathtex.cgi?Y_i" alt="Y_i" /> here. Then <img src="http://meyer.fm/cgi-bin/mathtex.cgi?%5Cgamma%20=%201/2%20-%20%5Cdelta" alt="\gamma = 1/2 - \delta" /> and <img src="http://meyer.fm/cgi-bin/mathtex.cgi?p=%20%5Cdelta" alt="p= \delta" />. This will give you the expression
+
+<img src="http://meyer.fm/cgi-bin/mathtex.cgi?%5CPr%5Cleft[%5Csum%20%5Coverline%7BY%7D_i%20%5Cgeq%20t/2%20%5Cright]%20%5Cleq%20e%5E%7B2t%281/2%20-%20%5Cdelta%29%5E2%7D" alt="\Pr\left[\sum \overline{Y}_i \geq t/2 \right] \leq e^{2t(1/2 - \delta)^2}" />
+<h2>References</h2>
+See this link if you are confused about the n different chernoff bounds. (http://www.cs.berkeley.edu/~jordan/courses/174-spring02/recitation/lec10.pdf)
+There is a similar bound for hyper-geometric distributions called Chavatal's Bound. <a href="ansuz.sooke.bc.ca/professional/hypergeometric.pdf">Here</a> you can find a nice writeup on it.

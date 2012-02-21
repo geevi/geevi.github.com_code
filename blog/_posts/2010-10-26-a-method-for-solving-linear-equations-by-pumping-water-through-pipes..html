@@ -1,0 +1,190 @@
+--- 
+layout: post
+title: A method for solving linear equations by pumping water through pipes.
+published: false
+meta: 
+  _edit_last: "5862988"
+tags: []
+
+type: post
+status: draft
+---
+The method only works for linear equations of the form <a name="eqlaplacian1"> </a>
+
+<a name="eqlaplacian1">$ \displaystyle   Lp=i \ \ \ \ \ (1)$</a>
+
+&nbsp;
+
+where $ {L}$ is an $ {nxn}$ symmetric matrix with all entries except the diagonal non-negative, the diagonal entry $ { L_{ii}= -\sum_{1\leq j \leq n,~j\neq i} L_{ij}}$(ie. sum of entries along any row or column is $ {0}$) and the graph $ {G}$ on $ {[n] := \{ 1 \cdots n\}}$ with $ {D}$ as the wieghts matrix is <a href="http://en.wikipedia.org/wiki/Strongly_connected_component">strongly connected</a>. A matrix satisfying above condition is called a <em>Lapalcian</em> matrix and we can associate an undirected graph as described to it with the exception that the self loops with wieghts $ {L_{ii}}$ are deleted. The following is a well known theorem in Algebraic Graph Theory
+<blockquote><strong>Theorem 1</strong> Let $ {L}$ be a $ {nxn}$ laplacian matrix, $ {G}$ be the assocated graph and $ {c}$ be the number of components in the graph. Then
+
+$ \displaystyle  \text{Rank of } L = n - c$</blockquote>
+&nbsp;
+
+So if the graph is strongly connected, the set of $ {p}$ satisfying equation <a href="#eqlaplacian1">1</a> will form an affine subspace of dimension $ {1}$. So we will add another constraint that $ {p_n=0}$ so that the solution is uni
+
+$ {p}$ and $ {i}$ are $ {n}$ dimentional column vectors such that $ {p_n=0}$. Look at the document source to see how to strike out text, how to <span style="color:#ff0000;">use</span> <span style="color:#00ff00;">different</span> <span style="color:#0000ff;">colors</span>, and how to <a href="http://www.google.com">link to URLs with snapshot preview</a> and how to <a class="snap_noshots" href="http://www.google.com">link to URLs without snapshot preview</a>.
+
+There is a command which is ignored by pdflatex and which defines where to cut the post in the version displayed on the main page<!--more-->
+
+Anything between the conditional declarations <em>ifblog . . . fi</em> is ignored by LaTeX and processed by latex2wp. Anything between <em>iftex . . . fi</em> is processed by LaTex and ignored by latex2wp.
+
+<span style="color:#00ff00;">This green sentence appears only in WordPress </span>
+
+&nbsp;
+
+This is useful if one, in desperation, wants to put pure HTML commands in the <em>ifblog . . . fi</em> scope.
+<blockquote style="font-size:15pt;"><strong>Lemma 2 (Main)</strong> <a name="lmmain"></a> Let $ {\cal F}$ be a total ramification of a compactifier, then <a name="eqlemma"> </a>
+
+<a name="eqlemma">$ \displaystyle   \forall g \in {\cal F}. g^2 = \eta \ \ \ \ \ (2)$</a>
+
+&nbsp;</blockquote>
+&nbsp;
+
+The (modifiable) numbering scheme is that lemmas, theorems, propositions, remarks and corollaries share the same counters, while exercises and examples have each their own counter.
+<blockquote style="font-size:15pt;"><strong>Theorem 3</strong> <a name="thad"></a> The adèle of a number field is never hyperbolically transfinite.
+<ol style="font-size:12pt;">
+	<li> does this work?</li>
+	<li> hopefully it does.</li>
+	<li> very usefull if it did.</li>
+</ol>
+</blockquote>
+&nbsp;
+
+<em>Proof:</em> Left as an exercise. $ \Box$
+<blockquote style="font-size:15pt;"><strong>Exercise 1</strong> Find a counterexample to Theorem <a href="#thad">3</a>.</blockquote>
+&nbsp;
+<blockquote style="font-size:15pt;"><strong>Exercise 2 (Advanced)</strong> Prove Lemma <a href="#lmmain">2</a>.</blockquote>
+&nbsp;
+
+Note that accented characters are allowed. Unfortunately, Erdös's name cannot be properly typeset in HTML. (Note that to get the above approximation, you need to type backslash-H-space-o, rather than backslash-H-{o}. Both are good in LaTeX, but only the second is recognized by LaTeX2WP.)
+
+One can correctly type the names of Håstad, Szemerédi, Čech, and so on.
+
+It is possible to have numbered equations
+
+<a name="eqtest"> </a>
+
+<a name="eqtest">$ \displaystyle   \frac 1 {x^2} \ge 0 \ \ \ \ \ (3)$</a>
+
+&nbsp;
+
+and unnumbered equations
+
+&nbsp;
+
+$ \displaystyle  t(x) - \frac 12 &gt; x^{\frac 13} $
+
+Unnumbered equations can be created with the double-dollar sign command or with the backslash-square bracket command.
+
+&nbsp;
+
+$ \displaystyle  f(x) = \int_{-\infty}^{x} \frac 1 {t^2} dt $
+
+It is possible to refer to equations and theorems via the <em>ref</em>, <em>eqref</em> and <em>label</em> LaTeX commands, for example to Equation (<a href="#eqtest">3</a>), to Equation <a href="#eqlemma">(2)</a>, and to Lemma <a href="#lmmain">2</a> above.
+
+eqnarray* is supported, but not eqnarray:
+
+&nbsp;
+
+$ \displaystyle  \begin{array}{rcl}  f(x) &amp; &lt; &amp; x^2 - y^2\\ &amp; = &amp; (x+y) \cdot (x-y) \end{array} $
+
+<em>You <strong>can</strong> nest a <strong>bold</strong> text inside an emphasized text or viceversa.</em>
+
+The theorem-like environments <em>theorem</em>, <em>lemma</em>, <em>proposition</em>, <em>remark</em>, <em>corollary</em>, <em>example</em> and <em>exercise</em> are defined, as is the <em>proof</em> environment.
+
+The LaTex commands to type $, %, and &amp; are supported outside math mode, and % and &amp; are supported in math mode as well:
+
+&nbsp;
+
+$ \displaystyle  30 \&amp; 10 \% $
+
+The section symbol § is also supported.
+
+WordPress has trouble if a LaTeX expression containing a $ {&lt;}$ symbol, such as $ {x^2 &lt; x^2 + 1}$ is followed by an expression containing a $ {&gt;}$ symbol, such as $ {(x+y)^2 &gt; (x+y)^2 - 3}$. This is fixed by converting the inequality symbols into ``HTML character codes.'' Always write the symbols $ {&lt;}$ and $ {&gt;}$ in math mode.
+
+It it is possible to have tabular environments, both with borders (the border will not be displayed in the LaTeX preview), as in
+<table border="1" align="center">
+<tbody>
+<tr>
+<td align="left">blog</td>
+<td align="right">quality</td>
+</tr>
+<tr>
+<td align="left">what's new</td>
+<td align="right">excellent</td>
+</tr>
+<tr>
+<td align="left">in theory</td>
+<td align="right">poor</td>
+</tr>
+</tbody>
+</table>
+and without borders as in
+<table align="center">
+<tbody>
+<tr>
+<td align="center">$ {a}$</td>
+<td align="center">$ {\rightarrow}$</td>
+<td align="center">$ {b}$</td>
+</tr>
+<tr>
+<td align="center">$ {\downarrow}$</td>
+<td align="center"></td>
+<td align="center">$ {\uparrow}$</td>
+</tr>
+<tr>
+<td align="center">$ {c}$</td>
+<td align="center">$ {\rightarrow}$</td>
+<td align="center">$ {d}$</td>
+</tr>
+</tbody>
+</table>
+(The tabular environments will be centered in WordPress, but not in the LaTeX preview.)
+
+And it is possible to include a picture so that the pdf file produced with pdflatex imports it from a local image file (which has to be pdf, gif, jpeg, or png) and the WordPress post imports it from a URL.
+
+&nbsp;
+
+<img src="http://imgs.xkcd.com/comics/donald_knuth.png" alt="" width="400" />
+
+The <em>image</em> command used to generate the above image has three parameter: a size parameter for either the width or the height, expressed in pixels (if different from the original resolution, the picture will be scaled), a URL for the location of the image (this will be used by WordPress) and a local file name (which will used by pdflatex).
+
+It is possible to have numbered and unnumbered sections and subsections. References to <em>label</em> commands which are not in the scope of a numbered equation or a numbered theorem-like environment will refer to the section number, such as a reference to Section <a href="#sec">1</a> below.
+
+HTML does not have good support for itemized list with descriptors (what one gets in LaTeX using the <em>itemize</em> environment with optional parameters in square brackets after the <em>item</em> commands). We can only offer the following rather ugly rendering:
+
+&nbsp;
+<ul style="font-size:12pt;">
+	<li>Case a. Description of case a</li>
+	<li>Case b. Description of case b</li>
+</ul>
+&nbsp;
+<h2>Examples of Sections</h2>
+&nbsp;
+<h4>And Subsections</h4>
+&nbsp;
+<h2>1. A section</h2>
+<a name="sec"></a>
+
+&nbsp;
+<h4>1.1. And a subsection</h4>
+&nbsp;
+<h2>2. Changing the style</h2>
+The file latex2wpstyle.py contains several definitions that determine the appearance of the WordPress translation. It should be self-explanatory to change the way sections, subsections, proofs and theorem-like environments are typeset, and to change the numbering scheme for theorem-like environments.
+
+The variable $ {M}$ in latex2wpstyle.py contains a list of pairs of strings. For every pair, every occurrence of the first string in the document is replaced by an occurrence of the second before proceeding to the conversion from LaTeX to WordPress. If you want to use simple macros (which do not involve parameter-passing) then edit $ {M}$ to add support for your own LaTeX macros. (You will have to define the macros in macrosblog.tex as well, otherwise you will not be able to compile your LaTeX file and preview it.)
+
+Some macros are already defined. For example, backslash-E produces an expectation symbol:
+
+&nbsp;
+
+$ \displaystyle  \mathop{\mathbb E}_{x \in X} f(x) := \sum_{x\in X} \mathop{\mathbb P} [x] \cdot f(x) $
+
+Some more macros (see the LaTeX source)
+
+&nbsp;
+
+$ \displaystyle  \{ 0,1 \}, {\mathbb R} , {\mathbb C}, {\mathbb Z}, {\mathbb N} , {\mathbb Q}, \epsilon $
+
+&nbsp;

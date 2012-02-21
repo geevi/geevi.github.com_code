@@ -1,0 +1,43 @@
+--- 
+layout: post
+title: Differential Entropy
+published: true
+meta: 
+  _edit_last: "5862988"
+tags: 
+- information theory
+type: post
+status: publish
+---
+<em> Lecture Notes from </em><a href="http://www.tcs.tifr.res.in/~jaikumar/"><em>Jaikumar Radhakrishnan's</em></a><em> Information Theory Course, scribed by </em><em><a href="http://www.tcs.tifr.res.in/~girish/">m</a>e</em>
+<ul>
+	<li> $ {X}$ : a real valued random variable</li>
+	<li> $ {F(x)}$ : the distribution function of $ {X}$</li>
+	<li> $ {f(x)}$ : the density function of $ {X}$</li>
+	<li> $ {S}$: support of $ {X}$</li>
+</ul>
+Consider the uniform distribution on $ {[-1,1]}$ . This can be thought of as the limit distribution of a sequence of discrete uniform distributions. Entropy of each of this will be $ {\log n}$ and so entropy goes to infinity. So this definition of entropy doesn't suffice.
+<blockquote><strong>Definition :</strong> The differential entropy of a real valued random variable $ {X}$ is defined as $ {h[X]=-\int_{S}f(x)\log_{2}f(x)dx}$ .</blockquote>
+If $ {X}$ is uniform on $ {[0,a]}$ then $ {h[X]=\log a}$. Therefore $ {h[X]}$ increases as $ {a}$ increases, which is resonable for an entropy function. For a normal distribution with $ {f(x)=\frac{1}{\sqrt{2\pi\sigma^{2}}}e^{-x^{2}/2\sigma^{2}}}$, $ {h[X]=\frac{1}{2}\log2\pi e\sigma^{2}}$, that is $ {h[X]}$ increases as the normal distribution is flatter.
+<h2>1. Asymptotic Equipartition Property</h2>
+<blockquote><strong> Theorem :</strong> $ {X_{1},X_{2}\cdots X_{k}}$ are iid's with density function $ {f(x)}$, and $ {f(x_{1},x_{2},\cdots x_{k})=f(x_{1})f(x_{2})\cdots f(x_{k})}$ then
+<p align="center">$ \displaystyle  \begin{array}{rcl}  -\frac{1}{k}\log f(X_{1},X_{2}\cdots X_{k})=-\frac{1}{k}\sum_{i}\log f(X_{i})\overset{\mbox{in prob}}{\longrightarrow}\mathbb{E}[-\log f(X)]=h[X]\\ ie\ \lim_{k\rightarrow\infty}\Pr\left[\left|-\frac{1}{k}\log f(X_{1},X_{2}\cdots X_{k})-h[X]\right|&gt;\epsilon\right] &amp; = &amp; 0\\ ie\ \forall(\epsilon,\delta),\ \exists k_{0},\ \forall k&gt;k_{0},\Pr\left[\left|-\frac{1}{k}\log f(X_{1},X_{2}\cdots X_{k})-h[X]\right|&gt;\epsilon\right] &amp; &lt; &amp; \delta\end{array} $</p>
+</blockquote>
+<p align="center"></p>
+<em>Proof:</em> A simple application of weak law of large numbers by considering the random variable $ {Y=-\log f(X)}$ will imply the theorem. The theorem says that if we consider iid samples of $ {Y}$ , the sample average converges in probability to the $ {\mathbb{E}[Y]}$ which is exactly what WLLN says.$ \Box$
+<blockquote><strong>Theorem </strong>For any fixed $ {\epsilon}$, let $ {A(k,\epsilon)=\{\overline{x}\in S^{k}:\left|-\frac{1}{k}\log f(\overline{x})-h[X]\right|\leq\epsilon\}}$(above says that probability of this event can be made arbitrarily large) then for all large $ {k}$,
+
+1. $ {\Pr[A(k,\epsilon)]\geq1-\epsilon}$
+
+2. $ {(1-\epsilon)2^{k(h[X]-\epsilon)}\leq volume(A(k,\epsilon))\leq2^{k(h[X]+\epsilon)}}$</blockquote>
+<em>Proof:</em> 1. is true from the previous theorem by putting $ {\epsilon=\delta}$.
+
+From definition of $ {A(k,\epsilon)}$ $ {\forall\overline{x}\in A(k,\epsilon),2^{-k(h[X]+\epsilon)}\leq f(\overline{x})\leq2^{-k(h[X]-\epsilon)}}$ and from 1. $ {1-\epsilon\leq\int_{A(k,\epsilon)}f(\overline{x})dx\leq1}$ which directly imply 2.$ \Box$
+<blockquote><strong>Theorem</strong> $ {A(k,\epsilon)}$ is the smallest volume set that captures $ {1-\epsilon}$ of the probability to first order in the exponent. ie any set $ {B}$ with $ {volume(B)\leq2^{k(h[X]-\delta)}}$ cannot have $ {\Pr[B]\geq1-\epsilon}$ for large enough $ {k}$.</blockquote>
+<em>Proof:</em> Let $ {B}$ be such that $ {\Pr[B]\geq1-\epsilon}$, then $ {\Pr[B\cap A(k,\delta/10)]\geq1-\epsilon-\delta/10}$.
+
+But since all $ {\overline{x}}$ in this set has $ {f(\overline{x})\geq2^{-k(h[X]+\delta/10)}}$, $ {volume(B\cap A(k,\delta/10))\times2^{-k(h[X]+\delta/10)}\geq1-\epsilon-\delta/10}$. That is $ {volume(B)\geq(1-\epsilon-\delta/10)2^{k(h[X]+\delta/10)}}$ $ \Box$
+<h2>2. Quantization : An Operational Meaning for $ {h[X]}$</h2>
+Suppose Alice observes $ {X}$, and she wants to communicate this value with some precision $ {\Delta}$ (to Bob ofcourse). So we slice the support of $ {X}$ into pieces of size $ {\Delta}$. By Mean Value theorem we know that $ {\exists x_{i}}$ in slice $ {i}$ such that $ {\Delta f(x_{i})=}$ the integral of $ {f}$ in slice $ {i}$. Define $ {p(x_{i})=\Delta f(x_{i})}$, which is a discrete distribution. $ {H(p)=-\sum_{i}\Delta f(x_{i})\log\Delta f(x_{i})=-\sum_{i}\Delta f(x_{i})\log\Delta f(x_{i})-\log\Delta}$. As $ {\Delta}$ goes to $ {0}$, this becomes $ {h[X]-\log\Delta}$. That is if Alice wants to communicate with more prescision(smaller $ {\Delta}$), she needs more bits.
+
+Note that if $ {X}$ is uniform on $ {[0,1/8]}$, and Alice want to communicate at a presicion of $ {n}$ bits (ie $ {\Delta=2^{-n}}$), she just needs to sent $ {h[X]-\log\Delta=-3+n}$ bits. This coincides with the fact that since the interval is of length $ {1/8}$, the first $ {3}$ bits will be $ {0}$'s. So she doesn't have to sent it.

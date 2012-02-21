@@ -1,0 +1,27 @@
+--- 
+layout: post
+title: Flow problems on graphs
+published: true
+meta: 
+  _edit_last: "5862988"
+  jabber_published: "1285768006"
+tags: []
+
+type: post
+status: publish
+---
+Let $ G(V,E)$ be a directed graph. Given $ s,t \in V$, $ f:V \rightarrow \mathbb{R}$ is said to be a <em>flow</em> from $ s$ to $ t$ if flow is conserved at every vertex except $ s,t$($ \forall v \in V \setminus \{s,t\},~ \sum_{u | (u,v) \in E} f(u,v) = \sum_{u | (v,u) \in E} f(v,u)$) and $ f$ is skew symmetric($ f(u,v) = - f(v,u)$). $ f:V \rightarrow \mathbb{R}$ is said to be a <em>circulation</em> in $ G$, if the flow is conserved at all vertices. The following problems are well studied in literature:
+<h4>MAX-FLOW</h4>
+Given some capacities for the edges $ G,~ c:E \rightarrow \mathbb{R}^+$ and $ s,t \in V$, find a flow $ f$ from $ s$ to $ t$ that satisfies the constraints $ \forall e \in E,~ f(e) \leq c(e)$ and maximizes the value ($ \sum_{u| (s,u) \in E} f(s,u) - \sum_{u| (u,s) \in E} f(u,s)$).
+<h4>MIN-FLOW</h4>
+Given $ r \in \mathbb{R}^+$, costs for the edges $ G,~ c:E \rightarrow \mathbb{R}^+$ and $ s,t \in V$, find a flow $ f$ from $ s$ to $ t$ that has value $ r$ ($ \sum_{u| (s,u) \in E} f(s,u) - \sum_{u| (u,s) \in E} f(u,s) = r$) and minimizes the total cost ($ \sum_{e \in E} f(e) c(e)$).
+<h4>MIN-CIRCULATION</h4>
+Given costs for the edges $ G,~ c:E \rightarrow \mathbb{R}^+$, find a circulation $ f$ that minimizes the total cost ($ \sum_{e \in E} f(e) c(e)$).
+<h4>MAX-MULTICOMMODITY-FLOW</h4>
+Given commodities $ K_1,\cdots K_t$, where $ K_i$ is the tuple $ (s_i,t_i,d_i)$(ie source, destination and demand), and capacities for the edges $ G,~ c:E \rightarrow \mathbb{R}^+$, find flows $ f_i, \forall \in [t]$ from $ s_i$ to $ t_i$ that satisfies the capacity constraints ($ \forall e \in E,~ \sum_{i \in [t]} f_i(e) \leq c(e)$) and maximizes the value ($ \sum_{i \in [t]} \sum_{u| (s_i,u) \in E} f_i(s_i,u) - \sum_{u| (u,s_i) \in E} f(u,s_i)$).
+<h4>MIN-MULTICOMMODITY-FLOW</h4>
+Given commodities $ K_1,\cdots K_t$, where $ K_i$ is the tuple $ (s_i,t_i,d_i)$(ie source, destination and demand), and costs for the edges $ c:E \rightarrow \mathbb{R}^+$, find flows $ f_i, \forall \in [t]$ from $ s_i$ to $ t_i$ that satisfies the demand($ \forall i \in [t],\sum_{u \mid (s_i ,u) \in E} f_i(s_i,u) - \sum_{u \mid (u,s_i) \in E} f(u,s_i) = d_i$) and minimizes the costs ($ \sum_{e \in E} \sum_{i \in [t]} f_i(e) c(e)$).
+
+All these problems can be solved with linear programming, by having a variable for every vertex and putting the constraints, optimization as linear functions on them. But the problem is when one requires a solution for the variables that takes integer values(integral solution), these becomes hard. There is one exception of MAX-FLOW, because of the MAX-FLOW MIN-CUT theorem, if the capacities are integral, the maximum flow has integral value. Finding an integral solution for the MIN-MULTICOMMODITY-FLOW is NP-HARD, even if there are only two commodities.
+
+The MIN-MULTICOMMODITY-FLOW is used to model congestion and routing in the internet. The costs on the edges are just the latencies(the amount of time required for a unit of data to be transfered between the ends of a link). One would like to find how the packets from $ s_i$s to $ t_i$s need to be routed so as to minimize the total latency. But in actual networks the latency of a link increases when more flow is routed through it due to queuing in the devices. So we need the latency on the edges to be increasing functions of the flow rather than just scalars. Also in the internet routing of packets are not controlled by a central authority. So what is assumed is each packet takes a route so as to minimize its latency. Such a flow is called the Nash flow. But such a process need not minimize the total latency incurred by all the packets. The ratio between the largest latency of Nash flows by the Optimal total latency is called the <a href="http://en.wikipedia.org/wiki/Price_of_anarchy">Price of Anarchy</a>.

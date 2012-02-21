@@ -1,0 +1,49 @@
+--- 
+layout: post
+title: Amortized Lowerbound for DYCK
+published: false
+meta: 
+  _edit_last: "5862988"
+tags: []
+
+type: post
+status: private
+---
+<strong>Definition(Randomized $latex t$-jobs Algorithm with One-sided Error for $latex DYCK_2$)</strong>
+
+A randomized algorithm $latex A$ is said to be randomized $latex t$-jobs algorithm with one-sided error for $latex DYCK_2$ iff the following properties are satisfied
+<ul>
+	<li>its input is of the form $latex (x_1,x_2,\cdots x_t)$ where each $latex x_i$ is an instance of $latex DYCK_2$ of the same length(say $latex N$)</li>
+	<li>if $latex \forall i \in [t],~ x_i \in DYCK_2$ then $latex \Pr[A(x_1,x_2,\cdots x_t) = 1] = 1$</li>
+	<li>if $latex \exists i \in [t], ~ x_i \notin DYCK_2$ then $latex \Pr[A(x_1,x_2,\cdots x_t) = 1] \leq e$ where $latex e$ is a constant $latex &lt; 1$</li>
+</ul>
+<strong>Theorem : </strong>$latex \forall \alpha \in (0,1),~ t\in \mathbb{N}$ any randomized $latex t$-jobs algorithm with one-sided error for $latex DYCK_2$ will require space $latex \Omega(t \sqrt{N} )$ after reading the first $latex \lfloor \alpha N \rfloor $ part of each of the $latex t$ instances.
+
+<strong>Proof :</strong>
+
+We will define a communication problem $latex T-JOBS-ASC(t,m,n)$ which is $latex t$ copies of the problem $latex ASCENSION(m,n)$ run in parallel using the same players. We will prove a direct sum result which gives that the IC(information cost) for former is $latex t$ times the latter. Since we already know a $latex \Omega(m\log n)$ lower bound for the IC of $latex ASCENSION(m,n)$ from [MMN], this gives that the information cost of $latex T-JOBS-ASC(t,m,n)$ is $latex \Omega(tm\log n)$. Then we will give a reduction in which an algorithm $latex A$, that satisfies the theorem for a particular $latex \alpha$, running on inputs of size $latex N$ satisfying  $latex \lfloor \alpha N \rfloor = 3mn$, is used to give a communication protocol for $latex \text{T}-\text{JOBS}-\text{ASC}(t,m,n)$ such that the $latex IC(P) \leq s(N)$ where $latex s(N)$ is the space used by the algorithm after seeing $latex \alpha N$ alphabets of the input. This gives that $latex s(N) \geq tn$ for $latex m=n/\log n$ and $latex N = 3n^2 / \alpha \log n \Rightarrow n = \Omega(\sqrt{N})$. Hence the theorem follows.
+
+<strong>Definition ($latex \text{T}-\text{JOBS}-\text{ASC}(t,m,n)$): </strong>It is a communication problem involving $latex t$ instances of $latex ASCENSION(m,n)$. Formally
+<ul>
+	<li>It has $latex 2m$ players $latex A_i,B_i ~ i\in [m]$</li>
+	<li>$latex \forall i \in [m]$ each $latex A_i$ has $latex X_{ij} \in \{0,1\}^n ~ j \in [t]$, each $latex B_i$ has $latex Y_{ij},k_{ij},c_{ij}~j\in [t]$ where $latex k_{ij} \in [n], c_{ij} \in \{0,1\}, Y_{ij} = X_{ij}[1,k_{ij}-1]$</li>
+	<li>The communication pattern similar to $latex ASCENSION(m,n)$</li>
+	<li>The objective is to compute the function $latex f(X,k,c) = \bigvee _{i\in [m]. j \in [t]} f(X_{ij},k_{ij},c_{ij})$ where $latex f(X_{ij},k_{ij},c_{ij}) = X_{ij}[k_{ij}]\oplus c_{ij}$.</li>
+</ul>
+The information cost of a protocol $latex P$ with respect to a distribution $latex \mu$ on $latex X,k,c$ is defined as $latex IC_{\mu}(P) = I[k,c:M_{B_m}|X,R] = \sum_{i=1}^t I[k_i,c_i: M_{B_m}| X,R,k_{1},k_{2},\cdots k_{i-1} ,c_{1},c_{2},\cdots c_{i-1}]$ where $latex k_i = (k_{1i},k_{2i},\cdots k_{mi})$.
+
+<strong>Claim:</strong>$latex IC_{\mu_0}^{pub}(\text{T-JOBS-ASC}(t,m,n),\delta ) \geq t IC^{pub}_{\mu_0}(ASCENSION(m,n),\delta)$ where $latex \mu_0$ is the uniform distribution in the set of inputs with the objective function value 0.
+<strong>Proof:</strong>
+This follows exactly the same way as the proof given in the [MMN STOC PAPER]. 
+
+<strong>Theorem[MMN]</strong>: $latex IC^{pub}_{\mu_0}(ASCENSION(m,n),1/42n^2) = \Omega(m\log n)$
+
+From above two we deduce $latex IC^{pub}_{\mu_0}(T-JOBS-ASC(t,m,n), 1/42n^2) = \Omega(tm\log n)$
+
+<strong>Reduction from $latex T-JOBS-ASC(t,m,n)$ to the algorithm</strong>
+Note: the reduction works only for $latex \alpha \leq 3/4$. But one can easily make a similar argument for $latex \alpha &gt; 3/4$. Basically it involves construction of a $latex DYCK_2$ instance from an instance for $latex ASCENSION(m,n)$, of length $latex 4mn$ with $latex 3mn$ is an uphill part(in the hard instance given in [MMN STOC PAPER]) and $latex mn$ length down hill part. By setting $latex \alpha N = 3mn$ we make sure that the uphill is aligned exactly to the position $latex \alpha N$. The rest of the part is filled with dummy string of matched opening and closing brackets. And we have proved a lowerbound for the information transfered at this point, which gives the result.
+
+From $latex t$ instances of $latex ASCENSION(m,n)$ in $latex t-JOBS-ASC$ we make $latex t$ instances of $latex DYCK_2$ of size $latex N=3mn/\alpha$ as follows. Fix $latex j \in [t]$, $latex X_{1j}$ is converted to a corresponding sequence of opening brackets in the reverse order,  $latex Y_{1j}$ is converted to a corresponding sequence of closing brackets followed by the corresponding closing bracket for $latex c_{1j}$(this is exactly similar to what is done in [MMN STOC PAPER]). Now the next $latex 2(n-k_{1j})$  length substring is set as $latex (^{n-k_{1j}} )^{n-k_{1j}}$ which is a dummy string. The next alphabet is set as the corresponding opening bracket for $latex c_{1j}$, followed by corresponding sequence of opening brackets for $latex Y_{1j}$ in the reverse order. Here we have differed from [MMN STOC PAPER], since we want an exact $latex 3n$ length string. Thus we finish the encoding of inputs in the hands of $latex A_1$ and $latex B_1$. We repeat this $latex \forall i \in [m]$ in increasing order to get a string of length $latex 3mn$ which corresponds to the string till the top of the hill in the diagram. Now we add another $latex mn$ length string which is the corresponding sequence of closing brackets of $latex X_{ij}$ for each $latex i \in [m]$ starting from $latex m$ in the decreasing order. So by now we will have got a $latex 4mn = \frac{4}{3}\alpha N$ length string. The rest of the $latex (1-\frac{4}{3}\alpha) N$ length string is filled with some dummy string of opening and closing brackets(Since $latex N$ is of even lenght for a $latex DYCK_2$ string, and the string we constructed is also of even length, the remaining part should be even length). This is done for each $latex j \in [t]$ to get $latex t$ instances of $latex DYCK_2$.
+
+Now $latex A_1$ runs the algorithm on the first $latex n$ alphabets and passes the its memory to $latex B_1$ who runs it on the next $latex 2n$ alphabets. We keep doing the same untill $latex B_m$ finishes running the algorithm on the $latex 3mn$th alphabet. Then he passes it down to $latex A_m$ and it reaches down the the obivous way till $latex A_1$ each whom will run the algorithm on the next $latex n$ alphabets. Besides this, in the end $latex A_1$ will also have to run the algorithm on $latex (1-\frac{4}{3}\alpha) N$ length dummy string of a matched sequence of brackets, and after that she declares the output.
+<div id="_mcePaste" style="position:absolute;left:-10000px;top:322px;width:1px;height:1px;overflow:hidden;"></div>

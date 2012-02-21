@@ -1,0 +1,22 @@
+--- 
+layout: post
+title: Streaming Algorithms Workshop at IITK
+published: true
+meta: 
+  _edit_last: "5862988"
+tags: []
+
+type: post
+status: publish
+---
+There was a workshop on streaming algos right after <a href="http://www.fsttcs.org/">FSTTCS</a> at <a href="http://www.cse.iitk.ac.in/">IIT Kanpur</a>. First of all iitk has an awesome campus really spacious with lots of sports facilities.
+
+ Though I didn't understand most of the talks, I got a vague idea of the problems and how they are solved. Streaming algos are heavily used in applications like web search, databases, routers etc. These algos work on a looong stream of data(say of length $ n$), over which they can do only a few passes($ 1$, a const, or $ o(\log n)$), keeping only small memory($ O(1)$ or $ O(\log n)$). Though they have been around for some time, the big push in the area came after the <a href="www.math.tau.ac.il/~nogaa/PDFS/amsz4.pdf">ams</a> paper(all the speakers referenced this paper and for this the authors won the godel prize). This paper gave approximate randomized one pass algorithm for frequency moments using small space. One another important feature is that they  also proved lowerbounds using communication complexity. This was an awesome idea and has been successfully used to obtain lower bounds for other streaming problems.
+ 
+Some of the problems were based on the specifiations that these applications require and some purely theoretical. The first problem is to define a good model of computation  that abstracts actual appliccations. Since the applications are different you need to look at different models. People talked about models of distributed streaming computations, models in which on can annotate the stream or write to it, copies of streams can be maintained, multiple passes allowed(the ams paper just looked at simple one pass read only stream). 
+
+Many streaming algos work by making a small sketch of the streaming data in there small memory. Later it extracts the requred information about the stream from the sketch. Usually hash functions are used to make sketches. 
+
+People seems to have mastered the art of using communication complexity to prove lowerbounds. Even for multiple passes they consider the communication complexity for multiple rounds of communication. There was some talk on 2 other methods called information complexity and round elemibation. 
+
+ 

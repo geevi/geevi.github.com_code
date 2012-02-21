@@ -1,0 +1,19 @@
+--- 
+layout: post
+title: The Markov Chain Monte Carlo(MCMC) Method
+published: true
+meta: 
+  _edit_last: "5862988"
+tags: []
+
+type: post
+status: publish
+---
+If you have a deck of cards, and you want to make the arrangement random, what do you do? You shuffle it. Lets look at this in a more formal setting. The deck of cards can be thought of as an ordered set $ {[n]}$. There is some initial arrangement of cards, which correspond to an initial permutation in $ {S_{n}}$(the set of all permutations on $ {[n]}$). Then you do some random modification to the permutation by the ``shuffle'' procedure. And you keep on doing this. Notice that ``shuffle'' is a simple procedure that is always done the same way, without taking into account what the previous permutation was. And we hope that after sometime we get a random permutation. There is a formal proof which says that $ {7}$ riffle shuffles will give you a permutation that is close to random by Persi Diaconis and David Aldous.
+
+This can be thought of in a more general setting. Suppose we have a set $ {S}$, and given an arbitrary element of $ {S}$ we want to generate a random element of $ {S}$ according to some distribution. Mostly $ {S}$ is not known explicitly and it can be of very large size. ie $ {S}$ may be the set of perfect matchings of a graph. So we can take an element in $ {S}$ and do some simple random modification(like the shuffle) and keep doing this. The random modification can be thought of as a graph with vertex set $ {S}$, with edges from one node going to other nodes that are obtained after the modification. Each edge also can have a probability associated with it. And the above random process is nothing but a random walk on this graph. So we know that this process is a Markov Chain(see the last reference at the end of the post ). We would want the Markov Chain to be ergodic and aperiodic(if the graph is undirected this just meens it should be connected and non bipartite) so that it converges to the stationary distribution. Also stationary distribution should be the distribution from which we want to sample. For this procedure to be efficient, the Markov Chain should converge to stationery distribution fast. This is done by proving that it is a rapidly mixing Markov Chain.
+<h3>Reference</h3>
+<h3><a href="http://www.jstor.org/stable/2323590"><strong>Shuffling cards </strong>and stopping times</a><span style="background-color:#ffffff;font-weight:normal;font-size:13px;">- ►<strong><a href="http://www.stat.duke.edu/~scs/Courses/Stat376/Papers/ConvergeRates/Shuffling/AldousDiaconisAmerMathMonthly1986.pdf">duke.edu</a> [PDF]<span style="font-size:small;"> </span><span style="background-color:#ffffff;font-weight:normal;font-size:small;">D Aldous, P Diaconis - The American Mathematical Monthly, 1986 - jstor.org</span></strong></span></h3>
+Does Anything Happen at Random? : A talk by Persi Diaconis [youtube=http://www.youtube.com/watch?v=nAxEzxHkqyY]
+
+<a href="/k/girish-varma/rapidly-mixing-markov-chains/7qq940jyeiy9/4">Rapidly Mixing Markov Chains</a> [A write up my myself]

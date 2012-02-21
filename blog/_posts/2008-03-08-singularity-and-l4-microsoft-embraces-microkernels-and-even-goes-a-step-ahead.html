@@ -1,0 +1,40 @@
+--- 
+layout: post
+title: Singularity and L4 | Microsoft embraces Microkernels and even goes a step ahead
+published: true
+meta: 
+  _edit_last: "5862988"
+  blogger_author: Girish R Vhttp://www.blogger.com/profile/12960293260785652534noreply@blogger.com
+  blogger_blog: girishrv.blogspot.com
+  blogger_permalink: /2008/03/singularity-and-l4-microsoft-embraces.html
+tags: 
+- computer science
+- technology
+type: post
+status: publish
+---
+I recently found out about a project at microsoft research on a new os called singularity. In my previous post i had described how the current os's(linux, windows , macx etc) are incapable of meeting the new requirements of security and reliability. And why the fault lies in the basic design of the os itself, and how microkernels like L4, hurd etc remedies it.
+
+Microsoft started a project on a new os made from scratch, with reliabililty as the primary objective. They have embraced the microkernel design of modularity(seperating fs, drivers etc from kernel). Moreover they have gone a step ahead by solving the major problem with microkernels,ie large time req for address space switches during IPC(inter process communication) by only having a single address space. They use static code verification techniques to ensure isolation of processes.
+
+As said the first great decision they made is embracing the microkernel architecture. The kernel is small and just provides the basic abstrations like
+<ol>
+	<li>Threads(they call it Software Isolated Processs).</li>
+	<li>IPC or Inter Process Communication(they call it contract based messaging).</li>
+	<li>Manifest Based programs(this is an entirely new idea with no prev analog from microkernels).</li>
+</ol>
+Another thing is that they use safe typed languate called Sing#(a variant of C#, with more type safety) for 90% of kernel code(just like L4 is coded in C++ rather than C. Migration from C++ to C# provides even better typed safe code.).
+
+The previous 2 ideas were already brought out by L4. The third great decision is some thing entirely new(as far as i know of). The idea was to have a single address space and provide isolation by relying on the advances in programming languages. The system allows software to be installed only in a language called MSIL. During the installation proccess the system runs a verification on the code checking for memory references. It enforces that all code that runs in an SIP should only refer to itself. Then it converts the code to assmebly. So the system can be sure that all the code that it runs will never refer to another processes code. No checks need to be done at runtime and no address space switches, no flushing of tlbs are required. This solves the problem of slow ipcs which was attributed as the major reason for decline of mircokernel based oss. The performace result shows great improvement over linux and windows(i guess they can be trusted about the performance, they admitted in that paper that windows performs slower that linux). Singularity has also support for hardware based isolation but with higher overhead.
+
+They have a improved IPC system called contract based messaging. The idea is to first have a specification for the messageing. It gives the fields in the messages and their types. It even specifies the states involved with a sequence of message are interchanged. They have verifier programs which verify that a program conforms to a particular specification of messaging.
+
+Manifest is another new feature. A program has to specify the about it needs and give more info about it before it can be installed. It ensures that adding a program doesnt break the system.
+
+<strong>NOTE:</strong> Some of the details above may be inaccurate and doesnt completely give all details. I wrote the post just to give a basic idea of the advantages. For more info refer the the links below.
+
+<a href="http://research.microsoft.com/os/singularity/publications/OSR2007_RethinkingSoftwareStack.pdf">RethinkingSoftwareStack(The</a> next stop if you are interested in the topic :A paper describing in detail about singularity)
+
+<a href="http://www.computer.org/portal/site/computer/menuitem.5d61c1d591162e4b0ef1bd108bcd45f3/index.jsp?&amp;pName=computer_level1_article&amp;TheCat=1005&amp;path=computer/homepage/0506&amp;file=cover1.xml&amp;xsl=article.xsl&amp;">An article by Andrew Tanenbaum</a>
+<h1 style="font-weight:normal;"><span style="font-size:100%;"><a href="http://www.cs.vu.nl/%7East/reliable-os/">Tanenbaum-Torvalds Debate on Microkernels</a>
+</span></h1>

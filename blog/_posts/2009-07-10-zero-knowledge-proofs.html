@@ -1,0 +1,35 @@
+--- 
+layout: post
+title: Zero Knowledge Proofs
+published: false
+meta: 
+  _edit_last: "5862988"
+tags: []
+
+type: post
+status: draft
+---
+<h2>Abstract</h2>
+Suppose Prof. N is giving Mr. M an exam, and Mr. M doubts that a question on the exam paper is wrong. Mr. M asks Prof. N about it. Naturally Prof. N will be careful to give a response so that he doesn't reveal any clue about the answer to that question.
+
+So can Prof. N convince Mr. M that the exam paper is correct without giving any clue about the answer?
+
+If the question was "Find the Isomorphism between 2 graphs G1 and G2" then Prof. N has a way.
+
+Note: In all that is stated above any resemblance to any real character is pure coincidence.
+<h2>Interactive Proofs</h2>
+<blockquote>Loosely speaking, Zero Knowledge Proofs are proofs that give nothing more than the validity of the assertion.
+<p style="text-align:right;">-- Oded Goldriech</p>
+</blockquote>
+<p style="text-align:left;">The above qoute talks about an "assertion" which is "valid" if and only if there is a "proof". Also it is common that verifying whether a "proof" is valid f or an assertion is a computationaly easy task, but coming up with proofs for an assertion might be hard. These statements suggests that there is an efficient Verifier, and a Prover which is computationally unbounded(so that it can come up with proofs). Also the Verifier doesn't trust the Prover but only trusts in its ability to check proofs. In a simple proof system the prover just sends a proof to the verifier who verifies it and outputs accordingly. But there can be proof systems in which there are multiple rounds of interactions(verifier asking queries and prover answering them) between the prover and the verifier.</p>
+<p style="text-align:left;">Mathematically speaking, (P,V) is an interactive proof system for a language L if V is a probabilistic polynomial time TM such that</p>
+
+<ul>
+	<li>Completeness : \forall x\in L, Pr[&lt;P,V&gt;(x)=1] \geq 2/3</li>
+	<li>Soundness : \forall x\notin L \forall P', Pr[&lt;P',V&gt;(x)=1] \leq 1/3</li>
+</ul>
+<p style="text-align:left;">Soundness ensures that a dishonest prover can only convince the verifier with small probability.</p>
+<p style="text-align:left;"></p>
+
+<h2 style="text-align:left;">Zero Knowledge Proofs</h2>
+<p style="text-align:left;">Zero Knowledge Proofs are interactive proofs in which the verifier</p>

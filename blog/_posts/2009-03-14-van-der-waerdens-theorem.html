@@ -1,0 +1,97 @@
+--- 
+layout: post
+title: van Der Waerden's Theorem
+published: true
+meta: 
+  _edit_last: "5862988"
+tags: 
+- combinatorics
+- Theory
+type: post
+status: publish
+---
+<h2>Notations:</h2>
+$ [n] : \{1, 2, \cdots n\}$
+
+$ [0,k) : \{0, \cdots k-1\}$
+<h2>Problem:</h2>
+Try finding a colouring of  $ [9]$ with $ \{R,B\}$ such that there are no $ 3$ numbers with same colour that are in arithmetic progression.
+
+1   2   3   4   5   6   7   8   9
+R   R  B   R   R    B  B    R   _   (B only if necessary strategy)
+R   B    R   B   B   R  B    R   _ (a balanced strategy)
+
+It seems this cannot be done. In fact with a exhaustive search you will find that all $ 2$-colourings has a monochromatic $ 3$-AP.
+<blockquote><strong>van Der Waerden's(VDW) Theorem</strong>: for all $ c, k$ there is a number $ N$, such that all $ c$-colourings of $ [N]$ has a monochromatic $ k$-AP.</blockquote>
+It should be clear that if $ N$ satisfies VDW for $ c,k$ then all $ M \geq N$ also satisfies VDW for $ c,k$. The smallest such number  is denoted by $ V(c,k)$ and are called <span style="text-decoration:underline;">van Der Waerdens Numbers</span>.
+<h2>Intuition</h2>
+We found that $ V(2,3)=9$. However we will prove a bound on $ V(2,3)$ for the purpose of generalising it later.
+<blockquote><strong>Claim</strong>:  $ V(2,3) \leq 5(2 \times 2^{5}+1) = 5 \times 65 = 325$</blockquote>
+<strong>Proof</strong>:
+Consider $ [325]$ as blocks of size $ 5$, of the form
+$ \{5b+1, 5b+2, 5b+3, 5b+4, 5b+5\}$
+where $ b \in \{0 \cdots 64\}$
+Amoung the first $ 33$ blocks, $ 2$ blocks has the same colour pattern. Let them be $ b_{1}$, $ b_{2}$ and let $ b_{3} = 2b_{2} - b_{1}$. Note that these $ 3$ are in AP.
+
+Within a block, amoung first $ 3$, $ 2$ have the same colour. Let them be $ a_{1}, a_{2}$ and $ a_{3} = 2a_{2} - a_{1}$ (all are $ \leq 5$ and are in AP).
+
+<img class="aligncenter size-full wp-image-74" title="drawing" src="http://girishvarma.files.wordpress.com/2009/03/drawing.png" alt="drawing" width="500" height="120" />
+
+What colour should $ 5b_{3} + a_{3}$ be given without creating a monochromatic  $ 3$-AP? suppose $ c(5b_{1}+a_{1})=c(5b_{1}+a_{2})=c(5b_{2}+a_{1})=c(5b_{2}+a_{2}) = R$.
+Then $ c(5b_{3}+a_{1})=c(5b_{3}+a_{2}) = B$. If $ c(5b_{3}+a_{3})=B$ then $ 5b_{1}+a_{1}, 5b_{2}+a_{2}, 5b_{3}+a_{3}$ forms a monochromatic 3-AP.
+<blockquote><strong>Claim</strong>: $ V(3,3) \leq 7(2 \times 3^{7}+1)(2 \times 3^{7(2 \times 3^{7}+1)})$</blockquote>
+<strong>Proof</strong>: (by pictures)
+<p style="text-align:center;"><img class="aligncenter size-full wp-image-75" title="drawing2" src="http://girishvarma.files.wordpress.com/2009/03/drawing2.png" alt="drawing2" width="573" height="55" /></p>
+Consider  $ 7(2 \times 3^{7}+1)(2 \times 3^{7(2 \times 3^{7}+1)}+1)$ as blocks of size $ 7(2 \times 3^{7}+1)$. Amoung the first $ 3^{7(2 \times 3^{7}+1)}+1$ blocks, $ 2$ has the same pattern of colours.  Let them be $ d_{1}$, $ d_{2}$ and $ d_{3} = 2d_{2}-d_{1}$.
+
+Similarly within these blocks we can form $ b_{1}, b_{2}$ and $ b_{3}$ of size $ 7$ and again within them $ a_{1}, a_{2}$ and $ a_{3}$ of size $ 1$.
+
+What colour should $ 7(2 \times 3^{7}+1) d_{3} + 7b_{3} + a_{3}$ be given without creating a monochromatic $ 3$-AP?
+<ol>
+	<li>Inside $ d_{3}$, inside $ b_{3}$,  $ a_{1}, a_{2}$ has same colour and rules out $ 1$ possibility for $ a_{3}$.</li>
+	<li>Inside $ d_{3}$, $ 7b_{1}+a_{1}, 7b_{2}+a_{2}$ has same colour (different from the already ruled out one) and rules out $ 2$nd possibility for $ 7b_{3} + a_{3}$.</li>
+	<li> $ 7(2 \times 3^{7}+1) d_{1} + 7b_{1} + a_{1}$, $ 7(2 \times 3^{7}+1) d_{2} + 7b_{2} + a_{2}$ has same colour (different from the already ruled out ones) and rules out $ 3$rd possibility for  $ 7(2 \times 3^{7}+1) d_{3} + 7b_{3} + a_{3}$</li>
+</ol>
+Therefore no matter which amoung the $ 3$ colours you choose, you will get a monochromatic $ 3$-AP.
+<h2>Formalizing the Intuition</h2>
+<blockquote><strong>Definition</strong>: A <span style="text-decoration:underline;">fan</span> with base $ a$, radius $ k$ and degree $ d$ is $ F=\{a+[0,k)r_{1}, a+[0,k)r_{2}, \cdots A+[0,k)r_{d}\}$. That is a set of $ d$ different $ k$-AP's all starting at $ a$. $ a+[1,k)r_{i}$ are called <span style="text-decoration:underline;">spokes</span> of the fan.</blockquote>
+<blockquote><strong>Definition</strong>: A <span style="text-decoration:underline;">weakly polychromatic fan</span> is fan in which all the spokes are monochromatic with different colours.</blockquote>
+The grey lines in the figures in the previous section shows weakly polychromatic fans of degree $ 2$, radius $ 2$. The pink lines show a weakly polychromatic fan of degree $ 3$, radius $ 2$.
+<blockquote><strong>Definition</strong>: A <span style="text-decoration:underline;">strongly polychromatic fan</span> is a weakly polychromatic one with colour of base different from any of it's spokes. The colour type of a fan is defined as $ (c_{0},\cdots c_{d})$ where $ c_{0}$ is colour of base and the others the colours of the spokes.</blockquote>
+It should be clear that a weakly polychromatic fan either has a monochromatic k-AP or is strongly polychromatic.
+
+In the second figure, you will find that we used a AP of grey fans to create the pink fan with $ 1$ degree more. The following lemma formalizes this notion.
+<blockquote><strong>Lemma</strong>: If
+<ul>
+	<li> $ F=\{a+[0,k)r_{1}, a+[0,k)r_{2}, \cdots A+[0,k)r_{d}\}$ is a fan</li>
+	<li> we define $ r+F, 2r+F,\cdots (k-1)r+F$ as adding each element of $ F$ by the first number</li>
+	<li> $ i \times r+F$, $ i \in [k-1]$ are strongly polychromatic with the same colour type $ (c_{0}, \cdots c_{d})$</li>
+	<li> all the numbers in these fans are different</li>
+</ul>
+then
+$ \tilde{F} = \{a+[0,k)r, a+[0,k)(r+r_{1}), a+[0,k)(r+r_{2}) \cdots a+[0,k)(r+r_{d})\}$
+is a weakly polychromatic fan with degree 1 more than $ F$.</blockquote>
+<strong>Proof</strong>: It can be verified $ \tilde{F}$ satisfies the definition of a weakly polychromatic fan.
+
+<strong>Note</strong>: The number $ a$ does not belong to any of $ i \times r+F$, $ i \in [k-1]$ and only belong to $ F$. That is why it is weakly polychromatic.
+<h2>Proof of van Der Wearden's Theorem</h2>
+The method of proof is by induction on $ k$ for any $ c$.
+
+<strong>Base Case : </strong>$ k = 1$ is trivial. For all $ c$, there is always a $ 1$-AP for any $ c$-colouring of $ [1]$.
+
+<strong>Inductive Step</strong> : Assuming we know $ V(c, k-1)$ for all $ c$.
+
+Let $ \tilde{N}(c,k-1,d)$ be the smallest number such that all $ c$-colourings contain a weakly polychromatic fan of radius $ k$, degree $ d$. That is either it has a monochromatic $ k$-AP or it has a strongly polychromatic fan of radius $ k$ and degree $ d$.
+
+<strong> Claim</strong>: $ N(c,k) \leq \tilde{N}(c,k-1,c)$
+
+<strong>Proof</strong>: If degree of a fan itself $ c$, then the base should have the same colour as on of the spokes. So there is a $ k$-AP.
+
+<strong> Claim</strong>: $ \forall d, \exists \tilde{N}(c,k-1,d)$
+<strong>Proof</strong>: Here we start a nested induction on $ d$.
+<p style="padding-left:30px;"><strong>Base Case </strong>: $ d = 0$ is trivial as there are no spokes.
+<strong>Inductive Step</strong> :  Asumming we know $ \tilde{N}(c,k-1,d-1)$.</p>
+<p style="padding-left:30px;">Let $ \tilde{N} = 2N_{1}N_{2}$(which is what we want to prove to be $ \tilde{N}(c,k-1,d)$)  where $ N_{1} = \tilde{N}(c,k-1,d-1)$ and $ N_{2} = N(c^{d}N_{1}^{d}, k-1)$. This can be thought of as $ 2N_{2}$ blocks of size $ N_{1}$. By the choice of $ N_{1}$ we know that each of these blocks has a weakly polychromatic fan of radius $ k$ and degree $ d-1$. If any of these are not strongly polychromatic, then we are done in the outer induction(as there will be a monochromatic $ k$-AP). So assuming all are strongly polychromatic. We will try to obtain a $ k-1$-AP of such fans. By the lemma proved in the previous section, there is a weakly polychromatic fan of radius $ k-1$, degree $ d$ and we are done.</p>
+<p style="padding-left:60px;">Number of polychromatic fans of radius $ k-1$ and degree $ d-1$ in a block is $ \leq N_{1}^{d}$.
+Number of colourings of these fans $ \leq c^{d}$.</p>
+<p style="padding-left:60px;">Now i can think of each block as having one of $ N_{1}^{d}c^{d}$ colours. By our choice of $ N_{2}$ there is a monochoromatic $ k-1$-AP in $ [N_{2}, 2N_{2}]$ blocks. Now we just need to make sure that the $ a$(mentioned in the note under the lemma in previous section) is also within $ [0, 2N_{2}]$ which is true.</p>
