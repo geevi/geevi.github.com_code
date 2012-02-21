@@ -27,6 +27,19 @@
     <link rel="apple-touch-icon" href="{{ ASSET_PATH }}/img/apple-touch-icon.png">
     <link rel="apple-touch-icon" sizes="72x72" href="{{ ASSET_PATH }}/img/apple-touch-icon-72x72.png">
     <link rel="apple-touch-icon" sizes="114x114" href="{{ ASSET_PATH }}/img/apple-touch-icon-114x114.png">
+
+{% if page.isphoto %}
+	
+<link  type="text/css"  rel="stylesheet"  media="screen"  charset="utf-8"  href="{{ ASSET_PATH }}/picasaViewer2.0/css/style.css" />  
+<link  type="text/css"  rel="stylesheet"  media="screen"  charset="utf-8"  href="{{ ASSET_PATH }}/picasaViewer2.0/css/slimbox.css" />  
+<link  type="text/css"  rel="stylesheet"  media="screen"  charset="utf-8"  href="{{ ASSET_PATH }}/picasaViewer2.0/css/picasaViewer.css" />  
+<script src="{{ ASSET_PATH }}/picasaViewer2.0/js/mootools-core-1.4.0-full-compat-yc.js" >  </script>
+<script src="{{ ASSET_PATH }}/picasaViewer2.0/js/mootools-more-1.4.0.1.js" >  </script>
+<script src="{{ ASSET_PATH }}/picasaViewer2.0/js/slimbox.js" >  </script>
+<script src="{{ ASSET_PATH }}/picasaViewer2.0/picasaViewer2.0.js" >  </script>
+
+{% endif %}
+
   </head>
 
   <body>

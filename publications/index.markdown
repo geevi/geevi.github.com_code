@@ -33,19 +33,4 @@ For any finite-state ergodic time-reversible Markov chain with conductance $\phi
 $$ \phi^2 + \lambda^2 \leq 1 $$
 			
 
-### Talks
-
-<p><a title="Link to http://girishvarma.wordpress.com/2009/03/14/van-der-waerdens-theorem/" href="http://girishvarma.wordpress.com/2009/03/14/van-der-waerdens-theorem/">van Der Waerdern&#8217;s Theorem</a><br />
-Notes made for a student seminar at TIFR</p><p><a title="Link to files/structure_theorem.pdf" href="http://girishvarma.in/files/structure_theorem.pdf">Structure Theorem for Finitely Generated Modules</a><br />Seminar given as a part of STCS Symposium.(<a title="files/structure_theorem.pdf" href="http://girishvarma.in/files/structure_theorem.pdf">slides</a>)</p>
-
-### Academic Projects
-
-<p><a href="http://db.tt/BZY0S96">Approximate Counting, Almost Uniform Generation and Rapidly Mixing Markov Chains</a> Graduate project done under guidance of Manoj Gopalkrishnan (<a href="http://db.tt/mOFYPvT">slides</a>)</p>
-<p><a title="Link to files/BTech_major_project.pdf" href="http://db.tt/1IWajMY">Pseudo-random Generators using the Directed Hamiltonian Path Problem.</a><br />
-BTech major project done under guidance of <a title="Link to http://nitc.ac.in/nitc/user_profile/index.jsp?__tg_login=kmurali" href="http://nitc.ac.in/nitc/user_profile/index.jsp?__tg_login=kmurali">Dr. K. Muralikrishnan</a></p>
-<p><a title="Link to files/BTech_mini_project.pdf" href="http://db.tt/8Q0GbSY">Parallelizing Algorithms for Molecular Dynamics Computations</a><br />
-BTech mini project done under guidance of <a title="Link to http://www.nitc.ac.in/nitc/user_profile/index.jsp?__tg_login=pathari" href="http://www.nitc.ac.in/nitc/user_profile/index.jsp?__tg_login=pathari">Vinod P</a></p>
-<p><a title="Link to files/BTech_seminar.pdf" href="http://db.tt/MOx3MRC">Microkernels</a><br />
-BTech Seminar</p>
-
 
