@@ -401,7 +401,25 @@ h2 {
 border-bottom: 1px solid #EEE;
 font-weight: normal;
 margin-top: 16px;
+margin-bottom: 5px;
 }
+
+@media (min-width:760px) {
+  blockquote {
+   padding: 10px 15px;
+   margin: 25px;
+   background-color: whiteSmoke;
+   -webkit-border-radius: 10px;
+   -moz-border-radius: 10px;
+   border-radius: 10px;
+   border-left: 0px;
+  }
+
+}
+
+blockqoute {
+padding: 10px;
+} 
 
 @media (min-width: 980px) {
   p,a,address,div.span10,li {
@@ -629,12 +647,6 @@ div.span10,div.span14 {
 
 div.span4 {
   text-align: left;
-}
-
-blockquote {
-padding: 10px 15px;
-margin: 25px;
-border: 5px solid #eeeeee;
 }
 
 
