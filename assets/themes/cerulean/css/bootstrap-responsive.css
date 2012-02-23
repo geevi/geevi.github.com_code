@@ -398,10 +398,14 @@
 }
 
 h2 {
-border-bottom: 1px solid #EEE;
+border-bottom: 1px solid #DDD;
 font-weight: normal;
 margin-top: 16px;
 margin-bottom: 5px;
+}
+
+.hero-unit {
+  border: 1px solid #ddd;
 }
 
 @media (min-width:760px) {
@@ -413,7 +417,7 @@ margin-bottom: 5px;
    -moz-border-radius: 10px;
    border-radius: 10px;
    border-left: 0px;
-   border: 1px solid rgba(0,0,0,0.1);
+   border: 1px solid #ddd;
   }
 
 }
