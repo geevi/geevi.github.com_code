@@ -406,6 +406,7 @@ margin-bottom: 5px;
 
 .hero-unit {
   border: 1px solid #ddd;
+  background: #F6F6F6 url(http://s3.amazonaws.com/wrapbootstrap/live/imgs/darkgrain.png);
 }
 
 @media (min-width:760px) {
@@ -418,6 +419,7 @@ margin-bottom: 5px;
    border-radius: 10px;
    border-left: 0px;
    border: 1px solid #ddd;
+   background: #F6F6F6 url(http://s3.amazonaws.com/wrapbootstrap/live/imgs/darkgrain.png);
   }
 
 }
