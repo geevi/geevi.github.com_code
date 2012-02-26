@@ -12,14 +12,10 @@ h2 {
   margin-bottom: 5px;
 }
 
-@media (max-width: 760px) {
-  h2 {
-	  font-size: 18px;
-  }
-}
 
 .hero-unit {
   border: 1px solid #ddd;
+  background: #F6F6F6 url(../imgs/darkgrain.png);
 }
 
 blockquote {
@@ -36,6 +32,10 @@ blockquote {
    border-radius: 10px;
    border-left: 0px;
    border: 1px solid #ddd;
+  }
+
+ h2 {
+	  font-size: 18px;
   }
 
 }

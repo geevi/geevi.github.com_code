@@ -94,6 +94,7 @@
     position: static;
   }
 }
+
 @media (max-width: 767px) {
   .container {
     width: auto;
@@ -112,6 +113,7 @@
     margin: 0;
   }
 }
+
 @media (min-width: 768px) and (max-width: 979px) {
   .row {
     margin-left: -20px;
@@ -288,6 +290,7 @@
     width: 714px;
   }
 }
+
 @media (max-width: 979px) {
   body {
     padding-top: 0;
@@ -391,45 +394,8 @@
     overflow: hidden;
     height: 0;
   }
-<<<<<<< HEAD
-=======
-/* Added by geevi */
-  .nav-collapse.collapse {
-    height: auto !important;
-  }
-}
-
-h2 {
-border-bottom: 1px solid #DDD;
-font-weight: normal;
-margin-top: 16px;
-margin-bottom: 5px;
-}
-
-.hero-unit {
-  border: 1px solid #ddd;
-  background: #F6F6F6 url(http://s3.amazonaws.com/wrapbootstrap/live/imgs/darkgrain.png);
-}
-
-@media (min-width:760px) {
-  blockquote {
-   padding: 10px 15px;
-   margin: 25px;
-   background-color: whiteSmoke;
-   -webkit-border-radius: 10px;
-   -moz-border-radius: 10px;
-   border-radius: 10px;
-   border-left: 0px;
-   border: 1px solid #ddd;
-   background: #F6F6F6 url(http://s3.amazonaws.com/wrapbootstrap/live/imgs/darkgrain.png);
-  }
->>>>>>> 6067ac37c8782426e32b70323836e5f52552a4f1
 
 }
-
-
-
-
 
 @media (min-width: 1200px) {
   .row {
