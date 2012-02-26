@@ -15,11 +15,12 @@ h2 {
 
 .hero-unit {
   border: 1px solid #ddd;
-  background: #F6F6F6 url(../imgs/darkgrain.png);
+  background: #F6F6F6 url(../img/darkgrain.png);
 }
 
 blockquote {
  margin: 20px 0px;
+  background: #F6F6F6 url(../img/darkgrain.png);
 }
 
 @media (min-width:760px) {
@@ -33,6 +34,12 @@ blockquote {
    border-left: 0px;
    border: 1px solid #ddd;
   }
+  h2 {
+    font-size: 22px;
+  }
+}
+
+@media (max-width: 760px) {
 
  h2 {
 	  font-size: 18px;
@@ -52,6 +59,10 @@ blockqoute {
 
   .hero-unit a {
     font-size: inherit;
+  }
+
+  .hero-unit h2 {
+     font-size: 24px;
   }
 
   h4 {
