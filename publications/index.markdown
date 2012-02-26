@@ -2,17 +2,9 @@
 layout: page
 title: "Publications"
 group: navigation
+mathjax: enable
 ---
 {% include JB/setup %}
-
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-      tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
-      });
-</script>
-<script type="text/javascript"
-	  src=" http://cdn.mathjax.org/mathjax/2.0-beta/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-  </script>
 
 ### Areas of Interest
 
