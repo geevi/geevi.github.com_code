@@ -1,0 +1,293 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Generalized Harmonic Analysis over Abelian Group</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+     <meta name="author" content="Girish Varma">
+
+    <!-- Le styles -->
+    <link href="/assets/themes/cerulean/css/bootstrap.min.css" rel="stylesheet">
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+    </style>
+    <link href="/assets/themes/cerulean/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="/assets/themes/cerulean/css/custom.css" rel="stylesheet">
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" href="/assets/themes/cerulean/img/favicon.ico">
+    <link rel="apple-touch-icon" href="/assets/themes/cerulean/img/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/themes/cerulean/img/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/themes/cerulean/img/apple-touch-icon-114x114.png">
+
+
+
+
+
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="/">Girish Varma</a>
+          <div class="nav-collapse">
+            <ul class="nav">
+              	
+            	
+            	
+
+
+
+  
+    
+  
+    
+  
+    
+  
+    
+    	
+    	<li><a href="/code/index.html">Code & Design</a></li>
+    	
+    
+  
+    
+    	
+    	<li><a href="/contact/index.html">Contact</a></li>
+    	
+    
+  
+    
+    	
+    	<li><a href="/photos/index.html">Photos</a></li>
+    	
+    
+  
+    
+    	
+    	<li><a href="/cv/index.html">CV</a></li>
+    	
+    
+  
+    
+    	
+    	<li><a href="/articles/index.html">Articles & Talks</a></li>
+    	
+    
+  
+    
+  
+    
+  
+    
+    	
+    	<li><a href="/blog/index.html">Blog</a></li>
+    	
+    
+  
+    
+  
+    
+  
+    
+  
+    
+    	
+    	<li><a href="/publications/index.html">Publications</a></li>
+    	
+    
+  
+
+
+
+
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+	  <div class="content">
+        
+
+<div class="page-header">
+  <h1>Generalized Harmonic Analysis over Abelian Group <small></small></h1>
+</div>
+<div class="content">
+<div class="row">
+  <div class="span14">
+    <p>Consider \(\mathbb{Z}_2 = \{0,1\}\), an abelian group under \(mod~2\) addition. We will be viewing this group as \(\{\pm 1\}\) under the operation of multiplication. These two are isomorphic by the following mapping \(0 \mapsto +1, 1 \mapsto -1\). The following is a well known theorem:</p>
+<blockquote>
+<p><strong>Theorem</strong> Any function of the form \(f:\{\pm 1\}^n \rightarrow\mathbb{R}\) can be written as a multilinear polynomial: \[ f(x) = \sum_{S \subseteq [n]} \hat{f}_S \prod_{i\in S}x_i \] This representation is unique.</p>
+</blockquote>
+<p>Another way of saying this is that the functions \(\{\prod_{i\in S}x_i \}_{S\subseteq [n]}\) form an orthogonal basis for the \(2^n\) dimensional real vector space of functions from \(\{\pm 1\}^n\) to \(\mathbb{R}\). In this article we will be exploring the generalizations of this theorem to arbitrary finite (and some infinite) abelian groups.</p>
+<p>It is well known by the <a href="http://en.wikipedia.org/wiki/Fundamental_theorem_of_finitely_generated_abelian_groups#Classification">structure theorem for finitely generated modules</a>, that any finite abelian group is isomorphic to a direct sum of cyclic groups with prime order. Hence we will first analyze cyclic groups of prime order \(\mathbb{Z}_p\).</p>
+<h2 id="harmonic-analysis-of-mathbbz_p">Harmonic analysis of \(\mathbb{Z}_p\)</h2>
+<p>Let</p>
+<table>
+<tbody>
+<tr class="odd">
+<td align="right">\(p\)</td>
+<td align="left">be a prime</td>
+</tr>
+<tr class="even">
+<td align="right">\(\mathbb{Z}_p\)</td>
+<td align="left">be the cyclic group of order \(p\)</td>
+</tr>
+<tr class="odd">
+<td align="right">\(\Phi\)</td>
+<td align="left">be the set of homomorphisms from \(\mathbb{Z}_p\) to \(\mathbb{C}\)</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Claim :</strong> 1. \(\forall \chi \in \Phi, \chi(0)=1\)</p>
+<ol start="2" style="list-style-type: decimal">
+<li><p>\(|\Phi| = p\)</p></li>
+<li><p>\(\Phi = \{ \chi_k(x) = \omega^{kx \mod p} \}\), where \(\omega\) is the \(p\)th root of unity.</p></li>
+</ol>
+</blockquote>
+<p><em>Proof :</em> Since \(\forall a \in \mathbb{Z}_p, a+0=a \Rightarrow \chi(a)\chi(0) = \chi(a)\) , then \(\chi(0)\) should be \(1\). Let \(1\) be a generator then \(b=k\times1 \Rightarrow \chi(b)=\chi(a)^k\)<sup><a href="#fn1" class="footnoteRef" id="fnref1">1</a></sup>. Hence \(\chi\) is completely determined by its value on the generator \(1\in \mathbb{Z}_p\). Since \(\chi(0)=\chi(p\times 1)=\chi(1)^p\), we have that \(\chi(1)\) must be one of the \(p\) roots of unity. Hence the last statement follows. <strong>QED</strong></p>
+<blockquote>
+<p><strong>Claim :</strong> \(\Phi\) forms an orthonormal basis for the complex vector space of functions from \(\mathbb{Z}_p\) to \(\mathbb{C}\) under the inner product \[\langle f, g \rangle = \mathbb{E}_{x\leftarrow \mu}f(x)\overline{g(x)} .\]</p>
+</blockquote>
+<p><em>Proof :</em></p>
+<p><strong>QED</strong></p>
+<h2 id="handling-product-groups-mathbbz_ptimes-mathbbz_q">Handling Product Groups \(\mathbb{Z}_p\times \mathbb{Z}_q\)</h2>
+<p>Consider the functions \[\{ \chi_{j,k}(x,y) = \omega^{jx+ky}  \}_{j\in \mathbb{Z}_p, k\in \mathbb{Z}_q}\] These again form an orthonormal basis.</p>
+<dl>
+<dt>Term 1</dt>
+<dd><p>Definition 1</p>
+</dd>
+<dt>Term 2 with <em>inline markup</em></dt>
+<dd><p>Definition 2</p>
+</dd>
+</dl>
+<table>
+<caption>Demonstration of simple table syntax.</caption>
+<thead>
+<tr class="header">
+<th align="right">Right</th>
+<th align="left">Left</th>
+<th align="center">Center</th>
+<th align="left">Default</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">12</td>
+<td align="left">12</td>
+<td align="center">12</td>
+<td align="left">12</td>
+</tr>
+<tr class="even">
+<td align="right">123</td>
+<td align="left">123</td>
+<td align="center">123</td>
+<td align="left">123</td>
+</tr>
+<tr class="odd">
+<td align="right">1</td>
+<td align="left">1</td>
+<td align="center">1</td>
+<td align="left">1</td>
+</tr>
+</tbody>
+</table>
+<table>
+<caption>Sample grid table.</caption>
+<col width="22%" />
+<col width="22%" />
+<col width="29%" />
+<thead>
+<tr class="header">
+<th align="left">Fruit</th>
+<th align="left">Price</th>
+<th align="left">Advantages</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Bananas</td>
+<td align="left">$1.34</td>
+<td align="left"><ul>
+<li>built-in wrapper</li>
+<li>bright color</li>
+</ul></td>
+</tr>
+<tr class="even">
+<td align="left">Oranges</td>
+<td align="left">$2.10</td>
+<td align="left"><ul>
+<li>cures scurvy</li>
+<li>tasty</li>
+</ul></td>
+</tr>
+</tbody>
+</table>
+<p>What is the difference between <code>&gt;&gt;=</code> and <code>&gt;&gt;</code>?</p>
+<p>Here is a footnote reference,<sup><a href="#fn2" class="footnoteRef" id="fnref2">2</a></sup> and another.<sup><a href="#fn3" class="footnoteRef" id="fnref3">3</a></sup></p>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>\(k\times1\) refers to repeated  addition of \(1\), \(k\) times <a href="#fnref1" class="footnoteBackLink" title="Jump back to footnote 1">↩</a></p></li>
+<li id="fn2"><p>Here is the footnote. <a href="#fnref2" class="footnoteBackLink" title="Jump back to footnote 2">↩</a></p></li>
+<li id="fn3"><p>Here’s one with multiple blocks. <a href="#fnref3" class="footnoteBackLink" title="Jump back to footnote 3">↩</a></p></li>
+</ol>
+</div>
+  </div>
+</div>
+
+</div>
+
+
+      </div>
+      
+	  <hr>
+
+      <footer>
+        <p>&copy; Girish Varma 2012 
+          with help from <a href="http://jekyllbootstrap.com" target="_blank" title="The Definitive Jekyll Blogging Framework">Jekyll Bootstrap</a>
+          and <a href="http://twitter.github.com/bootstrap/" target="_blank">Twitter Bootstrap</a>
+        </p>
+      </footer>
+
+    </div> <!-- /container -->
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+   <!-- <script src="/assets/themes/cerulean/js/jquery.js"></script>
+    <script src="/assets/themes/cerulean/js/bootstrap-transition.js"></script>
+    <script src="/assets/themes/cerulean/js/bootstrap-alert.js"></script>
+    <script src="/assets/themes/cerulean/js/bootstrap-modal.js"></script>
+    <script src="/assets/themes/cerulean/js/bootstrap-dropdown.js"></script>
+    <script src="/assets/themes/cerulean/js/bootstrap-scrollspy.js"></script>
+    <script src="/assets/themes/cerulean/js/bootstrap-tab.js"></script>
+    <script src="/assets/themes/cerulean/js/bootstrap-tooltip.js"></script>
+    <script src="/assets/themes/cerulean/js/bootstrap-popover.js"></script>
+    <script src="/assets/themes/cerulean/js/bootstrap-button.js"></script>
+    <script src="/assets/themes/cerulean/js/bootstrap-collapse.js"></script>
+    <script src="/assets/themes/cerulean/js/bootstrap-carousel.js"></script>
+    <script src="/assets/themes/cerulean/js/bootstrap-typeahead.js"></script>
+-->
+  </body>
+</html>
+

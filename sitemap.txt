@@ -1,8 +1,45 @@
----
-# Remember to set production_url in your _config.yml file!
-title : Sitemap
----
-{% for page in site.pages %}
-{{site.production_url}}{{ page.url }}{% endfor %}
-{% for post in site.posts %}
-{{site.production_url}}{{ post.url }}{% endfor %}
+
+http://geevi.github.com/atom.xml
+http://geevi.github.com/archive.html
+http://geevi.github.com/index.html
+http://geevi.github.com/code/index.html
+http://geevi.github.com/contact/index.html
+http://geevi.github.com/photos/index.html
+http://geevi.github.com/cv/index.html
+http://geevi.github.com/articles/index.html
+http://geevi.github.com/articles/boolean.html
+http://geevi.github.com/categories.html
+http://geevi.github.com/blog/index.html
+http://geevi.github.com/tags.html
+http://geevi.github.com/pages.html
+http://geevi.github.com/sitemap.txt
+http://geevi.github.com/publications/index.html
+
+http://geevi.github.com/blog/2010/11/05/a-latex-template
+http://geevi.github.com/blog/2010/11/01/fall-at-saarbrucken
+http://geevi.github.com/blog/2010/09/29/flow-problems-on-graphs
+http://geevi.github.com/blog/2009/12/22/streaming-algorithms-workshop-at-iitk
+http://geevi.github.com/blog/2009/12/09/undirected-reachability-in-log-space
+http://geevi.github.com/blog/2009/12/03/simpler-proof-for-chernoff-bound-using-bernsteins-trick
+http://geevi.github.com/blog/2009/11/17/my-wordle
+http://geevi.github.com/blog/2009/11/05/protests-are-on-guess-for-what
+http://geevi.github.com/blog/2009/11/03/the-secretary-problem
+http://geevi.github.com/blog/2009/10/29/some-facts-about-matchings
+http://geevi.github.com/blog/2009/10/27/the-markov-chain-monte-carlomcmc-method
+http://geevi.github.com/blog/2009/10/10/i-wish-i-could
+http://geevi.github.com/blog/2009/10/09/pseudorandomness-for-width-2-branching-programs-and-small-degree-polynomials
+http://geevi.github.com/blog/2009/10/07/differential-entropy
+http://geevi.github.com/blog/2009/10/04/graph-entropy
+http://geevi.github.com/blog/2009/09/21/rediscovering-markov-chainsdraft
+http://geevi.github.com/blog/2009/03/14/van-der-waerdens-theorem
+http://geevi.github.com/blog/2008/11/24/science-fiction-book-recommendations
+http://geevi.github.com/blog/2008/08/27/setting-up-a-website-without-any-database
+http://geevi.github.com/blog/2008/06/04/a-request-to-all-believers-of-reason
+http://geevi.github.com/blog/2008/03/08/singularity-and-l4-microsoft-embraces-microkernels-and-even-goes-a-step-ahead
+http://geevi.github.com/blog/2008/01/25/patience-test
+http://geevi.github.com/blog/2007/09/03/a-late-goodbye
+http://geevi.github.com/blog/2007/08/28/of-long-boats-and-banana-plants
+http://geevi.github.com/blog/2007/06/07/on-a-search-project
+http://geevi.github.com/blog/2007/05/03/day-4-at-google
+http://geevi.github.com/blog/2006/07/08/piracy-losers-and-gainers
+http://geevi.github.com/blog/2006/06/30/iiinintrointrointroduction

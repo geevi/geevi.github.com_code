@@ -1,0 +1,307 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Graph Entropy</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+     <meta name="author" content="Girish Varma">
+
+    <!-- Le styles -->
+    <link href="/assets/themes/cerulean/css/bootstrap.min.css" rel="stylesheet">
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+    </style>
+    <link href="/assets/themes/cerulean/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="/assets/themes/cerulean/css/custom.css" rel="stylesheet">
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" href="/assets/themes/cerulean/img/favicon.ico">
+    <link rel="apple-touch-icon" href="/assets/themes/cerulean/img/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/themes/cerulean/img/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/themes/cerulean/img/apple-touch-icon-114x114.png">
+
+
+
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
+  "HTML-CSS": { scale: 90 }
+  });
+</script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/2.0-beta/MathJax.js?config=TeX-AMS_HTML"></script>
+
+
+
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="/">Girish Varma</a>
+          <div class="nav-collapse">
+            <ul class="nav">
+              	
+            	
+            	
+
+
+
+  
+    
+  
+    
+  
+    
+  
+    
+    	
+    	<li><a href="/code/index.html">Code & Design</a></li>
+    	
+    
+  
+    
+    	
+    	<li><a href="/contact/index.html">Contact</a></li>
+    	
+    
+  
+    
+    	
+    	<li><a href="/photos/index.html">Photos</a></li>
+    	
+    
+  
+    
+    	
+    	<li><a href="/cv/index.html">CV</a></li>
+    	
+    
+  
+    
+    	
+    	<li><a href="/articles/index.html">Articles & Talks</a></li>
+    	
+    
+  
+    
+  
+    
+  
+    
+    	
+    	<li><a href="/blog/index.html">Blog</a></li>
+    	
+    
+  
+    
+  
+    
+  
+    
+  
+    
+    	
+    	<li><a href="/publications/index.html">Publications</a></li>
+    	
+    
+  
+
+
+
+
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+	  <div class="content">
+        
+<div class="page-header">
+  <h1>Graph Entropy <small></small></h1>
+</div>
+
+<div class="row">
+  <div class="span10">
+    <em>Lecture Notes from </em><a href="http://www.tcs.tifr.res.in/~jaikumar/"><em>Jaikumar Radhakrishnan's</em></a><em> Information Theory Course, scribed by me</em>
+
+Suppose Alice receives letters $ {X_{1}X_{2}X_{3}\cdots}$ from a finite alphabet(say $ [n] = \{1,\cdots,n\}$), each letter according to a probability distribution $ {P}$. She wants to communicate this to Bob. We know that for doing source coding she needs $ {H(P)}$ bits per instance(called the rate). But now Bob doesn't need to distinguish between some pairs of letters in $ {[n]}$. For each pair of letters in $ {[n]}$, they are either distinguishable or indistinguishable to him(ie its a symmetric relation). So a natural way to represent this distinguishability relation is an undirected graph $ {G}$ on $ {[n]}$(ie $ {(i,j)}$ edge exists iff $ {i}$ and $ {j}$ needs to be distinguished).
+
+<strong>Example 1: </strong>Consider the alphabet $ {[4]}$, suppose Bob is happy even if he gets a $ {3}$ instead of $ {1}$ and $ {1}$ instead of $ {3}$ and $ {4}$ instead of $ {2}$ and $ {2}$ instead of $ {4}$ , then he doesn't need to distinguish between $ {(1,3),(2,4)}$. The graph corresponding to this situation is a cycle with edge set $ {\{(1,2),(2,3),(3,4),(4,1)\}}$.
+
+<strong>Example 2:</strong> The normal model in which all alphabets are distinguishable is given by a complete graph.
+
+Furthermore if we consider sequences $ {[n]^{k}}$, not all pairs of sequences are distinguishable to Bob. So again we can construct a graph $ {G^{k}}$ with vertex set $ {[n]^{k}}$, such that $ {(\overline{v},\overline{u})}$ is an edge iff $ {\exists i,\ (\overline{v}_{i},\overline{u}_{i})\in G}$. $ {\overline{v},\overline{u}}$ is said to be indistinguishable if there is no edge between them in $ {G^{k}}$. Now we want to model Bob and also find the best rate at which Alice can communicate to him.
+
+<strong>Example 3:</strong> Consider the alphabet $ {[5]}$ and let the graph be a pentagon with $ {1}$ at the top numbered clockwise. So Bob doesn't need to distinguish between $ {1}$ and $ {3}$ or $ {1}$ and $ {4}$. The sequences $ {\left\{ 125,343,125\right\} }$ forms a set of pairwise indistinguishable sequences. Note that $ {\left\{ \left\{ 1,3\right\} ,\left\{ 2,4\right\} ,\left\{ 5\right\} \right\} }$ forms a collection of independent sets of $ {G}$. Such sets of sequences can be built by making sequences of sets from the collection(say $ {A_{1}\cdots A_{k}}$). Now consider the set of sequences $ {\left\{ a_{1}\cdots a_{k}:\forall i,a_{i}\in A_{i}\right\} }$.
+<h3><strong>1. Modelling Bob </strong></h3>
+Since Bob cannot distinguish between some sequences anyway. He can only say that Alice received some sequence from some particular set of pairwise indistinguishable sequences. Notice that set of pairwise indistinguishable sequences is nothing but an independent set of $ {G^{k}}$. So if Alice gets a sequence $ {\overline{x}\in[n]^{k}}$, Bob just needs to be informed that it is a sequence from an independent set $ {S}$ of $ {G^{k}}$.
+
+But again independent sets in $ {G^{k}}$ can be expressed as sequences of independent sets of $ {G}$ as follows. Let $ {S\subset[n]^{k}}$ be an independent set which has the sequences
+
+<em>$ {\overline{v}^{1}=v_{11}v_{12}\ \cdots\ v_{1k}}$</em>
+
+<em>$ {\overline{v}^{2}=v_{21}v_{22}\ \cdots\ v_{2k}}$</em>
+
+<em>$ {\ \vdots\ }$ </em>
+
+<em>$ {\overline{v}^{t}=v_{t1}v_{t2}\ \cdots\ v_{tk}}$</em>
+
+Since $ {\overline{v}^{i}}$'s in $ {S}$ doesn't have any edge in $ {G^{k}}$, $ {\forall j\in[k],\ S_{j}=\left\{ v_{1j},\ v_{2j},\cdots v_{tj}\right\} }$ forms an independent set. So for each set $ {S}$ we get a mapping with a sequence of independent sets $ {S_{1}S_{2}\cdots S_{k}}$. Conversely for each sequence of independent sets $ {S_{1}S_{2}\cdots S_{k}}$, we can come up with an independent set for $ {G^{k}}$, given by $ {S=\left\{ a_{1}\cdots a_{k}:\forall i,a_{i}\in S_{i}\right\} }$.
+
+<strong>Goal:</strong>
+<ol>
+	<li> To associate each $ {\overline{x}\in[n]^{k}}$ with a sequence $ {\overline{y}\in\mathcal{A}^{k}}$(where $ {\mathcal{A}}$ is the collection of independent sets of $ {G}$) such that, $ {\overline{x}\in}$ independent set represented by $ {\overline{y}}$.</li>
+	<li> If the number of $ {\overline{y}}$'s required is $ {N}$, minimize $ {\lim_{k\rightarrow\infty}\frac{log_{2}N}{k}}$ which is the rate.</li>
+	<li> We can relax 1. to allow errors, ie we will assign $ {\overline{y}}$ to $ {\overline{x}}$ only for a set $ {\subset[n]^{k}}$ which captures a $ {1-\epsilon}$ probability.</li>
+</ol>
+So if sequence Alice receives is $ {\overline{X}=X_{1}X_{2}\cdots X_{k}}$, then the information she want to sent to Bob can be modelled by $ {\overline{Y}=Y_{1}Y_{2}\cdots Y_{k}}$ where each $ {Y_{i}}$'s are distributed in $ {\mathcal{A}}$, such that $ {\forall i,\Pr[X_{i}\in Y_{i}]=1\Leftrightarrow\Pr[\overline{X}\in\overline{Y}]=1}$. Also $ { }$random variables $ {X,Y}$ are said to confrom to the model if
+<ol>
+	<li> $ {X}$ distributed in $ {[n]}$ according to $ {P}$</li>
+	<li> $ {Y}$ distributed in $ {\mathcal{A}}$</li>
+	<li> $ {\Pr[X\in Y]=1}$</li>
+</ol>
+<h3><strong>2. Naive Method </strong></h3>
+Divide the nodes of $ {G}$ into independent sets (another way of saying colour $ {G}$). If Alice saw $ {i}$ which was in the independent set $ {S}$, she sends $ {S}$(or the colour of $ {i}$). Let $ {X}$ denote the random variable associated with the node and $ {Y}$ be the colour of the node. Therefore the distribution $ {P}$ on $ {[n]}$ induces a distribution on the colours assigned and its entropy is given by $ {H[Y]}$. Now Alice could sent the sequence of colours $ {Y_{1}Y_{2}\cdots Y_{k}}$ encoded in bits using source coding. We know that for any constant $ {\epsilon}$ error, best rate possible is $ {H[Y]}$ from Shannon's Source Coding Theorem.
+<h3><strong>3. Better Method </strong></h3>
+Colour $ {G^{k}}$ and choose the minimal set of colours such that it covers $ {1-\epsilon}$ of the probability. Let
+<p align="center">$ \displaystyle  N_{k}(G,\epsilon)=\min\left\{ l:\exists S_{1}S_{2}\cdots S_{l}\mbox{ which are independent sets of }G^{k}\mbox{ and }\Pr[\overline{X}\in\cup S_{i}]\geq1-\epsilon\right\} $</p>
+We will prove in section $ {5}$ an upper bound of $ {2^{kI[X:Y]+\circ(k)}}$ on $ {N_{k}(G,\epsilon)}$(assuming that $ {\overline{X}=X_{1}X_{2}\cdots X_{k}}$ and $ {\overline{Y}=Y_{1}Y_{2}\cdots Y_{k}}$ are iid copies of some random variables $ {X}$ and $ {Y}$ that conforms with the model). Therefore the rate $ {\lim_{k\rightarrow\infty}\frac{log_{2}N_{k}(G,\epsilon)}{k}\leq I[X:Y]=H[Y]-H[Y|X]\leq H[Y]}$ which was the rate by the naive method. Furthermore we can choose $ {X}$ and $ {Y}$ that conforms with the model such that $ {I[X:Y]}$ is minimized, to reduce the rate to minimum. We will also prove(in next lecture) that one cannot do better than this.
+<h3><strong>4. Graph Entropy </strong></h3>
+The graph entropy of $ {G}$ with respect to $ {P}$ is defined as $ {H(G,P)=\min I[X:Y]}$ where the minimization is over
+<ol>
+	<li> $ {X}$ distributed in $ {[n]}$ according to $ {P}$</li>
+	<li> $ {Y}$ distributed in $ {\mathcal{A}}$</li>
+	<li> $ {\Pr[X\in Y]=1}$</li>
+</ol>
+<strong>Note : </strong>There exists $ {X,Y}$ which attains the minimum value of $ {H(G,P)=I(X,Y)}$, since the minimization over a closed and bounded(also called compact) set. Sequences in compact set always converge.
+
+From the previous three sections, we have given $ {H(G,P)}$ a particular meaning. That is, it is the best possible rate that can be achieved when some pairs of letters in transmitters side are not distinguishable.
+<h3><strong>5. Upper Bound </strong></h3>
+<strong>Claim : </strong>$ {N_{k}(G,\epsilon)\leq2^{kH(G)+\circ(k)}}$ for all large $ {k}$.
+
+<strong>Proof : </strong>Suppose $ {X,Y}$ are such that $ {I[X:Y]=H(G,P)}$, and $ {\overline{X}=X_{1}X_{2}\cdots X_{k}}$,$ {\overline{Y}=Y_{1}Y_{2}\cdots Y_{k}}$ be a sequence of iid copies of $ {X,Y}$. $ {\overline{X}}$ is distributed in $ {[n]^{k}}$ according to $ {P^{k}}$ and $ {\overline{Y}}$ is distributed in $ {\mathcal{A}^{k}}$ according to some distribution such that $ {\forall i,\Pr[X_{i}\in Y_{i}]=1}$. Note that each sequence $ {\overline{y}\in\mathcal{A}^{k}}$, can be thought of as an independent set $ {S}$ of $ {G^{k}}$(given by the mapping described in section $ {1}$). Therefore $ {\Pr[\overline{X}\in\overline{Y}]=\Pr[\forall i,X_{i}\in Y_{i}]=1}$.
+
+We know that the set of typical sequences in $ {[n]^{k}}$ and $ {\mathcal{A}^{k}}$ has sizes at most $ {2^{kH[X]+\circ(k)}}$, $ {2^{kH[Y]+\circ(k)}}$ respectively. For any fixed typical sequence $ {\overline{x}\in[n]^{k}}$, given that $ {\overline{X}=\overline{x}}$, the probability is concentrated mostly on $ {2^{kH[Y|X]+\circ(k)}}$ elements in $ { }$. Similarly for any fixed typical sequence $ {\overline{y}\in\mathcal{A}^{k}}$, given that $ {\overline{Y}=\overline{y}}$, the probability is concentrated mostly on $ {2^{kH[X|Y]+\circ(k)}}$ elements in $ {[n]^{k}}$. This can be considered as a regular bipartite graph.
+
+So we want to choose some $ {t}$ elements of $ {\mathcal{A}^{k}}$ such that, they capture $ {1-\epsilon}$ probability in $ {[n]^{k}}$. Suppose we are lucky that we get $ {t}$ elements with disjoint neighbors, then $ {t\leq2^{kH[X]-kH[X|Y]+\circ(k)}=2^{kH[G]+\circ(k)}}$. But this is not good enough for a proof. One way to do the proof is by carefully picking elements in $ { }$ such that the neighbors set of the current pick intersects only with an $ {\epsilon}$ mass in probability of the previously picked ones(See the proof of Channel Coding Theorem done by Jaikumar).
+
+Another way to do the proof is by randomly picking elements in $ { }$. Suppose $ {\overline{A}_{1},\overline{A}_{2},\cdots\overline{A}_{t}}$ are picked uniformly and independently from $ {\mathcal{A}^{k}}$. Let $ {D=2^{kH[Y|X]+\circ(k)}}$(the degree of $ {\overline{x}\in[n]^{k}}$) and $ {M=2^{kH[Y]+\circ(k)}}$, $ {N(\overline{A}_{i})}$ denote the neighbors of $ {\overline{A}_{i}}$, $ {T}$ denote the typical sequences $ {\subset[n]^{k}}$ . For any fixed $ {\overline{x}\in\mbox{T}}$, $ {\Pr[\overline{x}\notin\cup_{i}\mbox{N}(\overline{A}_{i})]\leq(1-D/M)^{t}\leq\exp(-tD/M)}$ (the second inequality is $ {1+x\leq e^{x}}$). Therefore $ {\Pr[\overline{X}\notin\cup_{i}\mbox{N}(\overline{A}_{i})|\overline{X}\in\mbox{T}]\leq\exp(-tD/M)}$.
+<p align="center">$  \Pr[\overline{X}\notin\cup_{i}\mbox{N}(\overline{A}_{i})] = \Pr[\overline{X}\in\mbox{T}]\Pr[\overline{X}\notin\cup_{i}\mbox{N}(\overline{A}_{i})|\overline{X}\in\mbox{T}]+\Pr[\overline{X}\notin\mbox{T}]\Pr[\overline{X}\notin\cup_{i}\mbox{N}(\overline{A}_{i})|\overline{X}\in\mbox{T}]\  \leq  \exp(-tD/M)+\Pr[\overline{X}\notin\mbox{T}]$</p>
+Since $ {\Pr[\overline{X}\notin\mbox{T}]}$ goes to $ {0}$ as $ {k\rightarrow\infty}$, it can be made arbitrarily small(say $ {\epsilon/2}$) by taking large enough $ {k}$. Also choose $ {t=\frac{M}{D}\ln(2/\epsilon)}$, then we get $ {\Pr[\overline{X}\notin\cup_{i}\mbox{N}(\overline{A}_{i})]\leq\epsilon}$. Note that for $ {\epsilon}$ constant, $ {t=2^{kI[X:Y]+constant+\circ(k)}}$. So we have proved that if we pick $ {2^{kI[X:Y]+constant+\circ(k)}}$ elements in $ {\mathcal{A}^{k}}$, uniformly and independently, the probability that they capture $ {1-\epsilon}$ part(in probability) of sequences in $ {[n]^{k}}$ goes to $ {1}$ as $ {k\rightarrow\infty}$. That is for large enough $ {k}$, there exists one such code, which gives $ {N_{k}(G,\epsilon)\leq2^{kH(G)+\circ(k)}}$.
+
+    <hr>
+    <div class="pagination">
+      <ul>
+      
+        <li class="prev"><a href="/blog/2009/09/21/rediscovering-markov-chainsdraft" title="Rediscovering Markov Chains[Draft]">&larr; Previous</a></li>
+      
+        <li><a href="/archive.html">Archive</a></li>
+      
+        <li class="next"><a href="/blog/2009/10/07/differential-entropy" title="Differential Entropy">Next &rarr;</a></li>
+      
+      </ul>
+    </div>
+    <hr>
+    
+
+
+  <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_developer = 1;
+    var disqus_shortname = 'geevi'; // required: replace example with your forum shortname
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+
+  </div>
+  
+  <div class="span4">
+    <h4>Published</h4>
+    <div class="date"><span>04 October 2009</span></div>
+
+  
+    <h4>Tags</h4>
+    <ul class="tag_box">
+    
+    
+
+
+  
+     
+    	<li><a href="/tags.html#computer science-ref">computer science <span>7</span></a></li>
+     
+    	<li><a href="/tags.html#information theory-ref">information theory <span>2</span></a></li>
+    
+  
+
+
+
+    </ul>
+    
+  </div>
+</div>
+
+
+
+
+      </div>
+      
+	  <hr>
+
+      <footer>
+        <p>&copy; Girish Varma 2012 
+          with help from <a href="http://jekyllbootstrap.com" target="_blank" title="The Definitive Jekyll Blogging Framework">Jekyll Bootstrap</a>
+          and <a href="http://twitter.github.com/bootstrap/" target="_blank">Twitter Bootstrap</a>
+        </p>
+      </footer>
+
+    </div> <!-- /container -->
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+   <!-- <script src="/assets/themes/cerulean/js/jquery.js"></script>
+    <script src="/assets/themes/cerulean/js/bootstrap-transition.js"></script>
+    <script src="/assets/themes/cerulean/js/bootstrap-alert.js"></script>
+    <script src="/assets/themes/cerulean/js/bootstrap-modal.js"></script>
+    <script src="/assets/themes/cerulean/js/bootstrap-dropdown.js"></script>
+    <script src="/assets/themes/cerulean/js/bootstrap-scrollspy.js"></script>
+    <script src="/assets/themes/cerulean/js/bootstrap-tab.js"></script>
+    <script src="/assets/themes/cerulean/js/bootstrap-tooltip.js"></script>
+    <script src="/assets/themes/cerulean/js/bootstrap-popover.js"></script>
+    <script src="/assets/themes/cerulean/js/bootstrap-button.js"></script>
+    <script src="/assets/themes/cerulean/js/bootstrap-collapse.js"></script>
+    <script src="/assets/themes/cerulean/js/bootstrap-carousel.js"></script>
+    <script src="/assets/themes/cerulean/js/bootstrap-typeahead.js"></script>
+-->
+  </body>
+</html>
+

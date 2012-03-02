@@ -1,0 +1,312 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Pseudorandomness for Width 2 Branching Programs and Small Degree Polynomials</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+     <meta name="author" content="Girish Varma">
+
+    <!-- Le styles -->
+    <link href="/assets/themes/cerulean/css/bootstrap.min.css" rel="stylesheet">
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+    </style>
+    <link href="/assets/themes/cerulean/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="/assets/themes/cerulean/css/custom.css" rel="stylesheet">
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" href="/assets/themes/cerulean/img/favicon.ico">
+    <link rel="apple-touch-icon" href="/assets/themes/cerulean/img/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/themes/cerulean/img/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/themes/cerulean/img/apple-touch-icon-114x114.png">
+
+
+
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
+  "HTML-CSS": { scale: 90 }
+  });
+</script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/2.0-beta/MathJax.js?config=TeX-AMS_HTML"></script>
+
+
+
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="/">Girish Varma</a>
+          <div class="nav-collapse">
+            <ul class="nav">
+              	
+            	
+            	
+
+
+
+  
+    
+  
+    
+  
+    
+  
+    
+    	
+    	<li><a href="/code/index.html">Code & Design</a></li>
+    	
+    
+  
+    
+    	
+    	<li><a href="/contact/index.html">Contact</a></li>
+    	
+    
+  
+    
+    	
+    	<li><a href="/photos/index.html">Photos</a></li>
+    	
+    
+  
+    
+    	
+    	<li><a href="/cv/index.html">CV</a></li>
+    	
+    
+  
+    
+    	
+    	<li><a href="/articles/index.html">Articles & Talks</a></li>
+    	
+    
+  
+    
+  
+    
+  
+    
+    	
+    	<li><a href="/blog/index.html">Blog</a></li>
+    	
+    
+  
+    
+  
+    
+  
+    
+  
+    
+    	
+    	<li><a href="/publications/index.html">Publications</a></li>
+    	
+    
+  
+
+
+
+
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+	  <div class="content">
+        
+<div class="page-header">
+  <h1>Pseudorandomness for Width 2 Branching Programs and Small Degree Polynomials <small></small></h1>
+</div>
+
+<div class="row">
+  <div class="span10">
+    <em>Lecture Notes from </em><a href="http://www.tcs.tifr.res.in/~nutan"><em>Nutan Limaye's</em></a><em> Small Space Computaions Course, presented and scribed by </em><em><a href="http://www.tcs.tifr.res.in/~girish/">m</a>e</em><em>. This is the summary of a </em><a href="http://www.math.ias.edu/~amiry/publications/width2.pdf"><em>paper</em></a><em> by Andrej Bogdanov, Zeev Dvir, Elad Verbin and Amir Yehudayoff.</em>
+<h2><span style="font-weight:normal;">1. About Derandomization </span></h2>
+Let $ {\mathfrak{C}}$ be a class of languages($ {\subset\{0,1\}^{*}}$) that can be decided by some model of computation deterministically given some complexity bounds. Then we can define the class $ {R\mathfrak{C}}$ which makes use of randomization as follows. Lets say the model takes an auxilary input $ {r\in\left\{ 0,1\right\} ^{m}}$. For any $ {x}$, and $ {r}$ choosen uniformly at random, the probability that the model correctly answers whether $ {x\in L}$ is very high (say $ {\geq2/3}$). Now the we ask ``Is there any point in doing this?'' or ``Is $ {R\mathfrak{C}}$=$ {\mathfrak{C}}$?''. One way of trying to prove $ {R\mathfrak{C}}$=$ {\mathfrak{C}}$ is to come up with a function $ {G:\{0,1\}^{t}\rightarrow\{0,1\}^{m},t&lt;&lt;m}$ and replace the uniformly random string by the output of this function on a uniformly random input. Now It needs to proved that this will not affect the bound on success probability and $ {G}$ itself should be computable in $ {\mathfrak{C}}$. Note that here we are attempting to decrease the true randomness used. But if $ {t}$ is very small, then by doing a brute force search over all $ {t}$'s(accept if the algo accepts for large number of $ {t}$'s) we can completely get rid of randomness. Such functions are called <span style="text-decoration:underline;">pseudorandom generators</span>(or PRNG's). Such proofs that randomness doen't give additional power, are said to <span style="text-decoration:underline;">derandomize</span> $ {\mathfrak{C}}$.
+<blockquote><strong>Definition : </strong> A distribution $ {D}$ on $ {\{0,1\}^{n}}$ is said to be $ {\epsilon}$-pseudorandom(or PR in short) against a class $ {\mathfrak{C}}$ of functions $ {f:\{0,1\}^{n}\rightarrow\{0,1\}}$ iff $ {\forall f\in\mathfrak{C}}$
+<p align="center">$ \displaystyle  \left|\Pr_{x\leftarrow D}[f(x)=1]-\Pr_{x\leftarrow U_{n}}[f(x)=1]\right|\leq\epsilon$</p>
+where $ {U_{n}}$ is the uniform distribution on $ {\{0,1\}^{n}}$. $ {G:\{0,1\}^{m}\rightarrow\{0,1\}^{n}}$ is $ {\epsilon}$-pseudorandom against a class $ {\mathfrak{C}}$ iff $ {G(U_{m})}$ is $ {\epsilon}$-pseudorandom against a class $ {\mathfrak{C}}$. Note that if $ {\epsilon}$ is smaller, it is better(well thats why its called $ {\epsilon}$).</blockquote>
+$ {\epsilon}$-pseudorandomness of $ {G}$ will imply that the probability of success of algorithms in $ {R\mathfrak{C}}$ will remain bounded when random string is choosen according to $ {G(U_{m})}$. We say simply that there is a pseodorandom generator for $ {\mathfrak{C}}$, when there is one with a very small $ {\epsilon}$(say $ {e^{-poly(n)}}$).
+<h2><span style="font-weight:normal;">2. Derandomization of Small Space Computations </span></h2>
+Now we are interested in the question is $ {RL=L}$? Lots of efforts are on in proving this, and one major result known due to Reingold is that UREACH(Undirected Reachability) can be done in $ {L}$. It was known that UREACH can be done in $ {RL}$. Moreover UREACH is a complete problem for a class $ {SL\subset RL}$ that contained other interesting problems. So Reingold effectively proved $ {SL=L}$. The proof used pseodorandom generators. Another result known is $ {RSPACE(\log n)\subset DSPACE(\log^{3/2}n)}$, which used a pseudorandom generator by Nissan to simulate the randomized computation in determistic space.
+
+A second way of investigating the question is by asking the same for simpler classes like $ {NC^{1}}$, branching programs with particular parameters, polynomials of small degree. Recently Bogdanov,Viola, Lovett constructed pseudorandom generators for degree $ {k}$ polynomials, by suming $ {k}$ independent copies of a pseudorandom generator for degree $ {1}$ polynomials. This paper tries to understand the limitations of this method. Positive result is that PRNG's for degree $ {k}$ also work well for $ {(k,t,n)}$-2BP's(ie width $ {2}$, depth $ {t}$, branching programs that read $ {k}$ bits at a time on $ {n}$ inputs).
+<h2>3. PRNG's for degree $ {k}$ polynomials also works for width $ {2}$ BP's which read $ {k}$ bits at a time</h2>
+<strong>Definition : </strong> $ {(k,t,n)}$-$ {w}$BP(Branching Program) is a layered DAG, with $ {t}$ layers, $ {w}$ nodes at each layer, edges always go from one layer to the next. For every node there are $ {2^{k}}$ edges going to the next layer each labelled by a $ {k}$ bit string and each layer is assigned some $ {k}$ bit positions in input $ {x\in\{0,1\}^{n}}$ denoting which edge to take on $ {x}$. The first node in the first layer is labelled start and final layer has only $ {2}$ nodes labelled accept and reject. So each input $ {x}$ will represent a unique path from start to accept or reject node. A function $ {f:\{0,1\}^{n}\rightarrow\{0,1\}}$ is said to be computed by a branching program, if $ {f(x)=1}$ iff the branching program ends in an accept node on input $ {x}$. A $ {(k,t,n)}$-$ {w}$BP is read once if the input is read in the right order, ie if $ {\overline{x}_{1},\overline{x}_{2},\cdots,\overline{x}_{t}}$ denotes the block of bits of length $ {k}$ each read at the corresponding layers, then $ {x=\overline{x}_{1}\cdot\overline{x}_{2}\cdots\overline{x}_{t}}$.
+<blockquote><strong>Theorem 1 : </strong>If $ {D}$ is $ {\epsilon}$-pseudorandom for polynomials of degree $ {k}$, then it is $ {\epsilon t}$-pseudorandom for $ {(k,t,n)}$-$ {2}$BP's</blockquote>
+<strong>Proof : </strong> We express functions computed by width 2 BP's that read $ {k}$ bits, as a {}``higher order sum'' of degree $ {k}$ polynomials with sum of absolute values of coefficients bounded. Next claim proves that this implies Theorem 2.
+
+<strong>Claim : </strong> : If $ {f:\{0,1\}^{n}\rightarrow\{0,1\}}$ is such that
+<ol>
+	<li>$ {f(x)=\sum_{\mathbf{\mbox{all polynomials }\mathbf{g}_{\mathbf{i}}\mbox{of degree }}k}\alpha_{i}g_{i}(x)}$ (this is a ``higher order sum'' ie sum is over reals and $ {\alpha_{i}\in\mathbb{R}}$)</li>
+	<li>$ {\sum_{i}|\alpha_{i}|\leq L}$</li>
+</ol>
+and $ {G:\{0,1\}^{m}\rightarrow\{0,1\}^{n}}$ is $ {\epsilon}$-pseudorandom against degree $ {k}$ polynomials then $ {D}$ is $ {\epsilon L}$-pseudorandom against $ {f}$.
+
+Note that if $ {\hat{f}(x)=(-1)^{f(x)}}$ then $ {\mathbb{E}_{D}[\hat{f}(x)]=1-2\Pr_{D}[f(x)=1]}$. We do this to use the linearity property of expectation and also independence properties of the distribution $ {D}$.
+<p align="center">$ \displaystyle  \begin{array}{rcl}  2\cdot\left|\Pr_{x\leftarrow U_{n}}[f(x)=1]-\Pr_{s\leftarrow U_{m}}[f(G(s))=1]\right| &amp; = &amp; \left|\mathbb{E}_{U_{n},U_{m}}[\hat{f}(G(s))-\hat{f}(x)]\right|\\ &amp; \leq &amp; \sum_{i}|\alpha_{i}|\cdot\left|\mathbb{E}_{U_{n},U_{m}}[\hat{g}(G(s))-\hat{g}(x)]\right|\\ &amp; = &amp; \sum_{i}|\alpha_{i}|\cdot2\cdot\left|\Pr_{x\leftarrow U_{n}}[f(x)=1]-\Pr_{s\leftarrow U_{m}}[f(G(s))=1]\right|\\ &amp; \leq &amp; 2\cdot t\cdot\epsilon\end{array} $</p>
+<strong>Claim : </strong>If $ {f:\{0,1\}^{n}\rightarrow\{0,1\}}$ is computed by a $ {(k,t,n)-2}$BP then $ {f}$ can be written as
+<ol>
+	<li> $ {f(x)=\sum_{\mathbf{\mbox{all polynomials }\mathbf{g}_{\mathbf{i}}\mbox{of degree }}k}\alpha_{i}g_{i}(x)}$ (this is a {}``higher order sum'' ie sum is over reals and $ {\alpha_{i}\in\mathbb{R}}$)</li>
+	<li>$ {\sum_{i}|\alpha_{i}|\leq t}$</li>
+</ol>
+Proof is by induction on $ {t}$.
+
+<strong>Base Case : </strong>For $ {t=1}$, $ {f}$ is clearly a degree $ {k}$ polynomial.
+
+<strong>Inductive Step : </strong>Let the function computed by the BP at layer $ {t-1}$ be $ {f_{|t-1}(x)}$. Then
+<p align="center">$ \displaystyle  f(x)=P(f_{|t-1}(x),\overline{x}_{t-1})$</p>
+where $ {\overline{x}_{t-1}}$ is the block of bits read by the BP at layer $ {t-1}$ and $ {P}$ is the mapping that the branching program does for evaluating the position in the next level ie $ {f(x)}$. It can be proved that there exists functions $ {A,B:\{0,1\}^{k}\rightarrow\{0,1\}}$ such that
+<p align="center">$ \displaystyle  \hat{P}(z,y)=A(y)\cdot(-1)^{z}+B(y)$</p>
+It will follow that $ {A(y)=\frac{1}{2}(\hat{P}(0,y)-\hat{P}(1,y))}$ and $ {B(y)=\frac{1}{2}(\hat{P}(0,y)+\hat{P}(1,y))}$. That is $ {\forall z\in\{0,1\},y\in\{0,1\}^{k}}$,
+<p align="center">$ \displaystyle  \hat{f}(x)=\hat{P}(f_{|t-1}(x),y)=\frac{1}{2}(\hat{P}(0,y)-\hat{P}(1,y))\cdot\hat{f}_{|t-1}(x)+\frac{1}{2}(\hat{P}(0,y)+\hat{P}(1,y))$</p>
+From this we can apply the inductive hypothesis that $ {\hat{f}{}_{|t-1}(x)}$ can be written as a higher order sum of degree $ {k}$ polynomials with sum of modulus of coefficient $ {\leq t-1}$. It can be verified that this will give a higher order sum for $ {\hat{f}}$ such that sum of modulus of coefficients is $ {\leq t}$. Only thing to notice here is the fact that $ {\hat{h}(x)=\hat{g}(x)\cdot\hat{p}(x)}$ iff $ {h(x)=g(x)\oplus p(x)}$.
+<h2><span style="font-weight:normal;">4. PR for degree $ {k}$ polynomials does not imply PR for width $ {3}$ read once BP </span></h2>
+This is true due to Widgerson, Viola's result that uniform distribution over set of strings which has number of $ {1}$'s a multiple of $ {3}$, is pseudorandom for degree $ {k}$ polynomials. But this set of string's can easily be identified by read once $ {3}$BP.
+<blockquote><strong>Theorem 2</strong> :There exists a distribution $ {D}$ on $ {\{0,1\}^{n}}$ that is $ {e^{-\alpha n/4^{k}}}$-pseudorandom against degree $ {k}$ polynomials but not $ {0.66}$-pseudorandom for $ {(1,n,n)-3}$BP that is read-once.</blockquote>
+<strong>Proof:</strong> Let $ {mod_{3}(x)=\omega^{\sum x_{i}}}$ where $ {\omega}$ is the cube root of unity and $ {D}$ be the distribution that is uniform over $ {\{x:mod_{3}(x)=1\}}$. A result by Viola and Widgerson implies that $ {D}$ is $ {e^{-\alpha n/4^{k}}}$-pseudorandom against degree $ {k}$ polynomials. Now consider the function $ {f(x)=1}$ iff $ {mod_{3}(x)=1}$. This function is clearly computable by a $ {(1,n,n)-3}$BP that is read-once. It is true that $ {\mathbb{E}_{D}[f(x)]=1}$. Since whenever $ {f(x)=1}$, $ {mod(x)=1}$
+<p align="center">$ \displaystyle  \mathbb{E}_{U_{n}}[f(x)]=\frac{1}{3}\mathbb{E}_{U_{n}}[1+mod_{3}(x)+mod_{3}(x)^{2}]$</p>
+Now we can make use of independence of each bit of $ {U_{n}}$. For $ {a\in\{1,2\}}$,
+<p align="center">$ \displaystyle  \left|\mathbb{E}_{U_{n}}[mod_{3}(x)^{a}]\right|=\left|(\mathbb{E}_{x_{1}\leftarrow U_{1}}[\omega^{ax_{1}}])^{n}\right|=\left|\left(\frac{1+\omega^{a}}{2}\right)^{n}\right|=2^{-n}$</p>
+Therefore $ {\mathbb{E}_{U_{n}}[f(x)]=\frac{1}{3}+\frac{2^{-n+1}}{3}\leq0.34}$. That is $ {D}$ is not $ {0.66}$-pseudorandom for $ {(1,n,n)-3}$BP that is read-once. $ \Box$
+<h2><span style="font-weight:normal;">5. Viola's Construction doesn't work for width $ {5}$ BP's </span></h2>
+<blockquote><strong>Theorem 3 : </strong>For every $ {n,\epsilon,k}$ such that $ {k\log(1/\epsilon)&lt;\sqrt{n/2}-1,}$ $ {\exists}$ $ {D}$ a distribution that is $ {\epsilon}$-pseudorandom for degree $ {1}$ polynomials(on $ {\{0,1\}^{n}}$) such that $ {D^{k}}$ the distribution obtained by summing $ {k}$ independent samples from $ {D}$, is not $ {1/3}$-pseudorandom for width 5 branching programs(on $ {\{0,1\}^{n}}$).</blockquote>
+<strong>Proof : </strong>
+
+The basic idea behind the proof is that computing the rank of a matrix can be done with $ {(1,t,n)}$-$ {5}$BP. So we construct a distribution keeping this in mind.
+
+Consider the following distribution on $ {\{0,1\}^{n}}$. For $ {m=k\log(1/\epsilon)+1}$, partition $ {x}$ into $ {n/m}$ blocks $ {\overline{x}_{1},\overline{x}_{2},\cdots\overline{x}_{n/m}}$ each of size $ {m}$. Now
+<ol>
+	<li> Choose a random subspace $ {S}$, of $ {\mathbb{F}_{2}^{m}}$ of dimension $ {\frac{m-1}{k}}$.</li>
+	<li> Pick $ {\overline{x}_{i}}$'s independently and uniformly from $ {S}$.</li>
+</ol>
+<strong>Claim : </strong> $ {D}$ is $ {\epsilon}$-pseudorandom for degree $ {1}$ polynomials.
+
+Any degree $ {1}$ polynomial can be thought of as a dot product of input with a particular bit string. Let $ {a(x)=&lt;a\cdot x&gt;}$ be a degree $ {1}$ polynomial. Since we have partitioned $ {x}$ into blocks in defining $ {D}$, we will do the same for $ {a}$. That is let $ {a(x)=\left\langle a\cdot x\right\rangle =\sum_{i=1}^{n/m}\left\langle a_{i}\cdot\overline{x}_{i}\right\rangle }$ where $ {a_{i}}$ is the $ {i}$th block of $ {a}$ with length $ {m}$.
+<p align="center">$ \displaystyle  \mathbb{E}_{D}[(-1){}^{a(x)}]=\mathbb{E}_{S}[\prod_{i=1}^{n/m}\mathbb{E}_{\overline{x}_{i}\leftarrow S}[(-1)^{\left\langle a_{i}\cdot\overline{x}_{i}\right\rangle }]]$</p>
+That is we are randomly choosing $ {S}$ and conditioned on $ {S}$, we are randomly choosing $ {x\in S}$. Since $ {\overline{x}_{i}}$'s are independent samples from $ {S}$, the expectation splits into product of expectations. Now $ {\mathbb{E}_{\overline{x}_{i}\leftarrow S}[(-1)^{\left\langle a_{i}\cdot\overline{x}_{i}\right\rangle }]=1}$ if $ {a_{i}\in S^{\perp}}$. It can be proved with little effort that $ {\mathbb{E}_{\overline{x}_{i}\leftarrow S}[(-1)^{\left\langle a_{i}\cdot\overline{x}_{i}\right\rangle }]=0}$ if $ {a_{i}\notin S^{\perp}}$. So
+<p align="center">$ \displaystyle  \mathbb{E}_{D}[(-1){}^{a(x)}]=\Pr_{S}[\forall i,\ a_{i}\in S^{\perp}]\leq\Pr_{S}[a_{1}\in S^{\perp}]=\Pr_{S^{\perp}}[a_{1}\in S^{\perp}]=2^{m-(m-1)/k}/2^{m}=\frac{1}{2^{(m-1)/k}}=\epsilon$</p>
+Therefore $ {\left|\mathbb{E}_{D}[a(x)]-\mathbb{E}_{U}[a(x)]\right|=\left|\mathbb{E}_{D}[a(x)]-1/2\right|=\epsilon/2&lt;\epsilon}$.
+
+<strong>Claim : </strong> $ {D^{k}}$ is not $ {1/3}$-pseudorandom for width $ {5}$ branching programs that read $ {1}$ bit at a time.
+
+Let $ {X=X_{1}+X_{2}\cdots+X_{k}}$ where $ {X_{i}}$'s are independent samples from $ {D}$. Let $ {S_{1},S_{2}\cdots S_{k}}$ be the subspaces from which the blocks of each of the samples was chosen. Therefore each block of $ {X}$ lies in the subspace $ {S_{1}+S_{2}\cdots+S_{k}}$ which has dimension $ {m-1}$ (since each $ {S_{i}}$ has dimension $ {(m-1)/k}$). Suppose $ {n}$ is large such that $ {\frac{n}{m}&gt;2m}$. Now consider the $ {m\times2m}$ matrix with the blocks as columns. The rank of this matrix is definitely $ {\leq m-1}$ if the sample is from $ {D^{k}}$. If the sample is from uniform, all entries of the matrix are random bits. So we have $ {m}$ number of $ {2m}$ bit strings each randomly chosen. Suppose it is chosen in the order of rows of the matrix. $ {\Pr[\mbox{matrix is not full rank}]\leq\sum_{i=1}^{m}\Pr[i\mbox{th choice was linearly dependent to previous}]=\frac{\sum_{i=1}^{m}2^{i-1}}{2^{2m}}\leq\frac{1}{2^{m}}}$
+
+    <hr>
+    <div class="pagination">
+      <ul>
+      
+        <li class="prev"><a href="/blog/2009/10/07/differential-entropy" title="Differential Entropy">&larr; Previous</a></li>
+      
+        <li><a href="/archive.html">Archive</a></li>
+      
+        <li class="next"><a href="/blog/2009/10/10/i-wish-i-could" title="I wish I could">Next &rarr;</a></li>
+      
+      </ul>
+    </div>
+    <hr>
+    
+
+
+  <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_developer = 1;
+    var disqus_shortname = 'geevi'; // required: replace example with your forum shortname
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+
+  </div>
+  
+  <div class="span4">
+    <h4>Published</h4>
+    <div class="date"><span>09 October 2009</span></div>
+
+  
+    <h4>Tags</h4>
+    <ul class="tag_box">
+    
+    
+
+
+  
+     
+    	<li><a href="/tags.html#complexity theory-ref">complexity theory <span>2</span></a></li>
+     
+    	<li><a href="/tags.html#computer science-ref">computer science <span>7</span></a></li>
+    
+  
+
+
+
+    </ul>
+    
+  </div>
+</div>
+
+
+
+
+      </div>
+      
+	  <hr>
+
+      <footer>
+        <p>&copy; Girish Varma 2012 
+          with help from <a href="http://jekyllbootstrap.com" target="_blank" title="The Definitive Jekyll Blogging Framework">Jekyll Bootstrap</a>
+          and <a href="http://twitter.github.com/bootstrap/" target="_blank">Twitter Bootstrap</a>
+        </p>
+      </footer>
+
+    </div> <!-- /container -->
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+   <!-- <script src="/assets/themes/cerulean/js/jquery.js"></script>
+    <script src="/assets/themes/cerulean/js/bootstrap-transition.js"></script>
+    <script src="/assets/themes/cerulean/js/bootstrap-alert.js"></script>
+    <script src="/assets/themes/cerulean/js/bootstrap-modal.js"></script>
+    <script src="/assets/themes/cerulean/js/bootstrap-dropdown.js"></script>
+    <script src="/assets/themes/cerulean/js/bootstrap-scrollspy.js"></script>
+    <script src="/assets/themes/cerulean/js/bootstrap-tab.js"></script>
+    <script src="/assets/themes/cerulean/js/bootstrap-tooltip.js"></script>
+    <script src="/assets/themes/cerulean/js/bootstrap-popover.js"></script>
+    <script src="/assets/themes/cerulean/js/bootstrap-button.js"></script>
+    <script src="/assets/themes/cerulean/js/bootstrap-collapse.js"></script>
+    <script src="/assets/themes/cerulean/js/bootstrap-carousel.js"></script>
+    <script src="/assets/themes/cerulean/js/bootstrap-typeahead.js"></script>
+-->
+  </body>
+</html>
+

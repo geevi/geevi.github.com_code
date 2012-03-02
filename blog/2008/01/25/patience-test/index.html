@@ -1,0 +1,250 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Patience Test</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+     <meta name="author" content="Girish Varma">
+
+    <!-- Le styles -->
+    <link href="/assets/themes/cerulean/css/bootstrap.min.css" rel="stylesheet">
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+    </style>
+    <link href="/assets/themes/cerulean/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="/assets/themes/cerulean/css/custom.css" rel="stylesheet">
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" href="/assets/themes/cerulean/img/favicon.ico">
+    <link rel="apple-touch-icon" href="/assets/themes/cerulean/img/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/themes/cerulean/img/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/themes/cerulean/img/apple-touch-icon-114x114.png">
+
+
+
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
+  "HTML-CSS": { scale: 90 }
+  });
+</script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/2.0-beta/MathJax.js?config=TeX-AMS_HTML"></script>
+
+
+
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="/">Girish Varma</a>
+          <div class="nav-collapse">
+            <ul class="nav">
+              	
+            	
+            	
+
+
+
+  
+    
+  
+    
+  
+    
+  
+    
+    	
+    	<li><a href="/code/index.html">Code & Design</a></li>
+    	
+    
+  
+    
+    	
+    	<li><a href="/contact/index.html">Contact</a></li>
+    	
+    
+  
+    
+    	
+    	<li><a href="/photos/index.html">Photos</a></li>
+    	
+    
+  
+    
+    	
+    	<li><a href="/cv/index.html">CV</a></li>
+    	
+    
+  
+    
+    	
+    	<li><a href="/articles/index.html">Articles & Talks</a></li>
+    	
+    
+  
+    
+  
+    
+  
+    
+    	
+    	<li><a href="/blog/index.html">Blog</a></li>
+    	
+    
+  
+    
+  
+    
+  
+    
+  
+    
+    	
+    	<li><a href="/publications/index.html">Publications</a></li>
+    	
+    
+  
+
+
+
+
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+	  <div class="content">
+        
+<div class="page-header">
+  <h1>Patience Test <small></small></h1>
+</div>
+
+<div class="row">
+  <div class="span10">
+    I am back to blogging after a long time. I really have some thing to write now. Its about a patience test that i had to endure.
+
+I had planned to do my project work on making a simple OS from the L4 Microkernel. The idea behind microkernels is exactly the basic idea of cs, abstraction, modularity. In traditional OS's the different abstractions(like filesystems, virtual memory, drivers etc) is made into a bundle called the kernel. When you write code for each of those, one need to be careful about how it affects a lot of other things. Moreover since there a large amt of code, more bugs are there. Independent development is also not possible. Microkernel idea involves making the os fully modular. The kernel includes only the bare minimum code. FS, VM etc are implemented as userlevel servers. But there is a catch. They are usually slower. But now intel and amd are chips having 2-4 cores, 3Ghz etc. So microkernel has a lot of significance in coming days. The project was to implement an FS, VM and drivers as userlevel servers on top of L4 Microkernel. It is acutally done as a course project in University of Dresden Germany. So i googled a lot, read something here and there, downloaded the code and all. But there was one small trouble, i was not able to compile it. I worked hard on it, but nothing seemed to be going well. I lost patience and then went and asked my guide whether i could change to a theoretical topic.
+
+He was lenient. He gave me one. It was on Cryptography. The title was "Psuedorandom functions using NP-Hard problems". Psueodorandom functions as the name implies are used to generate random nos. Generating random number is itself a sort of contradiction(random number by definition is random).  Actually thats a question in Complexity theory of which answer is  still unknown whether BPP = P.
+
+Well i had to learn about One-Way functions, Hardcore Predicates. There was one theorem, that there is a particular hardcore predicate for any one-way function. Its been nearly 2 months i been reading the proof. I never understood it completely. Many a time i discovered that what i had taken for granted previously was not trivial. I was not ready to loose my patience again. Quite unexpectedly i was just reading through the proof again, and today i uncovered the mystery.
+
+    <hr>
+    <div class="pagination">
+      <ul>
+      
+        <li class="prev"><a href="/blog/2007/09/03/a-late-goodbye" title="A Late Goodbye">&larr; Previous</a></li>
+      
+        <li><a href="/archive.html">Archive</a></li>
+      
+        <li class="next"><a href="/blog/2008/03/08/singularity-and-l4-microsoft-embraces-microkernels-and-even-goes-a-step-ahead" title="Singularity and L4 | Microsoft embraces Microkernels and even goes a step ahead">Next &rarr;</a></li>
+      
+      </ul>
+    </div>
+    <hr>
+    
+
+
+  <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_developer = 1;
+    var disqus_shortname = 'geevi'; // required: replace example with your forum shortname
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+
+  </div>
+  
+  <div class="span4">
+    <h4>Published</h4>
+    <div class="date"><span>25 January 2008</span></div>
+
+  
+    <h4>Tags</h4>
+    <ul class="tag_box">
+    
+    
+
+
+  
+     
+    	<li><a href="/tags.html#complexity theory-ref">complexity theory <span>2</span></a></li>
+     
+    	<li><a href="/tags.html#computer science-ref">computer science <span>7</span></a></li>
+     
+    	<li><a href="/tags.html#personal-ref">personal <span>2</span></a></li>
+    
+  
+
+
+
+    </ul>
+    
+  </div>
+</div>
+
+
+
+
+      </div>
+      
+	  <hr>
+
+      <footer>
+        <p>&copy; Girish Varma 2012 
+          with help from <a href="http://jekyllbootstrap.com" target="_blank" title="The Definitive Jekyll Blogging Framework">Jekyll Bootstrap</a>
+          and <a href="http://twitter.github.com/bootstrap/" target="_blank">Twitter Bootstrap</a>
+        </p>
+      </footer>
+
+    </div> <!-- /container -->
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+   <!-- <script src="/assets/themes/cerulean/js/jquery.js"></script>
+    <script src="/assets/themes/cerulean/js/bootstrap-transition.js"></script>
+    <script src="/assets/themes/cerulean/js/bootstrap-alert.js"></script>
+    <script src="/assets/themes/cerulean/js/bootstrap-modal.js"></script>
+    <script src="/assets/themes/cerulean/js/bootstrap-dropdown.js"></script>
+    <script src="/assets/themes/cerulean/js/bootstrap-scrollspy.js"></script>
+    <script src="/assets/themes/cerulean/js/bootstrap-tab.js"></script>
+    <script src="/assets/themes/cerulean/js/bootstrap-tooltip.js"></script>
+    <script src="/assets/themes/cerulean/js/bootstrap-popover.js"></script>
+    <script src="/assets/themes/cerulean/js/bootstrap-button.js"></script>
+    <script src="/assets/themes/cerulean/js/bootstrap-collapse.js"></script>
+    <script src="/assets/themes/cerulean/js/bootstrap-carousel.js"></script>
+    <script src="/assets/themes/cerulean/js/bootstrap-typeahead.js"></script>
+-->
+  </body>
+</html>
+

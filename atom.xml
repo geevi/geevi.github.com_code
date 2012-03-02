@@ -1,28 +1,840 @@
----
-layout: nil
-title : Atom Feed
----
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
  
- <title>{{ site.title }}</title>
- <link href="{{ site.production_url }}/atom.xml" rel="self"/>
- <link href="{{ site.production_url }}"/>
- <updated>{{ site.time | date_to_xmlschema }}</updated>
- <id>{{ site.production_url }}</id>
+ <title>Girish Varma</title>
+ <link href="http://geevi.github.com/atom.xml" rel="self"/>
+ <link href="http://geevi.github.com"/>
+ <updated>2012-03-02T23:08:49+05:30</updated>
+ <id>http://geevi.github.com</id>
  <author>
-   <name>{{ site.author.name }}</name>
-   <email>{{ site.author.email }}</email>
+   <name>Girish Varma</name>
+   <email>girishrv@gmail.com</email>
  </author>
 
- {% for post in site.posts %}
+ 
  <entry>
-   <title>{{ post.title }}</title>
-   <link href="{{ site.production_url }}{{ post.url }}"/>
-   <updated>{{ post.date | date_to_xmlschema }}</updated>
-   <id>h{{ site.production_url }}{{ post.id }}</id>
-   <content type="html">{{ post.content | xml_escape }}</content>
+   <title>A Latex Template</title>
+   <link href="http://geevi.github.com/blog/2010/11/05/a-latex-template"/>
+   <updated>2010-11-05T00:00:00+05:30</updated>
+   <id>hhttp://geevi.github.com/blog/2010/11/05/a-latex-template</id>
+   <content type="html">My first paper is being rewritten for a special issue of the journal Theoretical Computer Science. Thought of starting from scratch. So i made a latex template with some good scripts which readily outputs the pdf and cleans up the directory.
+
+&lt;strong&gt;&lt;a href=&quot;http://db.tt/fe8oFnH&quot;&gt;Click here to download it.&lt;/a&gt;&lt;/strong&gt;
+</content>
  </entry>
- {% endfor %}
+ 
+ <entry>
+   <title>Fall at Saarbrücken</title>
+   <link href="http://geevi.github.com/blog/2010/11/01/fall-at-saarbrucken"/>
+   <updated>2010-11-01T00:00:00+05:30</updated>
+   <id>hhttp://geevi.github.com/blog/2010/11/01/fall-at-saarbrucken</id>
+   <content type="html">[slideshow]
+
+[gallery link=&quot;file&quot; orderby=&quot;ID&quot;]
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Flow problems on graphs</title>
+   <link href="http://geevi.github.com/blog/2010/09/29/flow-problems-on-graphs"/>
+   <updated>2010-09-29T00:00:00+05:30</updated>
+   <id>hhttp://geevi.github.com/blog/2010/09/29/flow-problems-on-graphs</id>
+   <content type="html">Let $ G(V,E)$ be a directed graph. Given $ s,t \in V$, $ f:V \rightarrow \mathbb{R}$ is said to be a &lt;em&gt;flow&lt;/em&gt; from $ s$ to $ t$ if flow is conserved at every vertex except $ s,t$($ \forall v \in V \setminus \{s,t\},~ \sum_{u | (u,v) \in E} f(u,v) = \sum_{u | (v,u) \in E} f(v,u)$) and $ f$ is skew symmetric($ f(u,v) = - f(v,u)$). $ f:V \rightarrow \mathbb{R}$ is said to be a &lt;em&gt;circulation&lt;/em&gt; in $ G$, if the flow is conserved at all vertices. The following problems are well studied in literature:
+&lt;h4&gt;MAX-FLOW&lt;/h4&gt;
+Given some capacities for the edges $ G,~ c:E \rightarrow \mathbb{R}^+$ and $ s,t \in V$, find a flow $ f$ from $ s$ to $ t$ that satisfies the constraints $ \forall e \in E,~ f(e) \leq c(e)$ and maximizes the value ($ \sum_{u| (s,u) \in E} f(s,u) - \sum_{u| (u,s) \in E} f(u,s)$).
+&lt;h4&gt;MIN-FLOW&lt;/h4&gt;
+Given $ r \in \mathbb{R}^+$, costs for the edges $ G,~ c:E \rightarrow \mathbb{R}^+$ and $ s,t \in V$, find a flow $ f$ from $ s$ to $ t$ that has value $ r$ ($ \sum_{u| (s,u) \in E} f(s,u) - \sum_{u| (u,s) \in E} f(u,s) = r$) and minimizes the total cost ($ \sum_{e \in E} f(e) c(e)$).
+&lt;h4&gt;MIN-CIRCULATION&lt;/h4&gt;
+Given costs for the edges $ G,~ c:E \rightarrow \mathbb{R}^+$, find a circulation $ f$ that minimizes the total cost ($ \sum_{e \in E} f(e) c(e)$).
+&lt;h4&gt;MAX-MULTICOMMODITY-FLOW&lt;/h4&gt;
+Given commodities $ K_1,\cdots K_t$, where $ K_i$ is the tuple $ (s_i,t_i,d_i)$(ie source, destination and demand), and capacities for the edges $ G,~ c:E \rightarrow \mathbb{R}^+$, find flows $ f_i, \forall \in [t]$ from $ s_i$ to $ t_i$ that satisfies the capacity constraints ($ \forall e \in E,~ \sum_{i \in [t]} f_i(e) \leq c(e)$) and maximizes the value ($ \sum_{i \in [t]} \sum_{u| (s_i,u) \in E} f_i(s_i,u) - \sum_{u| (u,s_i) \in E} f(u,s_i)$).
+&lt;h4&gt;MIN-MULTICOMMODITY-FLOW&lt;/h4&gt;
+Given commodities $ K_1,\cdots K_t$, where $ K_i$ is the tuple $ (s_i,t_i,d_i)$(ie source, destination and demand), and costs for the edges $ c:E \rightarrow \mathbb{R}^+$, find flows $ f_i, \forall \in [t]$ from $ s_i$ to $ t_i$ that satisfies the demand($ \forall i \in [t],\sum_{u \mid (s_i ,u) \in E} f_i(s_i,u) - \sum_{u \mid (u,s_i) \in E} f(u,s_i) = d_i$) and minimizes the costs ($ \sum_{e \in E} \sum_{i \in [t]} f_i(e) c(e)$).
+
+All these problems can be solved with linear programming, by having a variable for every vertex and putting the constraints, optimization as linear functions on them. But the problem is when one requires a solution for the variables that takes integer values(integral solution), these becomes hard. There is one exception of MAX-FLOW, because of the MAX-FLOW MIN-CUT theorem, if the capacities are integral, the maximum flow has integral value. Finding an integral solution for the MIN-MULTICOMMODITY-FLOW is NP-HARD, even if there are only two commodities.
+
+The MIN-MULTICOMMODITY-FLOW is used to model congestion and routing in the internet. The costs on the edges are just the latencies(the amount of time required for a unit of data to be transfered between the ends of a link). One would like to find how the packets from $ s_i$s to $ t_i$s need to be routed so as to minimize the total latency. But in actual networks the latency of a link increases when more flow is routed through it due to queuing in the devices. So we need the latency on the edges to be increasing functions of the flow rather than just scalars. Also in the internet routing of packets are not controlled by a central authority. So what is assumed is each packet takes a route so as to minimize its latency. Such a flow is called the Nash flow. But such a process need not minimize the total latency incurred by all the packets. The ratio between the largest latency of Nash flows by the Optimal total latency is called the &lt;a href=&quot;http://en.wikipedia.org/wiki/Price_of_anarchy&quot;&gt;Price of Anarchy&lt;/a&gt;.
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Streaming Algorithms Workshop at IITK</title>
+   <link href="http://geevi.github.com/blog/2009/12/22/streaming-algorithms-workshop-at-iitk"/>
+   <updated>2009-12-22T00:00:00+05:30</updated>
+   <id>hhttp://geevi.github.com/blog/2009/12/22/streaming-algorithms-workshop-at-iitk</id>
+   <content type="html">There was a workshop on streaming algos right after &lt;a href=&quot;http://www.fsttcs.org/&quot;&gt;FSTTCS&lt;/a&gt; at &lt;a href=&quot;http://www.cse.iitk.ac.in/&quot;&gt;IIT Kanpur&lt;/a&gt;. First of all iitk has an awesome campus really spacious with lots of sports facilities.
+
+ Though I didn't understand most of the talks, I got a vague idea of the problems and how they are solved. Streaming algos are heavily used in applications like web search, databases, routers etc. These algos work on a looong stream of data(say of length $ n$), over which they can do only a few passes($ 1$, a const, or $ o(\log n)$), keeping only small memory($ O(1)$ or $ O(\log n)$). Though they have been around for some time, the big push in the area came after the &lt;a href=&quot;www.math.tau.ac.il/~nogaa/PDFS/amsz4.pdf&quot;&gt;ams&lt;/a&gt; paper(all the speakers referenced this paper and for this the authors won the godel prize). This paper gave approximate randomized one pass algorithm for frequency moments using small space. One another important feature is that they  also proved lowerbounds using communication complexity. This was an awesome idea and has been successfully used to obtain lower bounds for other streaming problems.
+ 
+Some of the problems were based on the specifiations that these applications require and some purely theoretical. The first problem is to define a good model of computation  that abstracts actual appliccations. Since the applications are different you need to look at different models. People talked about models of distributed streaming computations, models in which on can annotate the stream or write to it, copies of streams can be maintained, multiple passes allowed(the ams paper just looked at simple one pass read only stream). 
+
+Many streaming algos work by making a small sketch of the streaming data in there small memory. Later it extracts the requred information about the stream from the sketch. Usually hash functions are used to make sketches. 
+
+People seems to have mastered the art of using communication complexity to prove lowerbounds. Even for multiple passes they consider the communication complexity for multiple rounds of communication. There was some talk on 2 other methods called information complexity and round elemibation. 
+
+ 
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Undirected Reachability in Log Space</title>
+   <link href="http://geevi.github.com/blog/2009/12/09/undirected-reachability-in-log-space"/>
+   <updated>2009-12-09T00:00:00+05:30</updated>
+   <id>hhttp://geevi.github.com/blog/2009/12/09/undirected-reachability-in-log-space</id>
+   <content type="html">&lt;blockquote&gt;&lt;strong&gt; Theorem[by &lt;em&gt;&lt;a href=&quot;http://www.wisdom.weizmann.ac.il/~reingold/&quot;&gt;Omer Reingold&lt;/a&gt;]&lt;/em&gt; : &lt;span style=&quot;font-weight:normal;&quot;&gt;Given a undirected graph $ {G([n],E)}$ and $ {s,t\in [n]}$, the question ``Is there a path between $ {s}$ and $ {t}$?'' can be answered in space $ {O(\log n)}$&lt;/span&gt;&lt;/strong&gt;&lt;/blockquote&gt;
+All graphs mentioned in the proof are undirected and may have multiple edges. $ {[n]}$ denotes $ {\{1\cdots n\}}$.
+
+The problem is equivalent to outputting all vertices reachable from $ {s}$ in $ {O(\log n)}$ space, or more generally seperating the connected components in $ {G}$. But one of the vertices may be reachable only by an $ {O(n)}$ length path from $ {s}$, and it might be a degree $ {1}$ vertex. Since this $ {O(n)=\ell}$ length path can be an arbitrary one, the only way i can think of is by brute force checking of all $ {\ell}$ length paths. But the number of such paths can be exponential in $ {n}$ !. If degree is $ {d}$, it can be as large as $ {d^\ell}$. However if the graph is such that all nodes reachable from $ {s}$ are at a distance $ {O(\log n)}$, then brute force is a viable method. Such a property is true in special graphs called expanders which are graphs whose adjacency matrix have small second eigen values. The proof basically constructs an expander from an arbitrary undirected graph preserving the reachability between vertices in $ {O(\log n)}$ space.
+
+My aim is just to show the logic that leads to the proof. So i just state the main lemmas without proofs and some definitions. Proofs of the lemmas could be found in &lt;a href=&quot;http://www.ccs.neu.edu/home/viola/classes/gems-08/lectures/le15-18.pdf&quot;&gt;Emanuele Viola's Lecture notes&lt;/a&gt;.
+
+First step is to reduce the reachability question in $ {G([n],E)}$ between vertices to reachability question between large connected subsets $ {S,T \subset [n^{'}], |S|,|T| \geq \frac{|n^{'}|}{3}}$ in some $ {G^{'}([n^{'}],E^{'})}$ which is $ {4}$-regular graph and has a self loop on every node.
+&lt;blockquote&gt;&lt;strong&gt;Reduction 1:&lt;/strong&gt;There is an algorithm which on input $ {G([n],E)}$ and $ {s,t \in [n]}$, that uses only $ {O(\log n)}$ spaces and outputs
+&lt;ul&gt;
+	&lt;li&gt; a $ {4}$-regular graph with a self-loop on all verices $ {G^{'}([n^{'}],E^{'})}$&lt;/li&gt;
+	&lt;li&gt; $ {S^{'},T^{'} \subset [n^{'}]}$, such that $ {|S^{'}|,|T^{'}|\geq n^{'}/3}$&lt;/li&gt;
+	&lt;li&gt; the induced subgraphs of $ {G^{'}}$ on $ {S^{'}}$ and $ {T^{'}}$ are connected&lt;/li&gt;
+&lt;/ul&gt;
+such that
+&lt;p style=&quot;text-align:center;&quot;&gt;there is a path between $ {s,t}$ in $ {G}$ $ {\Leftrightarrow}$ there is path between $ {S^{'}}$ to $ {T^{'}}$.&lt;/p&gt;
+&lt;/blockquote&gt;
+But this is actually not a simpler problem. The trouble I mentioned about $ {G}$ still remains valid here. But this makes the problem simple for spectral analysis.
+
+Note that if you have a graph without self loops and then add self loops to all nodes, $ {k}$ length paths in the latter corresponds to $ {\leq k}$ length paths in the former(this is a many-one, surjective map). Another reason for doing this is to make the graph non-bipartite, which is required for the application of the next result.
+
+Its a well known fact that the second eigen value of the adjacency matrix is related to how connected a graph is. Lower the eigen value, the graph is better connected. Following is how the second eigen value is defined.
+&lt;blockquote&gt;&lt;strong&gt;Definition 1 :&lt;/strong&gt;
+&lt;p style=&quot;text-align:center;&quot;&gt;$ \displaystyle \lambda(G) := \max_{||x||=1,x \perp \mathbf{1}} ||Mx||$&lt;/p&gt;
+where $ {M=A/D}$ the normailized adjacency matrix of $ {G}$, and $ {\mathbf{1}}$ is the all 1's vector.&lt;/blockquote&gt;
+For a complete graph $ {\lambda = 0}$ and $ {\lambda = 1}$ if and only if the graph is disconnected or it is bipartite. For a connected undirected graph $ {\lambda(G)\leq 1 - \frac{1}{n^c}}$.
+&lt;blockquote&gt;&lt;strong&gt;Lemma 1 :&lt;/strong&gt; For any connected, non-bipartite undirected graph $ {G}$ on $ {n}$ vertices
+&lt;p style=&quot;text-align:center;&quot;&gt;$ \displaystyle \lambda(G) \leq 1- \frac{1}{n^c}$&lt;/p&gt;
+for some constant $ {c}$.&lt;/blockquote&gt;
+It is known that if $ {\lambda(G)}$ is small, the number of edges between subsets of the vertex set is proportional to the product sizes of the subsets with a small additive term. This is known as the Expander mixing lemma. The following is a corollary of this lemma
+
+&lt;blockquote&gt;&lt;strong&gt;Lemma 2 :&lt;/strong&gt; For a $ {D}$-regular graph $ {G([m],E)}$ and $ {S,T \subset [m],\ |S|,|T| \geq m/3}$, if $ {\lambda(G) \leq 1/10}$ then there is an edge between $ {S}$ and $ {T}$.&lt;/blockquote&gt;
+So Lemma 2 says that, if $ {\lambda(G^{'})}$ is small, then we just need to check whether there is a direct edge to $ {T}$. This can be done provided the degree of nodes in $ {S}$ are not high ie exponential in $ {n}$(can happen if there are multiple edges). The naive method to do here is to make a graph in which edges consists of length $ {2}$ paths in orginal graph, called $ {G^2}$. Its easy to prove that this will make the second eigen value $ {\lambda^2}$. Doing this $ {O(\log n)}$ times will make $ {\lambda \leq 1/10}$ but the degree becomes $ {D^{2^{O(\log n)}} = D^{O(n)}}$. The above method actually corresponds to making a graph whose edges represent long paths in orginal graph as mentioned in the begining. Next is a method for reducing $ {\lambda(G)}$ without blowing up the degree. This corresponds to considering only a small subset of the exponential number of paths possible and it will be proved that this is good enough.
+&lt;blockquote&gt;&lt;strong&gt;Definition 2 :&lt;/strong&gt;
+&lt;ul&gt;
+	&lt;li&gt; $ {G}$ is said to be an $ {(m,D,\lambda)}$-graph iff its vertex set is $ {[m]}$, it is $ {D}$-regular, and has $ {\lambda(G) \leq \lambda}$.&lt;/li&gt;
+	&lt;li&gt; If $ {X}$ is an $ {(m,D,\lambda)}$-graph and $ {G}$ is an $ {(D,d,\mu)}$-graph then $ {X\circledS G}$ is a $ {(m,Dd,\lambda^{'})}$-graph. For $ {v \in [m]}$ the $ {(a,b)}$th neighbour of $ {v}$ denoted by $ {v[(a,b)]}$ is $ {(v[a])[a[b]]}$ where $ {v[a]}$ is the $ {a}$th neigbour of $ {v}$ in $ {X}$, and $ {a[b]}$ is the $ {b}$th neighbour of $ {a}$ in $ {G}$ (according to the induced ordering on the neighbours due to the ordering on the vertex set).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+The $ {\circledS}$ operation is similar to graph squaring but the number of neighbours becomes $ {dD}$ instead of $ {D^2}$ in $ {G^2}$. This is especially good if the $ {D &amp;gt;&amp;gt; d}$. The next lemma states that the $ {\circledS}$ operation also decreases the eigen value.
+&lt;blockquote&gt;
+&lt;p style=&quot;text-align:left;&quot;&gt;&lt;strong&gt;Lemma 3 :&lt;/strong&gt;&lt;/p&gt;
+&lt;p style=&quot;text-align:center;&quot;&gt;&lt;strong&gt;&lt;/strong&gt;$ \displaystyle \lambda(X \circledS G) \leq (1-\mu)\lambda^2+\mu$&lt;/p&gt;
+&lt;/blockquote&gt;
+Instead of considering all $ {D^2}$ vertices at distance $ {2}$, we are considering only some $ {Dd}$ neigbours. Now we will apply the $ {\circledS}$ operation $ {O(\log n)}$ times to bring down $ {\lambda(G)}$ to $ {\leq 1/10}$ and the degree increases to $ {Dd^{O(\log n)}}$. But after each $ {\circledS}$ operation, the degree increases, and so we need a larger $ {G}$ for doing the next $ {\circledS}$ operation. Next lemma say there exists a sequence of $ {G}$'s with small $ {\mu}$'s.
+&lt;blockquote&gt;&lt;strong&gt;Lemma 4 :&lt;/strong&gt; There exists a sequence of $ {(d^i,d,\mu)}$-graphs $ {\{ G_i \}_{i\in \mathbb{N}}}$ where $ {\mu \leq \frac{1}{100}}$.&lt;/blockquote&gt;
+&lt;blockquote&gt;&lt;strong&gt;Corollary&lt;/strong&gt; If $ {\lambda = 1 - \gamma \geq 1/10}$ and $ {\mu \leq 1/100}$ then $ {\lambda(X\circledS G) \leq 1 - \frac{12}{11}\gamma}$. So after $ {t}$ $ {\circledS}$ operations,
+
+$ \displaystyle \lambda(X\circledS^t \{G_i\}_{i=1}^t) = \lambda(((X\circledS G_1)\cdots )\circledS G_t) \leq 1 - \left(\frac{12}{11}\right)^t\gamma$
+
+If $ {\gamma \geq 1/n^c}$, for $ {t=O(\log n)}$,
+
+$ \displaystyle \lambda(X\circledS^t \{G_i\}_{i=1}^t) \leq \frac{1}{10}$&lt;/blockquote&gt;
+In the above corollary what is effectively done is that we have constructed a graph $ {G^{''}=X\circledS^t \{G_i\}_{i=1}^t}$ , in which edges represent $ {poly(n)}$ long walks in $ {G^{'}}$. Clearly if all $ {poly(n)}$ length paths were considered($ {4^{poly(n)}}$) as edges(this corresponds to squaring the graph many times), one cannot even find all the neighbours of a node in log space. So we consider only a carefully choosen sparse subset($ {poly(n)}$) by means of the $ {\circledS}$ operation. Here is an example of the above procedure done on the board(my mobile has a bad camera, but the image should be viewable at the full size)
+
+&lt;a href=&quot;http://girishvarma.files.wordpress.com/2009/12/reign2.jpg&quot;&gt;&lt;img class=&quot;aligncenter size-medium wp-image-245&quot; title=&quot;Reign2&quot; src=&quot;http://girishvarma.files.wordpress.com/2009/12/reign2.jpg?w=300&quot; alt=&quot;&quot; width=&quot;300&quot; height=&quot;225&quot; /&gt;&lt;/a&gt;&lt;a href=&quot;http://girishvarma.files.wordpress.com/2009/12/reign1.jpg&quot;&gt;
+&lt;/a&gt;
+
+Now for this to be done by a log space machine, the $ {(a_1,a_2,\cdots a_t)}$th neighbour ($ {a_1 \in [D]}$, and all other $ {a_i \in [d]}$)of any vertex in $ {G^{''}=X\circledS^t \{G_i\}_{i=1}}$ should be computable in log space. Each $ {(a_1,a_2,\cdots a_t)}$th neighbour is obtained by doing a walk of length $ 2^{poly(n)}$ on $ X_0$. This walk is specified by a sequence of choices of neighbours $ b_1,b_2,\cdots b_{2^{poly(n)}}$. The following figure illustrates how to compute $ b_i$ given $ {(a_1,a_2,\cdots a_t)}$ and $ i$.
+
+&lt;a href=&quot;http://girishvarma.files.wordpress.com/2009/12/reign1.jpg&quot;&gt;&lt;img class=&quot;aligncenter size-medium wp-image-243&quot; title=&quot;Reign1&quot; src=&quot;http://girishvarma.files.wordpress.com/2009/12/reign1.jpg?w=300&quot; alt=&quot;&quot; width=&quot;300&quot; height=&quot;225&quot; /&gt;&lt;/a&gt;
+
+The $ {(a_1,a_2,\cdots a_t)}$ neighbour ($ {a_1 \in [D]}$, and all other $ {a_i \in [d]}$)of any vertex in $ G^{''}=X\circledS^t \{G_i\}_{i=1}^{t}$ is computable in space $ {O(\log n)}$, for $ {t=O(\log n)}$.
+&lt;blockquote&gt;&lt;strong&gt;Lemma 5 : &lt;/strong&gt; Reachability question in $ {G^{'}(V^{'},E^{'})}$($ {4}$ regular) between large connected subsets $ {S,T \subset V^{'}, |S|,|T| \geq \frac{|V^{'}|}{3}}$ can be reduced in log space to the question whether there is an edge between large subsets $ {S^{''},T^{''}, |S^{''}|,|T^{''}| \geq \frac{|V^{''}|}{3}}$ in some graph $ {G^{''}(V^{''},E^{''})}$ in which neigbours of any vertex can be computed in log space.&lt;/blockquote&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Simpler proof for Chernoff Bound using Bernstein's Trick</title>
+   <link href="http://geevi.github.com/blog/2009/12/03/simpler-proof-for-chernoff-bound-using-bernsteins-trick"/>
+   <updated>2009-12-03T00:00:00+05:30</updated>
+   <id>hhttp://geevi.github.com/blog/2009/12/03/simpler-proof-for-chernoff-bound-using-bernsteins-trick</id>
+   <content type="html">&lt;em&gt;Kudos to &lt;a href=&quot;http://www.tcs.tifr.res.in/~jaikumar/&quot;&gt;Jaikumar&lt;/a&gt; who pointed this out in his Information Theory Class, and Nutan who made me work this out in an assignment.&lt;/em&gt;
+
+Chernoff bound is by far the most used result in randomized algorithms. But there are many different versions of it, with very ugly proofs involving playing with inequalities relating to functions. Here is a simple proof for the additive version of the same.
+
+$ \overline{Y_i}$'s are iid 0-1 random variables with expectation $ \delta$. Then
+
+&lt;img src=&quot;http://www.codecogs.com/gif.latex?%5CPr%5Cleft%5B%5Csum_%7Bi%3D1%7D%5Et%20%5Coverline%7BY%7D_i%20%5Cgeq%20%5Cell%20%5Cright%5D%20%3D%20%5Csum_%7Bi%3D%5Cell%7D%5Et%20%7Bt%20%5Cchoose%20i%7D%5Cdelta%5Ei%20%281-%5Cdelta%29%5E%7Bt-i%7D%20%5Cleq%20%5Csum_%7Bi%3D%5Cell%7D%5Et%20%7Bt%20%5Cchoose%20i%7D%5Cdelta%5Ei%20%281-%5Cdelta%29%5E%7Bt-i%7D%20x%5E%7Bi-%5Cell%7D&quot; alt=&quot;\Pr\left[\sum_{i=1}^t \overline{Y}_i \geq \ell \right] = \sum_{i=\ell}^t {t \choose i}\delta^i (1-\delta)^{t-i} \leq \sum_{i=\ell}^t {t \choose i}\delta^i (1-\delta)^{t-i} x^{i-\ell}&quot; /&gt; for all &lt;img src=&quot;http://meyer.fm/cgi-bin/mathtex.cgi?x%20%5Cgeq%201&quot; alt=&quot;x \geq 1&quot; /&gt;
+
+&lt;img src=&quot;http://www.codecogs.com/gif.latex?%5Cleq%20%5Csum_%7Bi%3D0%7D%5Et%20%7Bt%20%5Cchoose%20i%7D%5Cdelta%5Ei%20%281-%5Cdelta%29%5E%7Bt-i%7D%20x%5E%7Bi-%5Cell%7D%20%3D%20x%5E%7B-%5Cell%7D%281-%5Cdelta%2B%5Cdelta%20x%29%5Et%20%3D%20x%5E%7B-%5Cell%7D%281%2B%5Cdelta%20%28x-1%29%29%5Et%20&quot; alt=&quot;\leq \sum_{i=0}^t {t \choose i}\delta^i (1-\delta)^{t-i} x^{i-\ell} = x^{-\ell}(1-\delta+\delta x)^t = x^{-\ell}(1+\delta (x-1))^t &quot; /&gt;
+
+This is the Bernstein's trick. That is multiplying by $ x^{i-\ell}$ and then doing the full summation starting from 0. For terms in the full summation from 0 to $ \ell-1$, $ i-\ell &amp;lt; 0 $ and we are multiplying by a small quantity. For terms $ \ell$ to $ t$, we are multiplying by a large quantiy. But if $ \ell &amp;gt;&amp;gt; t\delta$, what we hope is these terms are extremely small and even multiplying with $ x^{i-\ell}$ will not increase them by much. And both these facts hopefully give a good bound. Now we choose an $ x$ minimizing above.
+
+Above is minimized for &lt;img src=&quot;http://www.codecogs.com/gif.latex?x%3D%20%5Cfrac%7B%5Cell%20%281-%20%5Cdelta%29%7D%20%7B%28t-%5Cell%20%29%20%5Cdelta%20%7D&quot; alt=&quot;x= \frac{\ell (1- \delta)} {(t-\ell ) \delta }&quot; /&gt; , for &lt;img src=&quot;http://www.codecogs.com/gif.latex?%5Cell%20%3D%20t%2F2&quot; alt=&quot;\ell = t/2&quot; /&gt; , this is &lt;img src=&quot;http://www.codecogs.com/gif.latex?%5Cfrac%7B1-%5Cdelta%20%7D%7B%5Cdelta%20%7D%20%3E%201&quot; alt=&quot;\frac{1-\delta }{\delta } &amp;gt; 1&quot; /&gt; for &lt;img src=&quot;http://www.codecogs.com/gif.latex?%5Cdelta%20%3C%201%2F2&quot; alt=&quot;\delta &amp;lt; 1/2&quot; /&gt; .
+
+Then &lt;img src=&quot;http://www.codecogs.com/gif.latex?x%5E%7B-%5Cell%20%7D%281%2B%5Cdelta%20%28x-1%29%29%5Et%20%3D%20%28%5Cfrac%7B1-%5Cdelta%20%7D%7B%5Cdelta%20%7D%29%5E%7B-t%2F2%7D%20%282-2%5Cdelta%20%29%5Et%20%3D%202%5Et%20%28%5Cdelta%20%281-%5Cdelta%20%29%29%5E%7Bt%2F2%7D&quot; alt=&quot;x^{-\ell }(1+\delta (x-1))^t = (\frac{1-\delta }{\delta })^{-t/2} (2-2\delta )^t = 2^t (\delta (1-\delta ))^{t/2}&quot; /&gt;&lt;img src=&quot;http://www.codecogs.com/gif.latex?%3De%5E%7Bt%5Cleft%28%5Clog%202%20-%20%5Cfrac%7B%5Clog%20%281%2F%5Cdelta%20%28%201-%5Cdelta%29%29%7D%7B2%7D%5Cright%29%7D&quot; alt=&quot;=e^{t\left(\log 2 - \frac{\log (1/\delta ( 1-\delta))}{2}\right)}&quot; /&gt;
+
+For &lt;img src=&quot;http://www.codecogs.com/gif.latex?%5Cdelta%20%3C%201%2F2&quot; alt=&quot;\delta &amp;lt; 1/2&quot; /&gt; , &lt;img src=&quot;http://www.codecogs.com/gif.latex?%5Clog%20%28%5Cfrac%7B1%7D%7B%5Cdelta%20%281-%5Cdelta%20%29%7D%29%20%3E%202%5Clog%202&quot; alt=&quot;\log (\frac{1}{\delta (1-\delta )}) &amp;gt; 2\log 2&quot; /&gt; .
+
+So the coefficient of &lt;img src=&quot;http://www.codecogs.com/gif.latex?t&quot; alt=&quot;t&quot; /&gt; in the exponent in the formula above is &lt;img src=&quot;http://www.codecogs.com/gif.latex?%5Cleft%28%5Clog%202%20-%20%5Cfrac%7B%5Clog%20%281%2F%5Cdelta%20%28%201-%5Cdelta%20%29%29%7D%7B2%7D%5Cright%29%20%3D%20-c%20%3C0&quot; alt=&quot;\left(\log 2 - \frac{\log (1/\delta ( 1-\delta ))}{2}\right) = -c &amp;lt;0&quot; /&gt; .
+
+Hence &lt;img src=&quot;http://www.codecogs.com/gif.latex?%5CPr%5Cleft%5B%5Csum_%7Bi%3D1%7D%5Et%20%5Coverline%7BY%7D_i%20%5Cgeq%20t%2F2%20%5Cright%5D%20%5Cleq%20e%5E%7B-ct%7D&quot; alt=&quot;\Pr\left[\sum_{i=1}^t \overline{Y}_i \geq t/2 \right] \leq e^{-ct}&quot; /&gt;.
+&lt;h2&gt;If you want to see the longer ugly proof, here it is:&lt;/h2&gt;
+The usual proof for Chernoff bound(see &lt;a href=&quot;http://en.wikipedia.org/wiki/Chernoff_bound#Theorem_for_additive_form_.28absolute_error.29&quot;&gt;this&lt;/a&gt;) gives
+
+&lt;img src=&quot;http://meyer.fm/cgi-bin/mathtex.cgi?%20%5CPr%5Cleft[%5Cfrac%7B1%7D%7Bt%7D%5Csum%20Y_i%20%5Cge%20p%20+%20%5Cgamma%20%5Cright]%20%5Cle%20e%5E%7B-D%28p+%5Cgamma%7C%7C%20p%29%20t%7D&quot; alt=&quot; \Pr\left[\frac{1}{t}\sum Y_i \ge p + \gamma \right] \le e^{-D(p+\gamma|| p) t}&quot; /&gt; where &lt;img src=&quot;http://meyer.fm/cgi-bin/mathtex.cgi?D%28p+%5Cgamma%7C%7C%20p%29&quot; alt=&quot;D(p+\gamma|| p)&quot; /&gt; is the binary relative entropy, &lt;img src=&quot;http://meyer.fm/cgi-bin/mathtex.cgi?p=E[Y_i]&quot; alt=&quot;p=E[Y_i]&quot; /&gt; &lt;img src=&quot;http://meyer.fm/cgi-bin/mathtex.cgi?%3C%201/2&quot; alt=&quot;&amp;lt; 1/2&quot; /&gt;.
+
+If i take &lt;img src=&quot;http://meyer.fm/cgi-bin/mathtex.cgi?f%28x%29%20=%20D%28p+x%7C%7C%20p%29&quot; alt=&quot;f(x) = D(p+x|| p)&quot; /&gt;, then &lt;img src=&quot;http://meyer.fm/cgi-bin/mathtex.cgi?f%280%29=0=f%5E%7B%27%7D%280%29=%5Clog%28%5Cfrac%7Bp+0%7D%7Bp%7D%29%20+%20%5Clog%28%5Cfrac%7B1-p-0%7D%7B1-p%7D%29&quot; alt=&quot;f(0)=0=f^{'}(0)=\log(\frac{p+0}{p}) + \log(\frac{1-p-0}{1-p})&quot; /&gt; and &lt;img src=&quot;http://meyer.fm/cgi-bin/mathtex.cgi?f%5E%7B%27%27%7D%28x%29=1/%28p+x%29%281-p-x%29%20%5Cgeq%204&quot; alt=&quot;f^{''}(x)=1/(p+x)(1-p-x) \geq 4&quot; /&gt;(sum of 2 numbers in the denominator are 1).
+
+So Taylor's Theorem says that  &lt;img src=&quot;http://meyer.fm/cgi-bin/mathtex.cgi?%5Cexists%20%5Ceta%5C%20st%5C%20f%28x%29%20%5Cgeq%20f%280%29%20+%20f%5E%7B%27%7D%280%29x%20+%20f%5E%7B%27%27%7D%28%5Ceta%29%5Cfrac%7Bx%5E2%7D%7B2%21%7D&quot; alt=&quot;\exists \eta\ st\ f(x) \geq f(0) + f^{'}(0)x + f^{''}(\eta)\frac{x^2}{2!}&quot; /&gt; for nice functions.
+
+Therefore &lt;img src=&quot;http://meyer.fm/cgi-bin/mathtex.cgi?f%28x%29%20%5Cgeq%202x%5E2&quot; alt=&quot;f(x) \geq 2x^2&quot; /&gt; which gives
+
+&lt;img src=&quot;http://meyer.fm/cgi-bin/mathtex.cgi?Pr%5Cleft[%5Cfrac%7B1%7D%7Bt%7D%20%5Csum%20Y_i%20%20%5Cge%20p+%20%5Cgamma%20%5Cright]%20%5Cle%20e%5E%7B-%5Cgamma%5E2%20t%7D&quot; alt=&quot;Pr\left[\frac{1}{t} \sum Y_i  \ge p+ \gamma \right] \le e^{-\gamma^2 t}&quot; /&gt;
+
+Now plug complement &lt;img src=&quot;http://meyer.fm/cgi-bin/mathtex.cgi?Y_i&quot; alt=&quot;Y_i&quot; /&gt; in the original proof as the &lt;img src=&quot;http://meyer.fm/cgi-bin/mathtex.cgi?Y_i&quot; alt=&quot;Y_i&quot; /&gt; here. Then &lt;img src=&quot;http://meyer.fm/cgi-bin/mathtex.cgi?%5Cgamma%20=%201/2%20-%20%5Cdelta&quot; alt=&quot;\gamma = 1/2 - \delta&quot; /&gt; and &lt;img src=&quot;http://meyer.fm/cgi-bin/mathtex.cgi?p=%20%5Cdelta&quot; alt=&quot;p= \delta&quot; /&gt;. This will give you the expression
+
+&lt;img src=&quot;http://meyer.fm/cgi-bin/mathtex.cgi?%5CPr%5Cleft[%5Csum%20%5Coverline%7BY%7D_i%20%5Cgeq%20t/2%20%5Cright]%20%5Cleq%20e%5E%7B2t%281/2%20-%20%5Cdelta%29%5E2%7D&quot; alt=&quot;\Pr\left[\sum \overline{Y}_i \geq t/2 \right] \leq e^{2t(1/2 - \delta)^2}&quot; /&gt;
+&lt;h2&gt;References&lt;/h2&gt;
+See this link if you are confused about the n different chernoff bounds. (http://www.cs.berkeley.edu/~jordan/courses/174-spring02/recitation/lec10.pdf)
+There is a similar bound for hyper-geometric distributions called Chavatal's Bound. &lt;a href=&quot;ansuz.sooke.bc.ca/professional/hypergeometric.pdf&quot;&gt;Here&lt;/a&gt; you can find a nice writeup on it.
+</content>
+ </entry>
+ 
+ <entry>
+   <title>My Wordle</title>
+   <link href="http://geevi.github.com/blog/2009/11/17/my-wordle"/>
+   <updated>2009-11-17T00:00:00+05:30</updated>
+   <id>hhttp://geevi.github.com/blog/2009/11/17/my-wordle</id>
+   <content type="html">&lt;table style=&quot;width:auto;&quot;&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&quot;http://picasaweb.google.com/lh/photo/KcH9zpw98XFwNzMaIR2NBg?authkey=Gv1sRgCIyO5fn1id6w8wE&amp;amp;feat=embedwebsite&quot;&gt;&lt;img src=&quot;http://lh6.ggpht.com/_7ID-Cnc5x30/SwI96Qge0VI/AAAAAAAADuQ/ny5-_3-uuPo/s800/Screenshot.jpg&quot; alt=&quot;&quot; /&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;&lt;/table&gt;
+
+Go to http://www.wordle.net/create if you want to create one or your blog. It just extracts the rss feeds and make this images.
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Protests are On : Guess for What?</title>
+   <link href="http://geevi.github.com/blog/2009/11/05/protests-are-on-guess-for-what"/>
+   <updated>2009-11-05T00:00:00+05:30</updated>
+   <id>hhttp://geevi.github.com/blog/2009/11/05/protests-are-on-guess-for-what</id>
+   <content type="html">TIFR research scholars are on protest mode, to be exact peaceful protest mode. The reason being the obvious one &quot;we want a stipend hike&quot;. The latest pay commision reccomendations are being implemented and has increased the salaries across the board for faculties and staff in educational institutes. Research scholars not being considered as employees but rather students, have been ignored. The problem is atleast in TIFR, research scholars are supposed to be &quot;highly talented and motivated&quot;(to qoute the admission brochure) and some surely are. But how is TIFR going to attract these &quot;highly talented and motivated&quot; people if it doesn't provide competitive stipends? Unforunately the people who are supposed to decide on these matters lives in a office far away putting tick and cross marks on files. He doesn't understand the problem, for him the question is how to minimize the spending in this part so that spending in some other popular part is increased.
+The director understands the problem but is left comletely powerless in this matter. But he stil have to endure the frustration of the students. Even some faculty believes that in the cause. But if the frustration overflows the goodwill might be lost.
+
+Being a beneficiary I offcourse support the protest. But instead of just demanding a stipend hike, a broader goal must be set. That is to remove the innefficency in the system. This would ensure more support to the cause(even from within the high ranks of the system) and will hopefully give a permanent solution. But some narrow minded people say why care about what happens after we leave the institute and all I want is my stipend to be hiked as soon as possible.
+</content>
+ </entry>
+ 
+ <entry>
+   <title>The Secretary Problem</title>
+   <link href="http://geevi.github.com/blog/2009/11/03/the-secretary-problem"/>
+   <updated>2009-11-03T00:00:00+05:30</updated>
+   <id>hhttp://geevi.github.com/blog/2009/11/03/the-secretary-problem</id>
+   <content type="html">&lt;p&gt;Suppose a secretary has to call \(n\) candidates for a job interview. She can choose to call them in a random order. Assuming she does so, and the situation is take him or loose him(ie after having interviewed a person, she has to immediately tell him whether she will take him or not). An additional  assumption is that all candidates will have distinct interview scores. So the question is “What is her best strategy?”(ie the one that maximizes the probability that she gets the candidate with the best score)&lt;/p&gt;
+&lt;p&gt;Tne strategy is to interview half the people, find the best score and accept the next guy with a higher score. So if the best guy is in the second half and second best guy is in the first half which happens with probability \(1/4\), she will be able to get the best candidate. One could generalize the above and decide to find the best score among the first $ k$ candidates and choose the next guy who beats this score. With some asymptotic analysis, the probability of finding the best guy comes to \(\alpha\ln(1/ \alpha)\) where \(\alpha = k/n\).(&lt;a href=&quot;http://en.wikipedia.org/wiki/Secretary_problem#Deriving_the_optimal_policy&quot;&gt;see&lt;/a&gt;). This is maximized when \(\alpha = 1/e\) giving a success probability of \(1/e\). It can be proved that this is the best that can be achieved.&lt;/p&gt;
+&lt;p&gt;The probabilists way of stating this is a sequence of random variables \(X_1 \cdots X_n\) of scores. Since all candidates have different scores, \(X_1 \cdots X_n\) is a random permutation of the scores(as we assumed that she calls candidates in a random order, and lets also assume that the scores are independent of what time they are taken). To make things slightly more complicated, let $ Y_i$ be the indicator random variable for \(X_i&lt; \max(X_1\cdots X_{i-1})\).  After having seen \(X_1 \cdots X_{i-1}\)(these form $ i–1$ distinct numbers with $ i$ gaps between them),  $ X_i$ is equally likely to be in anyone of  the gaps. Therefore&lt;/p&gt;
+&lt;p&gt;\[ \Pr[Y_i = 1] = \Pr[X_i &amp;lt; \max(X_1\cdots X_{i-1})]  = \frac{1}{i}\]&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Claim :&lt;/strong&gt; $ Y_i$ is independent of $ Y_1  Y_{i–1}$&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Proof :&lt;/strong&gt; Following the logic which gave the probability above, whether $ X_i$ is the maximum of whats seen till now doesnt depend on the ordering of $ X_1  X_{i–1}$. We want to know what the best stratergy is. Suppose we have already seen $ X_1  X_n$, we have no option but to choose the $ n$th candidate.&lt;/p&gt;
+&lt;p&gt;If $ Y_n = 1$, with probability \(1\) we have the best guy, else its \(0\). For later purposes lets define $ V(n,1)=1,V(n,0)=0$ Now again Whats the best strategy to follow once we have seen $ X_1  X_{n–1}$.&lt;/p&gt;
+&lt;p&gt;If $ Y_n = 1$, 1. with probability $ n–1/n$ we have the best guy 2. if we skip this guy with probability $  1 +  0$ it will be found in the next step if the best strategy is followed from next step.&lt;/p&gt;
+&lt;p&gt;So we can compute these 2  values and choose the option with higher probability.  Let $ V(n–1,1) =  $ above 2 values If $ Y_n = 0$,&lt;/p&gt;
+&lt;ol style=&quot;list-style-type: decimal&quot;&gt;
+&lt;li&gt;with probability $ 0$ we have the best guy&lt;/li&gt;
+&lt;li&gt;if we skip this guy with probability $  1 +  0$ it will be found in the next step if the best strategy is followed from next step.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;So the best thing is to skip. Let $ V(n–1,1) = $ second value. And we can continue this inductively. Suppose $ V(i+1,b)$ be the probability of success if the best strategy is  followed from step $ i+1$ given $ Y_{i+1}=b$. $ V(i,b) =  { i/n ,  V(i+1,1) +  V(i+1,0) }$&lt;/p&gt;
+&lt;p&gt;If $ b=1$ then $ V(i,1)=  { i/n ,  V(i+1,1) +  V(i+1,0) } $ else $ V(i,0)=i/n$  (ie if current is not the best among the candidates so far seen, he is definitely not best among all and so  we skip, hoping that best guy is yet to come).&lt;/p&gt;
+&lt;p&gt;As $ i/n$ is increasing in $ i$, and it can be proved that $  V(i+1,1) +  V(i+1,0)$ is decreasing(i think after some threshold) at some point they cross. So from this point onwards we will choose the first guy that has best score so far(ie max is obtained for option 1). But we had already proved that best among such strategies is obtained by setting the threshold point to $ 1/e$ to obtain a probability of getting best guy as $ 1/e$.[this is slightly rough write up, i hope to improve it later]&lt;/p&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>Some Facts About Matchings</title>
+   <link href="http://geevi.github.com/blog/2009/10/29/some-facts-about-matchings"/>
+   <updated>2009-10-29T00:00:00+05:30</updated>
+   <id>hhttp://geevi.github.com/blog/2009/10/29/some-facts-about-matchings</id>
+   <content type="html">If a graph(n vertex) has a maximum matching of size m edges, any maximal matching has size atleast m/2.(hint consider the complement of the maximal matching in the vertex set)
+
+XOR(symmetric difference) of a n matching and a k matching is a set of even length cycles, even length alternating paths, odd length paths with 1 edge more from n matching(say a of them) and odd length augmentable paths(say b of them) for the k matching, such that a-b=n-k and b&amp;lt;=n-k. 
+</content>
+ </entry>
+ 
+ <entry>
+   <title>The Markov Chain Monte Carlo(MCMC) Method</title>
+   <link href="http://geevi.github.com/blog/2009/10/27/the-markov-chain-monte-carlomcmc-method"/>
+   <updated>2009-10-27T00:00:00+05:30</updated>
+   <id>hhttp://geevi.github.com/blog/2009/10/27/the-markov-chain-monte-carlomcmc-method</id>
+   <content type="html">If you have a deck of cards, and you want to make the arrangement random, what do you do? You shuffle it. Lets look at this in a more formal setting. The deck of cards can be thought of as an ordered set $ {[n]}$. There is some initial arrangement of cards, which correspond to an initial permutation in $ {S_{n}}$(the set of all permutations on $ {[n]}$). Then you do some random modification to the permutation by the ``shuffle'' procedure. And you keep on doing this. Notice that ``shuffle'' is a simple procedure that is always done the same way, without taking into account what the previous permutation was. And we hope that after sometime we get a random permutation. There is a formal proof which says that $ {7}$ riffle shuffles will give you a permutation that is close to random by Persi Diaconis and David Aldous.
+
+This can be thought of in a more general setting. Suppose we have a set $ {S}$, and given an arbitrary element of $ {S}$ we want to generate a random element of $ {S}$ according to some distribution. Mostly $ {S}$ is not known explicitly and it can be of very large size. ie $ {S}$ may be the set of perfect matchings of a graph. So we can take an element in $ {S}$ and do some simple random modification(like the shuffle) and keep doing this. The random modification can be thought of as a graph with vertex set $ {S}$, with edges from one node going to other nodes that are obtained after the modification. Each edge also can have a probability associated with it. And the above random process is nothing but a random walk on this graph. So we know that this process is a Markov Chain(see the last reference at the end of the post ). We would want the Markov Chain to be ergodic and aperiodic(if the graph is undirected this just meens it should be connected and non bipartite) so that it converges to the stationary distribution. Also stationary distribution should be the distribution from which we want to sample. For this procedure to be efficient, the Markov Chain should converge to stationery distribution fast. This is done by proving that it is a rapidly mixing Markov Chain.
+&lt;h3&gt;Reference&lt;/h3&gt;
+&lt;h3&gt;&lt;a href=&quot;http://www.jstor.org/stable/2323590&quot;&gt;&lt;strong&gt;Shuffling cards &lt;/strong&gt;and stopping times&lt;/a&gt;&lt;span style=&quot;background-color:#ffffff;font-weight:normal;font-size:13px;&quot;&gt;- ►&lt;strong&gt;&lt;a href=&quot;http://www.stat.duke.edu/~scs/Courses/Stat376/Papers/ConvergeRates/Shuffling/AldousDiaconisAmerMathMonthly1986.pdf&quot;&gt;duke.edu&lt;/a&gt; [PDF]&lt;span style=&quot;font-size:small;&quot;&gt; &lt;/span&gt;&lt;span style=&quot;background-color:#ffffff;font-weight:normal;font-size:small;&quot;&gt;D Aldous, P Diaconis - The American Mathematical Monthly, 1986 - jstor.org&lt;/span&gt;&lt;/strong&gt;&lt;/span&gt;&lt;/h3&gt;
+Does Anything Happen at Random? : A talk by Persi Diaconis [youtube=http://www.youtube.com/watch?v=nAxEzxHkqyY]
+
+&lt;a href=&quot;/k/girish-varma/rapidly-mixing-markov-chains/7qq940jyeiy9/4&quot;&gt;Rapidly Mixing Markov Chains&lt;/a&gt; [A write up my myself]
+</content>
+ </entry>
+ 
+ <entry>
+   <title>I wish I could</title>
+   <link href="http://geevi.github.com/blog/2009/10/10/i-wish-i-could"/>
+   <updated>2009-10-10T00:00:00+05:30</updated>
+   <id>hhttp://geevi.github.com/blog/2009/10/10/i-wish-i-could</id>
+   <content type="html">The image of my grandfather comes to my mind. A person who lived in a time when nothing was certain. He raised his family of 6 children and all of them  has enough to live peacefully . A farmer who could not stop working even during his last days.  I can never imagine him being angry. He had a very young heart. He used to follow cricket tournaments even when he was old. When ms dhoni started his career in the Indian cricket team, grandpa was immediately impressed by him. I remember him saying &quot;people like dhoni should lead the team&quot;. Compared to his times I live in affluene, with a certain future(even in a worst case I think I will still get some job).His life (and I guess) his ambitions were simple yet he worked hard. I wish  to become some great scientist but
+still I am lazy, and wasting life worrying about silly things. A sense of duty engulfs me now, but I don't know how long it will last. 
+
+       
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Pseudorandomness for Width 2 Branching Programs and Small Degree Polynomials</title>
+   <link href="http://geevi.github.com/blog/2009/10/09/pseudorandomness-for-width-2-branching-programs-and-small-degree-polynomials"/>
+   <updated>2009-10-09T00:00:00+05:30</updated>
+   <id>hhttp://geevi.github.com/blog/2009/10/09/pseudorandomness-for-width-2-branching-programs-and-small-degree-polynomials</id>
+   <content type="html">&lt;em&gt;Lecture Notes from &lt;/em&gt;&lt;a href=&quot;http://www.tcs.tifr.res.in/~nutan&quot;&gt;&lt;em&gt;Nutan Limaye's&lt;/em&gt;&lt;/a&gt;&lt;em&gt; Small Space Computaions Course, presented and scribed by &lt;/em&gt;&lt;em&gt;&lt;a href=&quot;http://www.tcs.tifr.res.in/~girish/&quot;&gt;m&lt;/a&gt;e&lt;/em&gt;&lt;em&gt;. This is the summary of a &lt;/em&gt;&lt;a href=&quot;http://www.math.ias.edu/~amiry/publications/width2.pdf&quot;&gt;&lt;em&gt;paper&lt;/em&gt;&lt;/a&gt;&lt;em&gt; by Andrej Bogdanov, Zeev Dvir, Elad Verbin and Amir Yehudayoff.&lt;/em&gt;
+&lt;h2&gt;&lt;span style=&quot;font-weight:normal;&quot;&gt;1. About Derandomization &lt;/span&gt;&lt;/h2&gt;
+Let $ {\mathfrak{C}}$ be a class of languages($ {\subset\{0,1\}^{*}}$) that can be decided by some model of computation deterministically given some complexity bounds. Then we can define the class $ {R\mathfrak{C}}$ which makes use of randomization as follows. Lets say the model takes an auxilary input $ {r\in\left\{ 0,1\right\} ^{m}}$. For any $ {x}$, and $ {r}$ choosen uniformly at random, the probability that the model correctly answers whether $ {x\in L}$ is very high (say $ {\geq2/3}$). Now the we ask ``Is there any point in doing this?'' or ``Is $ {R\mathfrak{C}}$=$ {\mathfrak{C}}$?''. One way of trying to prove $ {R\mathfrak{C}}$=$ {\mathfrak{C}}$ is to come up with a function $ {G:\{0,1\}^{t}\rightarrow\{0,1\}^{m},t&amp;lt;&amp;lt;m}$ and replace the uniformly random string by the output of this function on a uniformly random input. Now It needs to proved that this will not affect the bound on success probability and $ {G}$ itself should be computable in $ {\mathfrak{C}}$. Note that here we are attempting to decrease the true randomness used. But if $ {t}$ is very small, then by doing a brute force search over all $ {t}$'s(accept if the algo accepts for large number of $ {t}$'s) we can completely get rid of randomness. Such functions are called &lt;span style=&quot;text-decoration:underline;&quot;&gt;pseudorandom generators&lt;/span&gt;(or PRNG's). Such proofs that randomness doen't give additional power, are said to &lt;span style=&quot;text-decoration:underline;&quot;&gt;derandomize&lt;/span&gt; $ {\mathfrak{C}}$.
+&lt;blockquote&gt;&lt;strong&gt;Definition : &lt;/strong&gt; A distribution $ {D}$ on $ {\{0,1\}^{n}}$ is said to be $ {\epsilon}$-pseudorandom(or PR in short) against a class $ {\mathfrak{C}}$ of functions $ {f:\{0,1\}^{n}\rightarrow\{0,1\}}$ iff $ {\forall f\in\mathfrak{C}}$
+&lt;p align=&quot;center&quot;&gt;$ \displaystyle  \left|\Pr_{x\leftarrow D}[f(x)=1]-\Pr_{x\leftarrow U_{n}}[f(x)=1]\right|\leq\epsilon$&lt;/p&gt;
+where $ {U_{n}}$ is the uniform distribution on $ {\{0,1\}^{n}}$. $ {G:\{0,1\}^{m}\rightarrow\{0,1\}^{n}}$ is $ {\epsilon}$-pseudorandom against a class $ {\mathfrak{C}}$ iff $ {G(U_{m})}$ is $ {\epsilon}$-pseudorandom against a class $ {\mathfrak{C}}$. Note that if $ {\epsilon}$ is smaller, it is better(well thats why its called $ {\epsilon}$).&lt;/blockquote&gt;
+$ {\epsilon}$-pseudorandomness of $ {G}$ will imply that the probability of success of algorithms in $ {R\mathfrak{C}}$ will remain bounded when random string is choosen according to $ {G(U_{m})}$. We say simply that there is a pseodorandom generator for $ {\mathfrak{C}}$, when there is one with a very small $ {\epsilon}$(say $ {e^{-poly(n)}}$).
+&lt;h2&gt;&lt;span style=&quot;font-weight:normal;&quot;&gt;2. Derandomization of Small Space Computations &lt;/span&gt;&lt;/h2&gt;
+Now we are interested in the question is $ {RL=L}$? Lots of efforts are on in proving this, and one major result known due to Reingold is that UREACH(Undirected Reachability) can be done in $ {L}$. It was known that UREACH can be done in $ {RL}$. Moreover UREACH is a complete problem for a class $ {SL\subset RL}$ that contained other interesting problems. So Reingold effectively proved $ {SL=L}$. The proof used pseodorandom generators. Another result known is $ {RSPACE(\log n)\subset DSPACE(\log^{3/2}n)}$, which used a pseudorandom generator by Nissan to simulate the randomized computation in determistic space.
+
+A second way of investigating the question is by asking the same for simpler classes like $ {NC^{1}}$, branching programs with particular parameters, polynomials of small degree. Recently Bogdanov,Viola, Lovett constructed pseudorandom generators for degree $ {k}$ polynomials, by suming $ {k}$ independent copies of a pseudorandom generator for degree $ {1}$ polynomials. This paper tries to understand the limitations of this method. Positive result is that PRNG's for degree $ {k}$ also work well for $ {(k,t,n)}$-2BP's(ie width $ {2}$, depth $ {t}$, branching programs that read $ {k}$ bits at a time on $ {n}$ inputs).
+&lt;h2&gt;3. PRNG's for degree $ {k}$ polynomials also works for width $ {2}$ BP's which read $ {k}$ bits at a time&lt;/h2&gt;
+&lt;strong&gt;Definition : &lt;/strong&gt; $ {(k,t,n)}$-$ {w}$BP(Branching Program) is a layered DAG, with $ {t}$ layers, $ {w}$ nodes at each layer, edges always go from one layer to the next. For every node there are $ {2^{k}}$ edges going to the next layer each labelled by a $ {k}$ bit string and each layer is assigned some $ {k}$ bit positions in input $ {x\in\{0,1\}^{n}}$ denoting which edge to take on $ {x}$. The first node in the first layer is labelled start and final layer has only $ {2}$ nodes labelled accept and reject. So each input $ {x}$ will represent a unique path from start to accept or reject node. A function $ {f:\{0,1\}^{n}\rightarrow\{0,1\}}$ is said to be computed by a branching program, if $ {f(x)=1}$ iff the branching program ends in an accept node on input $ {x}$. A $ {(k,t,n)}$-$ {w}$BP is read once if the input is read in the right order, ie if $ {\overline{x}_{1},\overline{x}_{2},\cdots,\overline{x}_{t}}$ denotes the block of bits of length $ {k}$ each read at the corresponding layers, then $ {x=\overline{x}_{1}\cdot\overline{x}_{2}\cdots\overline{x}_{t}}$.
+&lt;blockquote&gt;&lt;strong&gt;Theorem 1 : &lt;/strong&gt;If $ {D}$ is $ {\epsilon}$-pseudorandom for polynomials of degree $ {k}$, then it is $ {\epsilon t}$-pseudorandom for $ {(k,t,n)}$-$ {2}$BP's&lt;/blockquote&gt;
+&lt;strong&gt;Proof : &lt;/strong&gt; We express functions computed by width 2 BP's that read $ {k}$ bits, as a {}``higher order sum'' of degree $ {k}$ polynomials with sum of absolute values of coefficients bounded. Next claim proves that this implies Theorem 2.
+
+&lt;strong&gt;Claim : &lt;/strong&gt; : If $ {f:\{0,1\}^{n}\rightarrow\{0,1\}}$ is such that
+&lt;ol&gt;
+	&lt;li&gt;$ {f(x)=\sum_{\mathbf{\mbox{all polynomials }\mathbf{g}_{\mathbf{i}}\mbox{of degree }}k}\alpha_{i}g_{i}(x)}$ (this is a ``higher order sum'' ie sum is over reals and $ {\alpha_{i}\in\mathbb{R}}$)&lt;/li&gt;
+	&lt;li&gt;$ {\sum_{i}|\alpha_{i}|\leq L}$&lt;/li&gt;
+&lt;/ol&gt;
+and $ {G:\{0,1\}^{m}\rightarrow\{0,1\}^{n}}$ is $ {\epsilon}$-pseudorandom against degree $ {k}$ polynomials then $ {D}$ is $ {\epsilon L}$-pseudorandom against $ {f}$.
+
+Note that if $ {\hat{f}(x)=(-1)^{f(x)}}$ then $ {\mathbb{E}_{D}[\hat{f}(x)]=1-2\Pr_{D}[f(x)=1]}$. We do this to use the linearity property of expectation and also independence properties of the distribution $ {D}$.
+&lt;p align=&quot;center&quot;&gt;$ \displaystyle  \begin{array}{rcl}  2\cdot\left|\Pr_{x\leftarrow U_{n}}[f(x)=1]-\Pr_{s\leftarrow U_{m}}[f(G(s))=1]\right| &amp;amp; = &amp;amp; \left|\mathbb{E}_{U_{n},U_{m}}[\hat{f}(G(s))-\hat{f}(x)]\right|\\ &amp;amp; \leq &amp;amp; \sum_{i}|\alpha_{i}|\cdot\left|\mathbb{E}_{U_{n},U_{m}}[\hat{g}(G(s))-\hat{g}(x)]\right|\\ &amp;amp; = &amp;amp; \sum_{i}|\alpha_{i}|\cdot2\cdot\left|\Pr_{x\leftarrow U_{n}}[f(x)=1]-\Pr_{s\leftarrow U_{m}}[f(G(s))=1]\right|\\ &amp;amp; \leq &amp;amp; 2\cdot t\cdot\epsilon\end{array} $&lt;/p&gt;
+&lt;strong&gt;Claim : &lt;/strong&gt;If $ {f:\{0,1\}^{n}\rightarrow\{0,1\}}$ is computed by a $ {(k,t,n)-2}$BP then $ {f}$ can be written as
+&lt;ol&gt;
+	&lt;li&gt; $ {f(x)=\sum_{\mathbf{\mbox{all polynomials }\mathbf{g}_{\mathbf{i}}\mbox{of degree }}k}\alpha_{i}g_{i}(x)}$ (this is a {}``higher order sum'' ie sum is over reals and $ {\alpha_{i}\in\mathbb{R}}$)&lt;/li&gt;
+	&lt;li&gt;$ {\sum_{i}|\alpha_{i}|\leq t}$&lt;/li&gt;
+&lt;/ol&gt;
+Proof is by induction on $ {t}$.
+
+&lt;strong&gt;Base Case : &lt;/strong&gt;For $ {t=1}$, $ {f}$ is clearly a degree $ {k}$ polynomial.
+
+&lt;strong&gt;Inductive Step : &lt;/strong&gt;Let the function computed by the BP at layer $ {t-1}$ be $ {f_{|t-1}(x)}$. Then
+&lt;p align=&quot;center&quot;&gt;$ \displaystyle  f(x)=P(f_{|t-1}(x),\overline{x}_{t-1})$&lt;/p&gt;
+where $ {\overline{x}_{t-1}}$ is the block of bits read by the BP at layer $ {t-1}$ and $ {P}$ is the mapping that the branching program does for evaluating the position in the next level ie $ {f(x)}$. It can be proved that there exists functions $ {A,B:\{0,1\}^{k}\rightarrow\{0,1\}}$ such that
+&lt;p align=&quot;center&quot;&gt;$ \displaystyle  \hat{P}(z,y)=A(y)\cdot(-1)^{z}+B(y)$&lt;/p&gt;
+It will follow that $ {A(y)=\frac{1}{2}(\hat{P}(0,y)-\hat{P}(1,y))}$ and $ {B(y)=\frac{1}{2}(\hat{P}(0,y)+\hat{P}(1,y))}$. That is $ {\forall z\in\{0,1\},y\in\{0,1\}^{k}}$,
+&lt;p align=&quot;center&quot;&gt;$ \displaystyle  \hat{f}(x)=\hat{P}(f_{|t-1}(x),y)=\frac{1}{2}(\hat{P}(0,y)-\hat{P}(1,y))\cdot\hat{f}_{|t-1}(x)+\frac{1}{2}(\hat{P}(0,y)+\hat{P}(1,y))$&lt;/p&gt;
+From this we can apply the inductive hypothesis that $ {\hat{f}{}_{|t-1}(x)}$ can be written as a higher order sum of degree $ {k}$ polynomials with sum of modulus of coefficient $ {\leq t-1}$. It can be verified that this will give a higher order sum for $ {\hat{f}}$ such that sum of modulus of coefficients is $ {\leq t}$. Only thing to notice here is the fact that $ {\hat{h}(x)=\hat{g}(x)\cdot\hat{p}(x)}$ iff $ {h(x)=g(x)\oplus p(x)}$.
+&lt;h2&gt;&lt;span style=&quot;font-weight:normal;&quot;&gt;4. PR for degree $ {k}$ polynomials does not imply PR for width $ {3}$ read once BP &lt;/span&gt;&lt;/h2&gt;
+This is true due to Widgerson, Viola's result that uniform distribution over set of strings which has number of $ {1}$'s a multiple of $ {3}$, is pseudorandom for degree $ {k}$ polynomials. But this set of string's can easily be identified by read once $ {3}$BP.
+&lt;blockquote&gt;&lt;strong&gt;Theorem 2&lt;/strong&gt; :There exists a distribution $ {D}$ on $ {\{0,1\}^{n}}$ that is $ {e^{-\alpha n/4^{k}}}$-pseudorandom against degree $ {k}$ polynomials but not $ {0.66}$-pseudorandom for $ {(1,n,n)-3}$BP that is read-once.&lt;/blockquote&gt;
+&lt;strong&gt;Proof:&lt;/strong&gt; Let $ {mod_{3}(x)=\omega^{\sum x_{i}}}$ where $ {\omega}$ is the cube root of unity and $ {D}$ be the distribution that is uniform over $ {\{x:mod_{3}(x)=1\}}$. A result by Viola and Widgerson implies that $ {D}$ is $ {e^{-\alpha n/4^{k}}}$-pseudorandom against degree $ {k}$ polynomials. Now consider the function $ {f(x)=1}$ iff $ {mod_{3}(x)=1}$. This function is clearly computable by a $ {(1,n,n)-3}$BP that is read-once. It is true that $ {\mathbb{E}_{D}[f(x)]=1}$. Since whenever $ {f(x)=1}$, $ {mod(x)=1}$
+&lt;p align=&quot;center&quot;&gt;$ \displaystyle  \mathbb{E}_{U_{n}}[f(x)]=\frac{1}{3}\mathbb{E}_{U_{n}}[1+mod_{3}(x)+mod_{3}(x)^{2}]$&lt;/p&gt;
+Now we can make use of independence of each bit of $ {U_{n}}$. For $ {a\in\{1,2\}}$,
+&lt;p align=&quot;center&quot;&gt;$ \displaystyle  \left|\mathbb{E}_{U_{n}}[mod_{3}(x)^{a}]\right|=\left|(\mathbb{E}_{x_{1}\leftarrow U_{1}}[\omega^{ax_{1}}])^{n}\right|=\left|\left(\frac{1+\omega^{a}}{2}\right)^{n}\right|=2^{-n}$&lt;/p&gt;
+Therefore $ {\mathbb{E}_{U_{n}}[f(x)]=\frac{1}{3}+\frac{2^{-n+1}}{3}\leq0.34}$. That is $ {D}$ is not $ {0.66}$-pseudorandom for $ {(1,n,n)-3}$BP that is read-once. $ \Box$
+&lt;h2&gt;&lt;span style=&quot;font-weight:normal;&quot;&gt;5. Viola's Construction doesn't work for width $ {5}$ BP's &lt;/span&gt;&lt;/h2&gt;
+&lt;blockquote&gt;&lt;strong&gt;Theorem 3 : &lt;/strong&gt;For every $ {n,\epsilon,k}$ such that $ {k\log(1/\epsilon)&amp;lt;\sqrt{n/2}-1,}$ $ {\exists}$ $ {D}$ a distribution that is $ {\epsilon}$-pseudorandom for degree $ {1}$ polynomials(on $ {\{0,1\}^{n}}$) such that $ {D^{k}}$ the distribution obtained by summing $ {k}$ independent samples from $ {D}$, is not $ {1/3}$-pseudorandom for width 5 branching programs(on $ {\{0,1\}^{n}}$).&lt;/blockquote&gt;
+&lt;strong&gt;Proof : &lt;/strong&gt;
+
+The basic idea behind the proof is that computing the rank of a matrix can be done with $ {(1,t,n)}$-$ {5}$BP. So we construct a distribution keeping this in mind.
+
+Consider the following distribution on $ {\{0,1\}^{n}}$. For $ {m=k\log(1/\epsilon)+1}$, partition $ {x}$ into $ {n/m}$ blocks $ {\overline{x}_{1},\overline{x}_{2},\cdots\overline{x}_{n/m}}$ each of size $ {m}$. Now
+&lt;ol&gt;
+	&lt;li&gt; Choose a random subspace $ {S}$, of $ {\mathbb{F}_{2}^{m}}$ of dimension $ {\frac{m-1}{k}}$.&lt;/li&gt;
+	&lt;li&gt; Pick $ {\overline{x}_{i}}$'s independently and uniformly from $ {S}$.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;strong&gt;Claim : &lt;/strong&gt; $ {D}$ is $ {\epsilon}$-pseudorandom for degree $ {1}$ polynomials.
+
+Any degree $ {1}$ polynomial can be thought of as a dot product of input with a particular bit string. Let $ {a(x)=&amp;lt;a\cdot x&amp;gt;}$ be a degree $ {1}$ polynomial. Since we have partitioned $ {x}$ into blocks in defining $ {D}$, we will do the same for $ {a}$. That is let $ {a(x)=\left\langle a\cdot x\right\rangle =\sum_{i=1}^{n/m}\left\langle a_{i}\cdot\overline{x}_{i}\right\rangle }$ where $ {a_{i}}$ is the $ {i}$th block of $ {a}$ with length $ {m}$.
+&lt;p align=&quot;center&quot;&gt;$ \displaystyle  \mathbb{E}_{D}[(-1){}^{a(x)}]=\mathbb{E}_{S}[\prod_{i=1}^{n/m}\mathbb{E}_{\overline{x}_{i}\leftarrow S}[(-1)^{\left\langle a_{i}\cdot\overline{x}_{i}\right\rangle }]]$&lt;/p&gt;
+That is we are randomly choosing $ {S}$ and conditioned on $ {S}$, we are randomly choosing $ {x\in S}$. Since $ {\overline{x}_{i}}$'s are independent samples from $ {S}$, the expectation splits into product of expectations. Now $ {\mathbb{E}_{\overline{x}_{i}\leftarrow S}[(-1)^{\left\langle a_{i}\cdot\overline{x}_{i}\right\rangle }]=1}$ if $ {a_{i}\in S^{\perp}}$. It can be proved with little effort that $ {\mathbb{E}_{\overline{x}_{i}\leftarrow S}[(-1)^{\left\langle a_{i}\cdot\overline{x}_{i}\right\rangle }]=0}$ if $ {a_{i}\notin S^{\perp}}$. So
+&lt;p align=&quot;center&quot;&gt;$ \displaystyle  \mathbb{E}_{D}[(-1){}^{a(x)}]=\Pr_{S}[\forall i,\ a_{i}\in S^{\perp}]\leq\Pr_{S}[a_{1}\in S^{\perp}]=\Pr_{S^{\perp}}[a_{1}\in S^{\perp}]=2^{m-(m-1)/k}/2^{m}=\frac{1}{2^{(m-1)/k}}=\epsilon$&lt;/p&gt;
+Therefore $ {\left|\mathbb{E}_{D}[a(x)]-\mathbb{E}_{U}[a(x)]\right|=\left|\mathbb{E}_{D}[a(x)]-1/2\right|=\epsilon/2&amp;lt;\epsilon}$.
+
+&lt;strong&gt;Claim : &lt;/strong&gt; $ {D^{k}}$ is not $ {1/3}$-pseudorandom for width $ {5}$ branching programs that read $ {1}$ bit at a time.
+
+Let $ {X=X_{1}+X_{2}\cdots+X_{k}}$ where $ {X_{i}}$'s are independent samples from $ {D}$. Let $ {S_{1},S_{2}\cdots S_{k}}$ be the subspaces from which the blocks of each of the samples was chosen. Therefore each block of $ {X}$ lies in the subspace $ {S_{1}+S_{2}\cdots+S_{k}}$ which has dimension $ {m-1}$ (since each $ {S_{i}}$ has dimension $ {(m-1)/k}$). Suppose $ {n}$ is large such that $ {\frac{n}{m}&amp;gt;2m}$. Now consider the $ {m\times2m}$ matrix with the blocks as columns. The rank of this matrix is definitely $ {\leq m-1}$ if the sample is from $ {D^{k}}$. If the sample is from uniform, all entries of the matrix are random bits. So we have $ {m}$ number of $ {2m}$ bit strings each randomly chosen. Suppose it is chosen in the order of rows of the matrix. $ {\Pr[\mbox{matrix is not full rank}]\leq\sum_{i=1}^{m}\Pr[i\mbox{th choice was linearly dependent to previous}]=\frac{\sum_{i=1}^{m}2^{i-1}}{2^{2m}}\leq\frac{1}{2^{m}}}$
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Differential Entropy</title>
+   <link href="http://geevi.github.com/blog/2009/10/07/differential-entropy"/>
+   <updated>2009-10-07T00:00:00+05:30</updated>
+   <id>hhttp://geevi.github.com/blog/2009/10/07/differential-entropy</id>
+   <content type="html">&lt;em&gt; Lecture Notes from &lt;/em&gt;&lt;a href=&quot;http://www.tcs.tifr.res.in/~jaikumar/&quot;&gt;&lt;em&gt;Jaikumar Radhakrishnan's&lt;/em&gt;&lt;/a&gt;&lt;em&gt; Information Theory Course, scribed by &lt;/em&gt;&lt;em&gt;&lt;a href=&quot;http://www.tcs.tifr.res.in/~girish/&quot;&gt;m&lt;/a&gt;e&lt;/em&gt;
+&lt;ul&gt;
+	&lt;li&gt; $ {X}$ : a real valued random variable&lt;/li&gt;
+	&lt;li&gt; $ {F(x)}$ : the distribution function of $ {X}$&lt;/li&gt;
+	&lt;li&gt; $ {f(x)}$ : the density function of $ {X}$&lt;/li&gt;
+	&lt;li&gt; $ {S}$: support of $ {X}$&lt;/li&gt;
+&lt;/ul&gt;
+Consider the uniform distribution on $ {[-1,1]}$ . This can be thought of as the limit distribution of a sequence of discrete uniform distributions. Entropy of each of this will be $ {\log n}$ and so entropy goes to infinity. So this definition of entropy doesn't suffice.
+&lt;blockquote&gt;&lt;strong&gt;Definition :&lt;/strong&gt; The differential entropy of a real valued random variable $ {X}$ is defined as $ {h[X]=-\int_{S}f(x)\log_{2}f(x)dx}$ .&lt;/blockquote&gt;
+If $ {X}$ is uniform on $ {[0,a]}$ then $ {h[X]=\log a}$. Therefore $ {h[X]}$ increases as $ {a}$ increases, which is resonable for an entropy function. For a normal distribution with $ {f(x)=\frac{1}{\sqrt{2\pi\sigma^{2}}}e^{-x^{2}/2\sigma^{2}}}$, $ {h[X]=\frac{1}{2}\log2\pi e\sigma^{2}}$, that is $ {h[X]}$ increases as the normal distribution is flatter.
+&lt;h2&gt;1. Asymptotic Equipartition Property&lt;/h2&gt;
+&lt;blockquote&gt;&lt;strong&gt; Theorem :&lt;/strong&gt; $ {X_{1},X_{2}\cdots X_{k}}$ are iid's with density function $ {f(x)}$, and $ {f(x_{1},x_{2},\cdots x_{k})=f(x_{1})f(x_{2})\cdots f(x_{k})}$ then
+&lt;p align=&quot;center&quot;&gt;$ \displaystyle  \begin{array}{rcl}  -\frac{1}{k}\log f(X_{1},X_{2}\cdots X_{k})=-\frac{1}{k}\sum_{i}\log f(X_{i})\overset{\mbox{in prob}}{\longrightarrow}\mathbb{E}[-\log f(X)]=h[X]\\ ie\ \lim_{k\rightarrow\infty}\Pr\left[\left|-\frac{1}{k}\log f(X_{1},X_{2}\cdots X_{k})-h[X]\right|&amp;gt;\epsilon\right] &amp;amp; = &amp;amp; 0\\ ie\ \forall(\epsilon,\delta),\ \exists k_{0},\ \forall k&amp;gt;k_{0},\Pr\left[\left|-\frac{1}{k}\log f(X_{1},X_{2}\cdots X_{k})-h[X]\right|&amp;gt;\epsilon\right] &amp;amp; &amp;lt; &amp;amp; \delta\end{array} $&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p align=&quot;center&quot;&gt;&lt;/p&gt;
+&lt;em&gt;Proof:&lt;/em&gt; A simple application of weak law of large numbers by considering the random variable $ {Y=-\log f(X)}$ will imply the theorem. The theorem says that if we consider iid samples of $ {Y}$ , the sample average converges in probability to the $ {\mathbb{E}[Y]}$ which is exactly what WLLN says.$ \Box$
+&lt;blockquote&gt;&lt;strong&gt;Theorem &lt;/strong&gt;For any fixed $ {\epsilon}$, let $ {A(k,\epsilon)=\{\overline{x}\in S^{k}:\left|-\frac{1}{k}\log f(\overline{x})-h[X]\right|\leq\epsilon\}}$(above says that probability of this event can be made arbitrarily large) then for all large $ {k}$,
+
+1. $ {\Pr[A(k,\epsilon)]\geq1-\epsilon}$
+
+2. $ {(1-\epsilon)2^{k(h[X]-\epsilon)}\leq volume(A(k,\epsilon))\leq2^{k(h[X]+\epsilon)}}$&lt;/blockquote&gt;
+&lt;em&gt;Proof:&lt;/em&gt; 1. is true from the previous theorem by putting $ {\epsilon=\delta}$.
+
+From definition of $ {A(k,\epsilon)}$ $ {\forall\overline{x}\in A(k,\epsilon),2^{-k(h[X]+\epsilon)}\leq f(\overline{x})\leq2^{-k(h[X]-\epsilon)}}$ and from 1. $ {1-\epsilon\leq\int_{A(k,\epsilon)}f(\overline{x})dx\leq1}$ which directly imply 2.$ \Box$
+&lt;blockquote&gt;&lt;strong&gt;Theorem&lt;/strong&gt; $ {A(k,\epsilon)}$ is the smallest volume set that captures $ {1-\epsilon}$ of the probability to first order in the exponent. ie any set $ {B}$ with $ {volume(B)\leq2^{k(h[X]-\delta)}}$ cannot have $ {\Pr[B]\geq1-\epsilon}$ for large enough $ {k}$.&lt;/blockquote&gt;
+&lt;em&gt;Proof:&lt;/em&gt; Let $ {B}$ be such that $ {\Pr[B]\geq1-\epsilon}$, then $ {\Pr[B\cap A(k,\delta/10)]\geq1-\epsilon-\delta/10}$.
+
+But since all $ {\overline{x}}$ in this set has $ {f(\overline{x})\geq2^{-k(h[X]+\delta/10)}}$, $ {volume(B\cap A(k,\delta/10))\times2^{-k(h[X]+\delta/10)}\geq1-\epsilon-\delta/10}$. That is $ {volume(B)\geq(1-\epsilon-\delta/10)2^{k(h[X]+\delta/10)}}$ $ \Box$
+&lt;h2&gt;2. Quantization : An Operational Meaning for $ {h[X]}$&lt;/h2&gt;
+Suppose Alice observes $ {X}$, and she wants to communicate this value with some precision $ {\Delta}$ (to Bob ofcourse). So we slice the support of $ {X}$ into pieces of size $ {\Delta}$. By Mean Value theorem we know that $ {\exists x_{i}}$ in slice $ {i}$ such that $ {\Delta f(x_{i})=}$ the integral of $ {f}$ in slice $ {i}$. Define $ {p(x_{i})=\Delta f(x_{i})}$, which is a discrete distribution. $ {H(p)=-\sum_{i}\Delta f(x_{i})\log\Delta f(x_{i})=-\sum_{i}\Delta f(x_{i})\log\Delta f(x_{i})-\log\Delta}$. As $ {\Delta}$ goes to $ {0}$, this becomes $ {h[X]-\log\Delta}$. That is if Alice wants to communicate with more prescision(smaller $ {\Delta}$), she needs more bits.
+
+Note that if $ {X}$ is uniform on $ {[0,1/8]}$, and Alice want to communicate at a presicion of $ {n}$ bits (ie $ {\Delta=2^{-n}}$), she just needs to sent $ {h[X]-\log\Delta=-3+n}$ bits. This coincides with the fact that since the interval is of length $ {1/8}$, the first $ {3}$ bits will be $ {0}$'s. So she doesn't have to sent it.
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Graph Entropy</title>
+   <link href="http://geevi.github.com/blog/2009/10/04/graph-entropy"/>
+   <updated>2009-10-04T00:00:00+05:30</updated>
+   <id>hhttp://geevi.github.com/blog/2009/10/04/graph-entropy</id>
+   <content type="html">&lt;em&gt;Lecture Notes from &lt;/em&gt;&lt;a href=&quot;http://www.tcs.tifr.res.in/~jaikumar/&quot;&gt;&lt;em&gt;Jaikumar Radhakrishnan's&lt;/em&gt;&lt;/a&gt;&lt;em&gt; Information Theory Course, scribed by me&lt;/em&gt;
+
+Suppose Alice receives letters $ {X_{1}X_{2}X_{3}\cdots}$ from a finite alphabet(say $ [n] = \{1,\cdots,n\}$), each letter according to a probability distribution $ {P}$. She wants to communicate this to Bob. We know that for doing source coding she needs $ {H(P)}$ bits per instance(called the rate). But now Bob doesn't need to distinguish between some pairs of letters in $ {[n]}$. For each pair of letters in $ {[n]}$, they are either distinguishable or indistinguishable to him(ie its a symmetric relation). So a natural way to represent this distinguishability relation is an undirected graph $ {G}$ on $ {[n]}$(ie $ {(i,j)}$ edge exists iff $ {i}$ and $ {j}$ needs to be distinguished).
+
+&lt;strong&gt;Example 1: &lt;/strong&gt;Consider the alphabet $ {[4]}$, suppose Bob is happy even if he gets a $ {3}$ instead of $ {1}$ and $ {1}$ instead of $ {3}$ and $ {4}$ instead of $ {2}$ and $ {2}$ instead of $ {4}$ , then he doesn't need to distinguish between $ {(1,3),(2,4)}$. The graph corresponding to this situation is a cycle with edge set $ {\{(1,2),(2,3),(3,4),(4,1)\}}$.
+
+&lt;strong&gt;Example 2:&lt;/strong&gt; The normal model in which all alphabets are distinguishable is given by a complete graph.
+
+Furthermore if we consider sequences $ {[n]^{k}}$, not all pairs of sequences are distinguishable to Bob. So again we can construct a graph $ {G^{k}}$ with vertex set $ {[n]^{k}}$, such that $ {(\overline{v},\overline{u})}$ is an edge iff $ {\exists i,\ (\overline{v}_{i},\overline{u}_{i})\in G}$. $ {\overline{v},\overline{u}}$ is said to be indistinguishable if there is no edge between them in $ {G^{k}}$. Now we want to model Bob and also find the best rate at which Alice can communicate to him.
+
+&lt;strong&gt;Example 3:&lt;/strong&gt; Consider the alphabet $ {[5]}$ and let the graph be a pentagon with $ {1}$ at the top numbered clockwise. So Bob doesn't need to distinguish between $ {1}$ and $ {3}$ or $ {1}$ and $ {4}$. The sequences $ {\left\{ 125,343,125\right\} }$ forms a set of pairwise indistinguishable sequences. Note that $ {\left\{ \left\{ 1,3\right\} ,\left\{ 2,4\right\} ,\left\{ 5\right\} \right\} }$ forms a collection of independent sets of $ {G}$. Such sets of sequences can be built by making sequences of sets from the collection(say $ {A_{1}\cdots A_{k}}$). Now consider the set of sequences $ {\left\{ a_{1}\cdots a_{k}:\forall i,a_{i}\in A_{i}\right\} }$.
+&lt;h3&gt;&lt;strong&gt;1. Modelling Bob &lt;/strong&gt;&lt;/h3&gt;
+Since Bob cannot distinguish between some sequences anyway. He can only say that Alice received some sequence from some particular set of pairwise indistinguishable sequences. Notice that set of pairwise indistinguishable sequences is nothing but an independent set of $ {G^{k}}$. So if Alice gets a sequence $ {\overline{x}\in[n]^{k}}$, Bob just needs to be informed that it is a sequence from an independent set $ {S}$ of $ {G^{k}}$.
+
+But again independent sets in $ {G^{k}}$ can be expressed as sequences of independent sets of $ {G}$ as follows. Let $ {S\subset[n]^{k}}$ be an independent set which has the sequences
+
+&lt;em&gt;$ {\overline{v}^{1}=v_{11}v_{12}\ \cdots\ v_{1k}}$&lt;/em&gt;
+
+&lt;em&gt;$ {\overline{v}^{2}=v_{21}v_{22}\ \cdots\ v_{2k}}$&lt;/em&gt;
+
+&lt;em&gt;$ {\ \vdots\ }$ &lt;/em&gt;
+
+&lt;em&gt;$ {\overline{v}^{t}=v_{t1}v_{t2}\ \cdots\ v_{tk}}$&lt;/em&gt;
+
+Since $ {\overline{v}^{i}}$'s in $ {S}$ doesn't have any edge in $ {G^{k}}$, $ {\forall j\in[k],\ S_{j}=\left\{ v_{1j},\ v_{2j},\cdots v_{tj}\right\} }$ forms an independent set. So for each set $ {S}$ we get a mapping with a sequence of independent sets $ {S_{1}S_{2}\cdots S_{k}}$. Conversely for each sequence of independent sets $ {S_{1}S_{2}\cdots S_{k}}$, we can come up with an independent set for $ {G^{k}}$, given by $ {S=\left\{ a_{1}\cdots a_{k}:\forall i,a_{i}\in S_{i}\right\} }$.
+
+&lt;strong&gt;Goal:&lt;/strong&gt;
+&lt;ol&gt;
+	&lt;li&gt; To associate each $ {\overline{x}\in[n]^{k}}$ with a sequence $ {\overline{y}\in\mathcal{A}^{k}}$(where $ {\mathcal{A}}$ is the collection of independent sets of $ {G}$) such that, $ {\overline{x}\in}$ independent set represented by $ {\overline{y}}$.&lt;/li&gt;
+	&lt;li&gt; If the number of $ {\overline{y}}$'s required is $ {N}$, minimize $ {\lim_{k\rightarrow\infty}\frac{log_{2}N}{k}}$ which is the rate.&lt;/li&gt;
+	&lt;li&gt; We can relax 1. to allow errors, ie we will assign $ {\overline{y}}$ to $ {\overline{x}}$ only for a set $ {\subset[n]^{k}}$ which captures a $ {1-\epsilon}$ probability.&lt;/li&gt;
+&lt;/ol&gt;
+So if sequence Alice receives is $ {\overline{X}=X_{1}X_{2}\cdots X_{k}}$, then the information she want to sent to Bob can be modelled by $ {\overline{Y}=Y_{1}Y_{2}\cdots Y_{k}}$ where each $ {Y_{i}}$'s are distributed in $ {\mathcal{A}}$, such that $ {\forall i,\Pr[X_{i}\in Y_{i}]=1\Leftrightarrow\Pr[\overline{X}\in\overline{Y}]=1}$. Also $ { }$random variables $ {X,Y}$ are said to confrom to the model if
+&lt;ol&gt;
+	&lt;li&gt; $ {X}$ distributed in $ {[n]}$ according to $ {P}$&lt;/li&gt;
+	&lt;li&gt; $ {Y}$ distributed in $ {\mathcal{A}}$&lt;/li&gt;
+	&lt;li&gt; $ {\Pr[X\in Y]=1}$&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3&gt;&lt;strong&gt;2. Naive Method &lt;/strong&gt;&lt;/h3&gt;
+Divide the nodes of $ {G}$ into independent sets (another way of saying colour $ {G}$). If Alice saw $ {i}$ which was in the independent set $ {S}$, she sends $ {S}$(or the colour of $ {i}$). Let $ {X}$ denote the random variable associated with the node and $ {Y}$ be the colour of the node. Therefore the distribution $ {P}$ on $ {[n]}$ induces a distribution on the colours assigned and its entropy is given by $ {H[Y]}$. Now Alice could sent the sequence of colours $ {Y_{1}Y_{2}\cdots Y_{k}}$ encoded in bits using source coding. We know that for any constant $ {\epsilon}$ error, best rate possible is $ {H[Y]}$ from Shannon's Source Coding Theorem.
+&lt;h3&gt;&lt;strong&gt;3. Better Method &lt;/strong&gt;&lt;/h3&gt;
+Colour $ {G^{k}}$ and choose the minimal set of colours such that it covers $ {1-\epsilon}$ of the probability. Let
+&lt;p align=&quot;center&quot;&gt;$ \displaystyle  N_{k}(G,\epsilon)=\min\left\{ l:\exists S_{1}S_{2}\cdots S_{l}\mbox{ which are independent sets of }G^{k}\mbox{ and }\Pr[\overline{X}\in\cup S_{i}]\geq1-\epsilon\right\} $&lt;/p&gt;
+We will prove in section $ {5}$ an upper bound of $ {2^{kI[X:Y]+\circ(k)}}$ on $ {N_{k}(G,\epsilon)}$(assuming that $ {\overline{X}=X_{1}X_{2}\cdots X_{k}}$ and $ {\overline{Y}=Y_{1}Y_{2}\cdots Y_{k}}$ are iid copies of some random variables $ {X}$ and $ {Y}$ that conforms with the model). Therefore the rate $ {\lim_{k\rightarrow\infty}\frac{log_{2}N_{k}(G,\epsilon)}{k}\leq I[X:Y]=H[Y]-H[Y|X]\leq H[Y]}$ which was the rate by the naive method. Furthermore we can choose $ {X}$ and $ {Y}$ that conforms with the model such that $ {I[X:Y]}$ is minimized, to reduce the rate to minimum. We will also prove(in next lecture) that one cannot do better than this.
+&lt;h3&gt;&lt;strong&gt;4. Graph Entropy &lt;/strong&gt;&lt;/h3&gt;
+The graph entropy of $ {G}$ with respect to $ {P}$ is defined as $ {H(G,P)=\min I[X:Y]}$ where the minimization is over
+&lt;ol&gt;
+	&lt;li&gt; $ {X}$ distributed in $ {[n]}$ according to $ {P}$&lt;/li&gt;
+	&lt;li&gt; $ {Y}$ distributed in $ {\mathcal{A}}$&lt;/li&gt;
+	&lt;li&gt; $ {\Pr[X\in Y]=1}$&lt;/li&gt;
+&lt;/ol&gt;
+&lt;strong&gt;Note : &lt;/strong&gt;There exists $ {X,Y}$ which attains the minimum value of $ {H(G,P)=I(X,Y)}$, since the minimization over a closed and bounded(also called compact) set. Sequences in compact set always converge.
+
+From the previous three sections, we have given $ {H(G,P)}$ a particular meaning. That is, it is the best possible rate that can be achieved when some pairs of letters in transmitters side are not distinguishable.
+&lt;h3&gt;&lt;strong&gt;5. Upper Bound &lt;/strong&gt;&lt;/h3&gt;
+&lt;strong&gt;Claim : &lt;/strong&gt;$ {N_{k}(G,\epsilon)\leq2^{kH(G)+\circ(k)}}$ for all large $ {k}$.
+
+&lt;strong&gt;Proof : &lt;/strong&gt;Suppose $ {X,Y}$ are such that $ {I[X:Y]=H(G,P)}$, and $ {\overline{X}=X_{1}X_{2}\cdots X_{k}}$,$ {\overline{Y}=Y_{1}Y_{2}\cdots Y_{k}}$ be a sequence of iid copies of $ {X,Y}$. $ {\overline{X}}$ is distributed in $ {[n]^{k}}$ according to $ {P^{k}}$ and $ {\overline{Y}}$ is distributed in $ {\mathcal{A}^{k}}$ according to some distribution such that $ {\forall i,\Pr[X_{i}\in Y_{i}]=1}$. Note that each sequence $ {\overline{y}\in\mathcal{A}^{k}}$, can be thought of as an independent set $ {S}$ of $ {G^{k}}$(given by the mapping described in section $ {1}$). Therefore $ {\Pr[\overline{X}\in\overline{Y}]=\Pr[\forall i,X_{i}\in Y_{i}]=1}$.
+
+We know that the set of typical sequences in $ {[n]^{k}}$ and $ {\mathcal{A}^{k}}$ has sizes at most $ {2^{kH[X]+\circ(k)}}$, $ {2^{kH[Y]+\circ(k)}}$ respectively. For any fixed typical sequence $ {\overline{x}\in[n]^{k}}$, given that $ {\overline{X}=\overline{x}}$, the probability is concentrated mostly on $ {2^{kH[Y|X]+\circ(k)}}$ elements in $ { }$. Similarly for any fixed typical sequence $ {\overline{y}\in\mathcal{A}^{k}}$, given that $ {\overline{Y}=\overline{y}}$, the probability is concentrated mostly on $ {2^{kH[X|Y]+\circ(k)}}$ elements in $ {[n]^{k}}$. This can be considered as a regular bipartite graph.
+
+So we want to choose some $ {t}$ elements of $ {\mathcal{A}^{k}}$ such that, they capture $ {1-\epsilon}$ probability in $ {[n]^{k}}$. Suppose we are lucky that we get $ {t}$ elements with disjoint neighbors, then $ {t\leq2^{kH[X]-kH[X|Y]+\circ(k)}=2^{kH[G]+\circ(k)}}$. But this is not good enough for a proof. One way to do the proof is by carefully picking elements in $ { }$ such that the neighbors set of the current pick intersects only with an $ {\epsilon}$ mass in probability of the previously picked ones(See the proof of Channel Coding Theorem done by Jaikumar).
+
+Another way to do the proof is by randomly picking elements in $ { }$. Suppose $ {\overline{A}_{1},\overline{A}_{2},\cdots\overline{A}_{t}}$ are picked uniformly and independently from $ {\mathcal{A}^{k}}$. Let $ {D=2^{kH[Y|X]+\circ(k)}}$(the degree of $ {\overline{x}\in[n]^{k}}$) and $ {M=2^{kH[Y]+\circ(k)}}$, $ {N(\overline{A}_{i})}$ denote the neighbors of $ {\overline{A}_{i}}$, $ {T}$ denote the typical sequences $ {\subset[n]^{k}}$ . For any fixed $ {\overline{x}\in\mbox{T}}$, $ {\Pr[\overline{x}\notin\cup_{i}\mbox{N}(\overline{A}_{i})]\leq(1-D/M)^{t}\leq\exp(-tD/M)}$ (the second inequality is $ {1+x\leq e^{x}}$). Therefore $ {\Pr[\overline{X}\notin\cup_{i}\mbox{N}(\overline{A}_{i})|\overline{X}\in\mbox{T}]\leq\exp(-tD/M)}$.
+&lt;p align=&quot;center&quot;&gt;$  \Pr[\overline{X}\notin\cup_{i}\mbox{N}(\overline{A}_{i})] = \Pr[\overline{X}\in\mbox{T}]\Pr[\overline{X}\notin\cup_{i}\mbox{N}(\overline{A}_{i})|\overline{X}\in\mbox{T}]+\Pr[\overline{X}\notin\mbox{T}]\Pr[\overline{X}\notin\cup_{i}\mbox{N}(\overline{A}_{i})|\overline{X}\in\mbox{T}]\  \leq  \exp(-tD/M)+\Pr[\overline{X}\notin\mbox{T}]$&lt;/p&gt;
+Since $ {\Pr[\overline{X}\notin\mbox{T}]}$ goes to $ {0}$ as $ {k\rightarrow\infty}$, it can be made arbitrarily small(say $ {\epsilon/2}$) by taking large enough $ {k}$. Also choose $ {t=\frac{M}{D}\ln(2/\epsilon)}$, then we get $ {\Pr[\overline{X}\notin\cup_{i}\mbox{N}(\overline{A}_{i})]\leq\epsilon}$. Note that for $ {\epsilon}$ constant, $ {t=2^{kI[X:Y]+constant+\circ(k)}}$. So we have proved that if we pick $ {2^{kI[X:Y]+constant+\circ(k)}}$ elements in $ {\mathcal{A}^{k}}$, uniformly and independently, the probability that they capture $ {1-\epsilon}$ part(in probability) of sequences in $ {[n]^{k}}$ goes to $ {1}$ as $ {k\rightarrow\infty}$. That is for large enough $ {k}$, there exists one such code, which gives $ {N_{k}(G,\epsilon)\leq2^{kH(G)+\circ(k)}}$.
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Rediscovering Markov Chains[Draft]</title>
+   <link href="http://geevi.github.com/blog/2009/09/21/rediscovering-markov-chainsdraft"/>
+   <updated>2009-09-21T00:00:00+05:30</updated>
+   <id>hhttp://geevi.github.com/blog/2009/09/21/rediscovering-markov-chainsdraft</id>
+   <content type="html">Sometimes when i have read up some topic, it often happens that half way, i understand that &quot;i dont understand it&quot;. At this point i try to build up the theory by myself with minimal help from the book(i think its called &lt;a href=&quot;http://en.wikipedia.org/wiki/Socratic_questioning&quot;&gt;Socratic Questioning&lt;/a&gt;). At one such situation i did take the pain of  writing it up and thats whats this post is about. This post will be evolving, ie hopefully some time in the future i will feel like improving on the post. You might find it badly written or formatted for now.
+ 
+
+&lt;p&gt;
+
+
+&lt;p&gt;
+
+&lt;b&gt;1. What is it that we want to model? &lt;/b&gt;
+
+&lt;p&gt;
+
+
+&lt;p&gt;
+Suppose we have a system, with $ {S}$ as the set of all possible states(say finite or countably infinite). There is some uncertainity involed in evolution of the system in time. Suppose the time is discrete(that is integer valued and not real valued). Suppose the evolution happens like this : From the current state $ {i}$, it always goes to another state $ {j\in S}$ with probability $ {p_{ji}}$(so surely $ {\sum_{j}p_{ji}=1}$). And this happens independent of how the system came to $ {i}$. Such a system can be represeted by a graph with probabilities associated with edges. And it can be thought of as probabilities flowing through the graph.
+&lt;p&gt;
+See Feller chapter 15 for examples. An interesting example : There is a famous paper on Shuffling cards which can also be modelled according to a Markov Chain.
+&lt;p&gt;
+Suppose we want to invent the mathematics for analysing such a system. With this mathematics we want to answer questions like 
+
+&lt;ul&gt; &lt;li&gt; What is the probability that system is at state $ {j}$ given that it started at $ {i}$? &lt;li&gt; What is the probability that if system starts at $ {i}$, it will visit $ {j}$ at all? &lt;li&gt; What is the probability that if system starts at $ {i}$, it will visit $ {j}$ infinitely often? &lt;li&gt; After sometime does the system attain a equilibrium(ie the probabilty distribution on $ {S}$ will not change with respect to time)? &lt;li&gt; What is the time average of my visits to different states? 
+&lt;/ul&gt;
+
+ To start of with we have the basic probability rules. But it will be found that some clever use of matrices and results from linear algebra will help better in answering the questions.
+&lt;p&gt;
+
+
+&lt;p&gt;
+
+&lt;b&gt;2. A Model &lt;/b&gt;
+
+&lt;p&gt;
+
+
+&lt;p&gt;
+Here is a nice mathematical model based on basic probability theory:
+&lt;p&gt;
+A Markov Chain is a sequence of random variables $ {(X_{t})_{t\geq0}}$, where each $ {X_{t}}$ is distributed according to the distribution $ {\pi^{t}}$ in $ {S}$ such that
+&lt;p&gt;
+$ {Pr[X_{t}=x_{t}|X_{t-1}=x_{t-1},\ \cdots,\ X_{0}=x_{0}]=Pr[X_{t}=x_{t}|X_{t-1}=x_{t-1}]}$ denote this probability by $ {p_{x_{t}x_{t-1}}}$.
+&lt;p&gt;
+&lt;b&gt;Exercise&lt;/b&gt; :$ {Pr[X_{t}=x_{t},\ X_{t-1}=x_{t-1},\ \cdots,\ X_{0}=x_{0}]=p_{x_{t}x_{t-1}}p_{x_{t-1}x_{t-2}}\cdots p_{x_{1}x_{0}}\pi_{x_{0}}^{0}}$
+&lt;p&gt;
+Now let see the the utility of matrices here. Suppose we denote the matrix $ {P=(p_{ij})}$, the columns sum upto 1. Lets assume that $ {S=[n]=\left\{ 1,\ \cdots n\right\} }$ and consider the distributions $ {\pi^{t}}$ as column vectors.
+&lt;p&gt;
+&lt;b&gt;Verify&lt;/b&gt; : $ {\pi^{1}=P\pi^{0}}$ (or more generally $ {\pi^{t}=P\pi^{t-1}}$, which implies $ {\pi^{t}=P^{t}\pi^{0}}$)
+&lt;p&gt;
+&lt;b&gt;Exercise &lt;/b&gt;: Show that if i denote $ {Pr[X_{t}=i|X_{0}=j]=p_{ij}^{(t)}}$, then $ {p_{ij}^{(t)}}$ is actually the $ {ij}$th entry of $ {P^{t}}$.
+&lt;p&gt;
+&lt;b&gt;Exercise&lt;/b&gt; : If i define $ {p_{ij}^{(0)}=\delta_{ij}}$(ie $ {=1}$ if $ {i=j}$ and $ {0}$ otherwise) $ { }$, then $ {p_{ij}^{(n+1)}=\sum_{k}p_{ik}^{(n)}p_{kj}}$
+&lt;p&gt;
+&lt;b&gt;Exercise &lt;/b&gt;: Also by the graph model $ {p_{ij}^{(t)}=\sum_{\mbox{all paths from i to j of length t}}Pr[path]}$ (see the prev exercise if you dont understand what is meant by the probability of a path). Reinterpret previous exercise by this method.
+&lt;p&gt;
+&lt;b&gt;Big Idea here is&lt;/b&gt; : matrix multiplication can be thought of in terms of a graphs and flows. 
+&lt;p&gt;
+So we saw three ways of thinking about Markov Chains, in terms of sequence of random variables, matrix multiplication and walks on graphs. There is yet another way in terms of trees with degree n, or subintervals of $ {(0,1]}$. Consider the $ {(0,1]}$ interval, divide it into n intervals of size $ {\pi_{1}^{0}\cdots\pi_{n}^{0}}$. Now further subdivide each of the intervals $ {\pi_{i}^{0}}$ into $ {n}$ subintervals of $ {p_{ji}\pi_{i}^{0}}$ for each $ {j}$ (if you are a big time mathematician who knows measure theory, then you would say this is how you construct a sigma algebra for a Markov Chain) and continue ad infinitum. The advantage of this is that any event that you want to talk of about a Markov Chain is the union of disjoint intervals constructed above.
+&lt;p&gt;
+&lt;b&gt;Exercise : &lt;/b&gt;What is the probability that the system start in $ {i}$ and reaches $ {j}$ in $ {t}$ steps, in terms of the intervals constructed above, (ie it is the union of disjoint intervals at some $ {t}$th step)? 
+</content>
+ </entry>
+ 
+ <entry>
+   <title>van Der Waerden's Theorem</title>
+   <link href="http://geevi.github.com/blog/2009/03/14/van-der-waerdens-theorem"/>
+   <updated>2009-03-14T00:00:00+05:30</updated>
+   <id>hhttp://geevi.github.com/blog/2009/03/14/van-der-waerdens-theorem</id>
+   <content type="html">&lt;h2&gt;Notations:&lt;/h2&gt;
+$ [n] : \{1, 2, \cdots n\}$
+
+$ [0,k) : \{0, \cdots k-1\}$
+&lt;h2&gt;Problem:&lt;/h2&gt;
+Try finding a colouring of  $ [9]$ with $ \{R,B\}$ such that there are no $ 3$ numbers with same colour that are in arithmetic progression.
+
+1   2   3   4   5   6   7   8   9
+R   R  B   R   R    B  B    R   _   (B only if necessary strategy)
+R   B    R   B   B   R  B    R   _ (a balanced strategy)
+
+It seems this cannot be done. In fact with a exhaustive search you will find that all $ 2$-colourings has a monochromatic $ 3$-AP.
+&lt;blockquote&gt;&lt;strong&gt;van Der Waerden's(VDW) Theorem&lt;/strong&gt;: for all $ c, k$ there is a number $ N$, such that all $ c$-colourings of $ [N]$ has a monochromatic $ k$-AP.&lt;/blockquote&gt;
+It should be clear that if $ N$ satisfies VDW for $ c,k$ then all $ M \geq N$ also satisfies VDW for $ c,k$. The smallest such number  is denoted by $ V(c,k)$ and are called &lt;span style=&quot;text-decoration:underline;&quot;&gt;van Der Waerdens Numbers&lt;/span&gt;.
+&lt;h2&gt;Intuition&lt;/h2&gt;
+We found that $ V(2,3)=9$. However we will prove a bound on $ V(2,3)$ for the purpose of generalising it later.
+&lt;blockquote&gt;&lt;strong&gt;Claim&lt;/strong&gt;:  $ V(2,3) \leq 5(2 \times 2^{5}+1) = 5 \times 65 = 325$&lt;/blockquote&gt;
+&lt;strong&gt;Proof&lt;/strong&gt;:
+Consider $ [325]$ as blocks of size $ 5$, of the form
+$ \{5b+1, 5b+2, 5b+3, 5b+4, 5b+5\}$
+where $ b \in \{0 \cdots 64\}$
+Amoung the first $ 33$ blocks, $ 2$ blocks has the same colour pattern. Let them be $ b_{1}$, $ b_{2}$ and let $ b_{3} = 2b_{2} - b_{1}$. Note that these $ 3$ are in AP.
+
+Within a block, amoung first $ 3$, $ 2$ have the same colour. Let them be $ a_{1}, a_{2}$ and $ a_{3} = 2a_{2} - a_{1}$ (all are $ \leq 5$ and are in AP).
+
+&lt;img class=&quot;aligncenter size-full wp-image-74&quot; title=&quot;drawing&quot; src=&quot;http://girishvarma.files.wordpress.com/2009/03/drawing.png&quot; alt=&quot;drawing&quot; width=&quot;500&quot; height=&quot;120&quot; /&gt;
+
+What colour should $ 5b_{3} + a_{3}$ be given without creating a monochromatic  $ 3$-AP? suppose $ c(5b_{1}+a_{1})=c(5b_{1}+a_{2})=c(5b_{2}+a_{1})=c(5b_{2}+a_{2}) = R$.
+Then $ c(5b_{3}+a_{1})=c(5b_{3}+a_{2}) = B$. If $ c(5b_{3}+a_{3})=B$ then $ 5b_{1}+a_{1}, 5b_{2}+a_{2}, 5b_{3}+a_{3}$ forms a monochromatic 3-AP.
+&lt;blockquote&gt;&lt;strong&gt;Claim&lt;/strong&gt;: $ V(3,3) \leq 7(2 \times 3^{7}+1)(2 \times 3^{7(2 \times 3^{7}+1)})$&lt;/blockquote&gt;
+&lt;strong&gt;Proof&lt;/strong&gt;: (by pictures)
+&lt;p style=&quot;text-align:center;&quot;&gt;&lt;img class=&quot;aligncenter size-full wp-image-75&quot; title=&quot;drawing2&quot; src=&quot;http://girishvarma.files.wordpress.com/2009/03/drawing2.png&quot; alt=&quot;drawing2&quot; width=&quot;573&quot; height=&quot;55&quot; /&gt;&lt;/p&gt;
+Consider  $ 7(2 \times 3^{7}+1)(2 \times 3^{7(2 \times 3^{7}+1)}+1)$ as blocks of size $ 7(2 \times 3^{7}+1)$. Amoung the first $ 3^{7(2 \times 3^{7}+1)}+1$ blocks, $ 2$ has the same pattern of colours.  Let them be $ d_{1}$, $ d_{2}$ and $ d_{3} = 2d_{2}-d_{1}$.
+
+Similarly within these blocks we can form $ b_{1}, b_{2}$ and $ b_{3}$ of size $ 7$ and again within them $ a_{1}, a_{2}$ and $ a_{3}$ of size $ 1$.
+
+What colour should $ 7(2 \times 3^{7}+1) d_{3} + 7b_{3} + a_{3}$ be given without creating a monochromatic $ 3$-AP?
+&lt;ol&gt;
+	&lt;li&gt;Inside $ d_{3}$, inside $ b_{3}$,  $ a_{1}, a_{2}$ has same colour and rules out $ 1$ possibility for $ a_{3}$.&lt;/li&gt;
+	&lt;li&gt;Inside $ d_{3}$, $ 7b_{1}+a_{1}, 7b_{2}+a_{2}$ has same colour (different from the already ruled out one) and rules out $ 2$nd possibility for $ 7b_{3} + a_{3}$.&lt;/li&gt;
+	&lt;li&gt; $ 7(2 \times 3^{7}+1) d_{1} + 7b_{1} + a_{1}$, $ 7(2 \times 3^{7}+1) d_{2} + 7b_{2} + a_{2}$ has same colour (different from the already ruled out ones) and rules out $ 3$rd possibility for  $ 7(2 \times 3^{7}+1) d_{3} + 7b_{3} + a_{3}$&lt;/li&gt;
+&lt;/ol&gt;
+Therefore no matter which amoung the $ 3$ colours you choose, you will get a monochromatic $ 3$-AP.
+&lt;h2&gt;Formalizing the Intuition&lt;/h2&gt;
+&lt;blockquote&gt;&lt;strong&gt;Definition&lt;/strong&gt;: A &lt;span style=&quot;text-decoration:underline;&quot;&gt;fan&lt;/span&gt; with base $ a$, radius $ k$ and degree $ d$ is $ F=\{a+[0,k)r_{1}, a+[0,k)r_{2}, \cdots A+[0,k)r_{d}\}$. That is a set of $ d$ different $ k$-AP's all starting at $ a$. $ a+[1,k)r_{i}$ are called &lt;span style=&quot;text-decoration:underline;&quot;&gt;spokes&lt;/span&gt; of the fan.&lt;/blockquote&gt;
+&lt;blockquote&gt;&lt;strong&gt;Definition&lt;/strong&gt;: A &lt;span style=&quot;text-decoration:underline;&quot;&gt;weakly polychromatic fan&lt;/span&gt; is fan in which all the spokes are monochromatic with different colours.&lt;/blockquote&gt;
+The grey lines in the figures in the previous section shows weakly polychromatic fans of degree $ 2$, radius $ 2$. The pink lines show a weakly polychromatic fan of degree $ 3$, radius $ 2$.
+&lt;blockquote&gt;&lt;strong&gt;Definition&lt;/strong&gt;: A &lt;span style=&quot;text-decoration:underline;&quot;&gt;strongly polychromatic fan&lt;/span&gt; is a weakly polychromatic one with colour of base different from any of it's spokes. The colour type of a fan is defined as $ (c_{0},\cdots c_{d})$ where $ c_{0}$ is colour of base and the others the colours of the spokes.&lt;/blockquote&gt;
+It should be clear that a weakly polychromatic fan either has a monochromatic k-AP or is strongly polychromatic.
+
+In the second figure, you will find that we used a AP of grey fans to create the pink fan with $ 1$ degree more. The following lemma formalizes this notion.
+&lt;blockquote&gt;&lt;strong&gt;Lemma&lt;/strong&gt;: If
+&lt;ul&gt;
+	&lt;li&gt; $ F=\{a+[0,k)r_{1}, a+[0,k)r_{2}, \cdots A+[0,k)r_{d}\}$ is a fan&lt;/li&gt;
+	&lt;li&gt; we define $ r+F, 2r+F,\cdots (k-1)r+F$ as adding each element of $ F$ by the first number&lt;/li&gt;
+	&lt;li&gt; $ i \times r+F$, $ i \in [k-1]$ are strongly polychromatic with the same colour type $ (c_{0}, \cdots c_{d})$&lt;/li&gt;
+	&lt;li&gt; all the numbers in these fans are different&lt;/li&gt;
+&lt;/ul&gt;
+then
+$ \tilde{F} = \{a+[0,k)r, a+[0,k)(r+r_{1}), a+[0,k)(r+r_{2}) \cdots a+[0,k)(r+r_{d})\}$
+is a weakly polychromatic fan with degree 1 more than $ F$.&lt;/blockquote&gt;
+&lt;strong&gt;Proof&lt;/strong&gt;: It can be verified $ \tilde{F}$ satisfies the definition of a weakly polychromatic fan.
+
+&lt;strong&gt;Note&lt;/strong&gt;: The number $ a$ does not belong to any of $ i \times r+F$, $ i \in [k-1]$ and only belong to $ F$. That is why it is weakly polychromatic.
+&lt;h2&gt;Proof of van Der Wearden's Theorem&lt;/h2&gt;
+The method of proof is by induction on $ k$ for any $ c$.
+
+&lt;strong&gt;Base Case : &lt;/strong&gt;$ k = 1$ is trivial. For all $ c$, there is always a $ 1$-AP for any $ c$-colouring of $ [1]$.
+
+&lt;strong&gt;Inductive Step&lt;/strong&gt; : Assuming we know $ V(c, k-1)$ for all $ c$.
+
+Let $ \tilde{N}(c,k-1,d)$ be the smallest number such that all $ c$-colourings contain a weakly polychromatic fan of radius $ k$, degree $ d$. That is either it has a monochromatic $ k$-AP or it has a strongly polychromatic fan of radius $ k$ and degree $ d$.
+
+&lt;strong&gt; Claim&lt;/strong&gt;: $ N(c,k) \leq \tilde{N}(c,k-1,c)$
+
+&lt;strong&gt;Proof&lt;/strong&gt;: If degree of a fan itself $ c$, then the base should have the same colour as on of the spokes. So there is a $ k$-AP.
+
+&lt;strong&gt; Claim&lt;/strong&gt;: $ \forall d, \exists \tilde{N}(c,k-1,d)$
+&lt;strong&gt;Proof&lt;/strong&gt;: Here we start a nested induction on $ d$.
+&lt;p style=&quot;padding-left:30px;&quot;&gt;&lt;strong&gt;Base Case &lt;/strong&gt;: $ d = 0$ is trivial as there are no spokes.
+&lt;strong&gt;Inductive Step&lt;/strong&gt; :  Asumming we know $ \tilde{N}(c,k-1,d-1)$.&lt;/p&gt;
+&lt;p style=&quot;padding-left:30px;&quot;&gt;Let $ \tilde{N} = 2N_{1}N_{2}$(which is what we want to prove to be $ \tilde{N}(c,k-1,d)$)  where $ N_{1} = \tilde{N}(c,k-1,d-1)$ and $ N_{2} = N(c^{d}N_{1}^{d}, k-1)$. This can be thought of as $ 2N_{2}$ blocks of size $ N_{1}$. By the choice of $ N_{1}$ we know that each of these blocks has a weakly polychromatic fan of radius $ k$ and degree $ d-1$. If any of these are not strongly polychromatic, then we are done in the outer induction(as there will be a monochromatic $ k$-AP). So assuming all are strongly polychromatic. We will try to obtain a $ k-1$-AP of such fans. By the lemma proved in the previous section, there is a weakly polychromatic fan of radius $ k-1$, degree $ d$ and we are done.&lt;/p&gt;
+&lt;p style=&quot;padding-left:60px;&quot;&gt;Number of polychromatic fans of radius $ k-1$ and degree $ d-1$ in a block is $ \leq N_{1}^{d}$.
+Number of colourings of these fans $ \leq c^{d}$.&lt;/p&gt;
+&lt;p style=&quot;padding-left:60px;&quot;&gt;Now i can think of each block as having one of $ N_{1}^{d}c^{d}$ colours. By our choice of $ N_{2}$ there is a monochoromatic $ k-1$-AP in $ [N_{2}, 2N_{2}]$ blocks. Now we just need to make sure that the $ a$(mentioned in the note under the lemma in previous section) is also within $ [0, 2N_{2}]$ which is true.&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Science Fiction Book Recommendations</title>
+   <link href="http://geevi.github.com/blog/2008/11/24/science-fiction-book-recommendations"/>
+   <updated>2008-11-24T00:00:00+05:30</updated>
+   <id>hhttp://geevi.github.com/blog/2008/11/24/science-fiction-book-recommendations</id>
+   <content type="html">I read a lot of science fiction. I always keep a collection of science fiction ebooks in my mobile, so that i can read even when i travel. My favorite books are
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a title=&quot;//en.wikipedia.org/wiki/Nightfall_(Asimov_short_story)&quot; href=&quot;http://en.wikipedia.org/wiki/Nightfall_%28Asimov_short_story%29&quot;&gt;Nightfall&lt;/a&gt; by Issac Asimov: A thriller&lt;/li&gt;
+&lt;li&gt;&lt;a title=&quot;//en.wikipedia.org/wiki/Mostly_Harmless&quot; href=&quot;http://en.wikipedia.org/wiki/Mostly_Harmless&quot;&gt;Mostly Harmless&lt;/a&gt; by Douglas Adams : This one is very funny. Its part of a series called Hitchhikers Guide to the Galaxy&lt;/li&gt;
+&lt;li&gt;&lt;a title=&quot;//en.wikipedia.org/wiki/Enders_Game&quot; href=&quot;http://en.wikipedia.org/wiki/Enders_Game&quot;&gt;Enders Game&lt;/a&gt; by Orson Scott Card: An inspiring novel. This one is also the start of a series of novels.&lt;/li&gt;
+&lt;li&gt;&lt;a title=&quot;//en.wikipedia.org/wiki/Stranger_in_a_Strange_Land&quot; href=&quot;http://en.wikipedia.org/wiki/Stranger_in_a_Strange_Land&quot;&gt;Stranger in a Strange Land&lt;/a&gt; by Robert A. Heinlein : Can be a bit boring, but amazing on the whole.&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Setting Up a Website Without any Database</title>
+   <link href="http://geevi.github.com/blog/2008/08/27/setting-up-a-website-without-any-database"/>
+   <updated>2008-08-27T00:00:00+05:30</updated>
+   <id>hhttp://geevi.github.com/blog/2008/08/27/setting-up-a-website-without-any-database</id>
+   <content type="html">I am obsessed about making websites. I usually want it to be perfect. Making static html page is totally out of the question for me. So what do I do if I find that the institute webserver
+&lt;ul&gt;
+	&lt;li&gt; runs very old version of apache and php,&lt;/li&gt;
+	&lt;li&gt; has no database support and&lt;/li&gt;
+	&lt;li&gt; very low memory limit for php scripts?&lt;/li&gt;
+&lt;/ul&gt;
+I did a google search for &quot;lightwieght CMS&quot;, found 2 cms's which doesnt require a database.
+
+&lt;a href=&quot;http://skybluecanvas.com/&quot;&gt;SkyBlueCanvas&lt;/a&gt; : This is the best one i found. It is a true black box. But I had already choosen my html template and i was lazy enongh to make it work with my template.
+
+&lt;a href=&quot;http://cmsfromscratch.com/&quot;&gt;CMS from Scratch&lt;/a&gt; : This one was ok. Not as good. I had to tinker with my html code. It is used for putting up &lt;a href=&quot;http://www.tcs.tifr.res.in/%7Egirish&quot;&gt;my site&lt;/a&gt;.
+
+Update : i reverted back to plain old html files after 8 months. Using CMS is a pain for managing a simple homepage.
+</content>
+ </entry>
+ 
+ <entry>
+   <title>A Request to all Believers of Reason</title>
+   <link href="http://geevi.github.com/blog/2008/06/04/a-request-to-all-believers-of-reason"/>
+   <updated>2008-06-04T00:00:00+05:30</updated>
+   <id>hhttp://geevi.github.com/blog/2008/06/04/a-request-to-all-believers-of-reason</id>
+   <content type="html">&lt;span style=&quot;font-size:180%;&quot;&gt;The Abstract:&lt;/span&gt;
+I am writing this with regard to the recent hikes in fuels and inflation. The government is being highly criticized by the left and the bjp on this account for gaining political mileage. Their criticisms are unscientific and mostly on value judgments. However this is a dangerous trend that we should counter which otherwise will seriously affect our countries future.
+
+&lt;span style=&quot;font-size:180%;&quot;&gt;The Facts:&lt;/span&gt;
+International oil prices increased to 130$ a barrel. The private oil companies are taking huge losses on current prices. If the trend continues their shares go down. In an year they will be completely closed down.
+
+Today the petroleum minister announced the price hike on petrol correct to 2 decimal places. He explained how much the companies needs for recovery and exact figures of how much he expects from duty cuts, some bonds and some they loose and the rest from the hike. The finance minister reluctantly agreed to cut the duties. He counts on every paise of that he gets from duties on fuel for his massive farm and medical allowances in the budget.
+
+The cpm spokesperson said &quot;Dont give us figures. The government has no right to put burden on the common man. The private companies are making profit while they allow common man to suffer.&quot;
+
+The BJP copied some of what they said and made up something similar of their own.
+
+&lt;span style=&quot;font-size:180%;&quot;&gt;The Inferences:&lt;/span&gt;
+1. The opposition doesn't believe in figures.(Note: Though they come up with some figures, and some economist proves them to be wrong, then they goes back to their value judgement. I just saw a few interviews on tv where this happened. Which leads to 1. itself)
+
+2. Only thing that is politically correct for cpm and bjp is no burden on common man even if the private companies run at loose.
+
+&lt;span style=&quot;font-size:180%;&quot;&gt;The Wider Implications:&lt;/span&gt;
+On 1.) : Any educated person know that our intuitive judgments are mostly wrong. Each options the gov has will have to be quantitatively evaluated and the best should be chose. Disregarding this is the disregard to any scientific approach, it is disregarding reason.  This trend has also gone to other fields. On the nuclear deal, the same parties are disregarding the opinion of scientists like Dr APJ Abdul Kalaam.
+
+On 2.) : The reason for price hike is not caused by private companies. They also belong to people who are Indian citizens(in fact the most productive) and government has every right to protect them. The duty of the government is not to steal from the rich and help the poor. It is against any sort of justice. A crisis is a crisis and everyone will be affected on some way. Imagine a community which punishes its most productive members.  Thats what followers of 2.) are suggesting. If this is promoted, it will lead to massive &quot;brain drains&quot;.
+
+&lt;span style=&quot;font-size:180%;&quot;&gt;The Conclusion:&lt;/span&gt;
+As i mentioned above, opposition is disregarding science and promoting social injustice. This is a dangerous for our country. Whats more dangerous most people agree with them. Even some of the educated ones. It seems from the media that even the congress leaders are reluctant to talk about this to the people fearing it will affect their popularity. At this juncture its time for everyone who understands this to give support the the PM and promote awareness of these dangerous implications.
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Singularity and L4 | Microsoft embraces Microkernels and even goes a step ahead</title>
+   <link href="http://geevi.github.com/blog/2008/03/08/singularity-and-l4-microsoft-embraces-microkernels-and-even-goes-a-step-ahead"/>
+   <updated>2008-03-08T00:00:00+05:30</updated>
+   <id>hhttp://geevi.github.com/blog/2008/03/08/singularity-and-l4-microsoft-embraces-microkernels-and-even-goes-a-step-ahead</id>
+   <content type="html">I recently found out about a project at microsoft research on a new os called singularity. In my previous post i had described how the current os's(linux, windows , macx etc) are incapable of meeting the new requirements of security and reliability. And why the fault lies in the basic design of the os itself, and how microkernels like L4, hurd etc remedies it.
+
+Microsoft started a project on a new os made from scratch, with reliabililty as the primary objective. They have embraced the microkernel design of modularity(seperating fs, drivers etc from kernel). Moreover they have gone a step ahead by solving the major problem with microkernels,ie large time req for address space switches during IPC(inter process communication) by only having a single address space. They use static code verification techniques to ensure isolation of processes.
+
+As said the first great decision they made is embracing the microkernel architecture. The kernel is small and just provides the basic abstrations like
+&lt;ol&gt;
+	&lt;li&gt;Threads(they call it Software Isolated Processs).&lt;/li&gt;
+	&lt;li&gt;IPC or Inter Process Communication(they call it contract based messaging).&lt;/li&gt;
+	&lt;li&gt;Manifest Based programs(this is an entirely new idea with no prev analog from microkernels).&lt;/li&gt;
+&lt;/ol&gt;
+Another thing is that they use safe typed languate called Sing#(a variant of C#, with more type safety) for 90% of kernel code(just like L4 is coded in C++ rather than C. Migration from C++ to C# provides even better typed safe code.).
+
+The previous 2 ideas were already brought out by L4. The third great decision is some thing entirely new(as far as i know of). The idea was to have a single address space and provide isolation by relying on the advances in programming languages. The system allows software to be installed only in a language called MSIL. During the installation proccess the system runs a verification on the code checking for memory references. It enforces that all code that runs in an SIP should only refer to itself. Then it converts the code to assmebly. So the system can be sure that all the code that it runs will never refer to another processes code. No checks need to be done at runtime and no address space switches, no flushing of tlbs are required. This solves the problem of slow ipcs which was attributed as the major reason for decline of mircokernel based oss. The performace result shows great improvement over linux and windows(i guess they can be trusted about the performance, they admitted in that paper that windows performs slower that linux). Singularity has also support for hardware based isolation but with higher overhead.
+
+They have a improved IPC system called contract based messaging. The idea is to first have a specification for the messageing. It gives the fields in the messages and their types. It even specifies the states involved with a sequence of message are interchanged. They have verifier programs which verify that a program conforms to a particular specification of messaging.
+
+Manifest is another new feature. A program has to specify the about it needs and give more info about it before it can be installed. It ensures that adding a program doesnt break the system.
+
+&lt;strong&gt;NOTE:&lt;/strong&gt; Some of the details above may be inaccurate and doesnt completely give all details. I wrote the post just to give a basic idea of the advantages. For more info refer the the links below.
+
+&lt;a href=&quot;http://research.microsoft.com/os/singularity/publications/OSR2007_RethinkingSoftwareStack.pdf&quot;&gt;RethinkingSoftwareStack(The&lt;/a&gt; next stop if you are interested in the topic :A paper describing in detail about singularity)
+
+&lt;a href=&quot;http://www.computer.org/portal/site/computer/menuitem.5d61c1d591162e4b0ef1bd108bcd45f3/index.jsp?&amp;amp;pName=computer_level1_article&amp;amp;TheCat=1005&amp;amp;path=computer/homepage/0506&amp;amp;file=cover1.xml&amp;amp;xsl=article.xsl&amp;amp;&quot;&gt;An article by Andrew Tanenbaum&lt;/a&gt;
+&lt;h1 style=&quot;font-weight:normal;&quot;&gt;&lt;span style=&quot;font-size:100%;&quot;&gt;&lt;a href=&quot;http://www.cs.vu.nl/%7East/reliable-os/&quot;&gt;Tanenbaum-Torvalds Debate on Microkernels&lt;/a&gt;
+&lt;/span&gt;&lt;/h1&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Patience Test</title>
+   <link href="http://geevi.github.com/blog/2008/01/25/patience-test"/>
+   <updated>2008-01-25T00:00:00+05:30</updated>
+   <id>hhttp://geevi.github.com/blog/2008/01/25/patience-test</id>
+   <content type="html">I am back to blogging after a long time. I really have some thing to write now. Its about a patience test that i had to endure.
+
+I had planned to do my project work on making a simple OS from the L4 Microkernel. The idea behind microkernels is exactly the basic idea of cs, abstraction, modularity. In traditional OS's the different abstractions(like filesystems, virtual memory, drivers etc) is made into a bundle called the kernel. When you write code for each of those, one need to be careful about how it affects a lot of other things. Moreover since there a large amt of code, more bugs are there. Independent development is also not possible. Microkernel idea involves making the os fully modular. The kernel includes only the bare minimum code. FS, VM etc are implemented as userlevel servers. But there is a catch. They are usually slower. But now intel and amd are chips having 2-4 cores, 3Ghz etc. So microkernel has a lot of significance in coming days. The project was to implement an FS, VM and drivers as userlevel servers on top of L4 Microkernel. It is acutally done as a course project in University of Dresden Germany. So i googled a lot, read something here and there, downloaded the code and all. But there was one small trouble, i was not able to compile it. I worked hard on it, but nothing seemed to be going well. I lost patience and then went and asked my guide whether i could change to a theoretical topic.
+
+He was lenient. He gave me one. It was on Cryptography. The title was &quot;Psuedorandom functions using NP-Hard problems&quot;. Psueodorandom functions as the name implies are used to generate random nos. Generating random number is itself a sort of contradiction(random number by definition is random).  Actually thats a question in Complexity theory of which answer is  still unknown whether BPP = P.
+
+Well i had to learn about One-Way functions, Hardcore Predicates. There was one theorem, that there is a particular hardcore predicate for any one-way function. Its been nearly 2 months i been reading the proof. I never understood it completely. Many a time i discovered that what i had taken for granted previously was not trivial. I was not ready to loose my patience again. Quite unexpectedly i was just reading through the proof again, and today i uncovered the mystery.
+</content>
+ </entry>
+ 
+ <entry>
+   <title>A Late Goodbye</title>
+   <link href="http://geevi.github.com/blog/2007/09/03/a-late-goodbye"/>
+   <updated>2007-09-03T00:00:00+05:30</updated>
+   <id>hhttp://geevi.github.com/blog/2007/09/03/a-late-goodbye</id>
+   <content type="html">I got a late goodbye from google. I got rejected. :(
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Of long boats and banana plants</title>
+   <link href="http://geevi.github.com/blog/2007/08/28/of-long-boats-and-banana-plants"/>
+   <updated>2007-08-28T00:00:00+05:30</updated>
+   <id>hhttp://geevi.github.com/blog/2007/08/28/of-long-boats-and-banana-plants</id>
+   <content type="html">After a 4 months, i am coming back home due to a viral fever. I got a much needed rest at home. During 3 months of my summer vacation i have been totally engrossed in my internship, working even on weekends. Things didn't go better even on college, with lots of seminars to come up with and the project.
+
+Though the rest was much needed, i rather felt totally bored at home. I was trying to gather interest in something, but failing all the time. Watching tv seemed totally absurd. All Malayalam channels have programs not worth watching, and i had seen most of the English films almost 3 times by now. Then i thought of doing some programming. After all i plan to have a great career in that field. I should get interested in something there. Then i tried to work on my project. That also hit dead ends. Each day i started waking up saying, oh another boring day of my life.
+
+But the real reason for getting bored, i guess was a different thing. I am awaiting the results for the interviews for a job at the place were i did my internship. They were taking a long time to decide. Recently they called me asking for some certificates. Getting it for some reason, would be considered a legendary in my college. I was at the height of anxiety. I was starting to get fed up by this. I check my mails every now and then, keep staring at my new mobile for a call from Hyderabad. I tried to avoid the anxiety by being pessimistic. I tried to assume that i wont get the job. That way i will either be surprised or nothing happens. But it kept coming back.
+
+I got recovered. Onam holidays also happened to be nearby or rather, i took a medical certificate for the previous week keeping that also in mind. We also got an new car on an exchange offer. There also happened to be some price reductions due to onam. Achan selected  the &quot;champane biege&quot; color( a some what dull yellow orange color, the color of sandal wood). He says the blues and the reds had too much show, and he wanted something that looked humble. Me and my brother didn't make any opinions.
+
+We had our first trip to achans family house. I thought that would cheer me up. It brought memories of good old days. On all vacations all my cousins on my fathers side would gather there. It was a wonderfull place, with lots of big and small streams. We used to own a small long boat. On afternoons we would get on it and go for small rides in our land. It consisted of mainly swamps separated by long stretches of land in between. There were coconut trees, banana plants and mango trees also.
+
+Steering the boat using long bamboo sticks, enjoying the shade and also some comic books which we took along. We would search for coconuts that have fallen down, or check whether there is a ripe banana bunches. In the early stages there will be a cone shaped koombu for banana, from which you can take its flowers. Inside the petals, there will be a sweet liquid, honey like thing. We used to enjoy having it.
+
+Now those days had gone. Most of my cousins, girls married and off to far away places, and boys doing some jobs. Me too will be busy doing some work after an year. I am back home. Today night i will be leaving back to college. That would keep me occupied with classes and seminars. I hope that would solve my boredom.
+</content>
+ </entry>
+ 
+ <entry>
+   <title>On a Search Project</title>
+   <link href="http://geevi.github.com/blog/2007/06/07/on-a-search-project"/>
+   <updated>2007-06-07T00:00:00+05:30</updated>
+   <id>hhttp://geevi.github.com/blog/2007/06/07/on-a-search-project</id>
+   <content type="html">I was thinking of what to do for my final year project. I had thought of a wide range of things. Being in google i was thinking of doing a search engine itself. Things are pretty simple. There should be a script which recursively parses html pages and stores them locally. Some other proccess should index them in some form. Another process should take queries from user and find out the relevant index to use. There should be some difference from what the guys from stanford did. They concentrated on getting relevance. I will try to get results keeping some other factor. So what would be the other factors. Seems like there are no other factors. The whole point is to get the relavant info. So the solution itself is getting the relavence. Another thing i can do is to use some other techniques in data mining and ai may be neural networks, pattern classification etc.. I have not much idea what these are. They sound like the ones will be of use. Have to get more info on them.
+
+Before going through them i just thought of thinking about a solution myself. So i will have a big set of html pages and i will have to tag them with what each has relavent info on. May be even give a rating for each tag. This whole process of finding out tags from the html junk code will be really difficult. May be thats why the google guys considered also other docs which link to it and find the tag from what they have in common.  I can do the same or i was thinking of something else.
+
+What if i have the kewords before parsing through the docs? Ofcourse the user will get the results only after a long time spent on parsing all the pages. Consider a use case of a person with a desktop and he has lets say many html pages on his lan or locally. He want to find all info on something using the limited computing he has. So i can gather all docs which has the relavent keyword, consider parts of docs( such as the title or meta tags or words closer to the keyword) and compile the results page. May be i can even give him a dependency graph in flash(just to make things look good). I guess i can give something more than what a basic find does.
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Day 4 at Google</title>
+   <link href="http://geevi.github.com/blog/2007/05/03/day-4-at-google"/>
+   <updated>2007-05-03T00:00:00+05:30</updated>
+   <id>hhttp://geevi.github.com/blog/2007/05/03/day-4-at-google</id>
+   <content type="html">Yet another day of my life starts at Poorni Guest House. Yesterday I used the &quot;RUNNING MACHINE&quot; and got really fond of it. So i decided that i would run on it everyday. The preset of 5 KM run seems to be too hard for me. By the end of 3 months i hope i can cover it easily. So I did a 0.5(i dont know what unit is used in that for distance) run at a speed of 10.&lt;br /&gt;&lt;br /&gt;After that i went down to read the newspapers. I found that there is another person staying in the guest house. We stared at each other, expecting the other person to start the intro. But it ended up that no one started. We exchanged a faint smile. I hope i had put a smile on my face. I meant to.&lt;br /&gt;&lt;br /&gt;After Day 2, my room mate and me decided that we will have food at the office. Not that the food is bad here, but at the office there is more variety stufff. We had to call for the cab again. Finally when we reached the office at 9, still most of the cubicles are empty. We had the breakfast. I ate vada and an apple. When I saw people using spoons for eating the vada which was some what hard, it was funny. One can eat vada with just plain hands, but still people prefer spoons. May be there is an unwritten social rule here like that. Since i was not sure I just used my hands. I had a call from home. I still havent got a new sim.Hoping google will give that too.&lt;br /&gt;&lt;br /&gt;Back to the desk only to find that the linux install is not complete। The tech guy says that it will take 1 more hr. So i had nothing else to do. So thought of writing this. So far soo good. I am finding this interesting. Seems like i missed the appoinment on phone with my comentor. I can get his no only after my comp starts up. I will just wait for it to start and call him up, appologize.&lt;br /&gt;&lt;br /&gt;Well it turned out that even my co-mentor missed the schedule. He mailed me that its shifted to 11:30. Back to work. I went through the manuals that he asked me to read.&lt;br /&gt;&lt;br /&gt;Its lunch time. I am a bit frustrated. They make all sorts of dishes, label it with names.. It so confusing wat to take. You need to give a whole lot of specifications to get a burger or a sandwich.. which vegetables, sous etc&lt;span&gt;&lt;/span&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Piracy; Losers and Gainers</title>
+   <link href="http://geevi.github.com/blog/2006/07/08/piracy-losers-and-gainers"/>
+   <updated>2006-07-08T00:00:00+05:30</updated>
+   <id>hhttp://geevi.github.com/blog/2006/07/08/piracy-losers-and-gainers</id>
+   <content type="html">Many companies portray software piracy as their biggest threat. But interestingly I feel that it has brought only profits on a long term to some of the biggest software companies.
+My father bought a computer first in 98. He is a lawyer and dearly needs it for typing a lot of documents. It was assembled and sent to us with all sorts of software like windows 98, ms office 97, many games etc.. preinstalled. It was the time when most advocates and other small shops which live on typing business were shifting from typewriters to computers. All of them obviously used pirated versions of ms office and windows. They found it so user friendly that they cannot think of an alternative. If a newer version comes, all of them get another pirated copy instantly. There are cases from different organizations that they deals with like banks, some companies etc. Since all these people have ms office all of these organizations who are capable of buying licensed version found it better to use windows and office.
+
+So who are the losers and gainers here?  Did Microsoft loose anything because people who will any way never be able to afford their software at 20,000Rs, used pirated copies? They would rather use their old typewriter than spending 20,000 Rs on software alone. What really happened is ms software got popular. Lots of people with know how of their software were available. Many organizations started buying their software. Now about the losers. Back then nobody thought of an alternative since every one got great quality software for no money. There were open source alternatives, or even low cost softwares from corel and some other companies. If there wasn’t any piracy, I don’t find a reason that will prevent them from using open source. I agree that linux and open office had a long way to go to come up to the quality of ms software, but they could still be a substitute for typing, and basic tasks. By devoting some time and patience they can be used. But simply no one wanted to try them. If they all started using them, even new organizations would have started using them. So if many people started using them, more software and drivers would have been made to support them.
+
+Today open source have become as user friendly as windows for most of the functions. It crashes more and is unstable some times, but that not unbearable. Still everyone uses ms suites. Now they have money to buy software, and they buy ms only, since that is only one they are familiar with. So I believe the open source movement was most badly hit by piracy. I wish strict laws of piracy are imposed, and that people will search for alternatives. MS would not have had this monopoly by which they reaped huge profits.
+
+For large companies it might be viable to buy costly software, but for common man, small and medium scale enterprises (in developing and underdeveloped countries), its too costly. Still they use pirated versions. I am sure if there were strict following of laws, this wouldn’t be there. Consider if a similar software is there for free, why wouldn’t such people use it. Microsoft may not have expected this to happen, but its still a fact that it did help them in developing countries.
+
+ps: having made a post praising ms office 07 before this, this is was not written with the intention of any balancing between os and ms. They were written in different times though they are posted in this order.
+</content>
+ </entry>
+ 
+ <entry>
+   <title>I..I..In..Intro..Intro..Introduction</title>
+   <link href="http://geevi.github.com/blog/2006/06/30/iiinintrointrointroduction"/>
+   <updated>2006-06-30T00:00:00+05:30</updated>
+   <id>hhttp://geevi.github.com/blog/2006/06/30/iiinintrointrointroduction</id>
+   <content type="html">&lt;blockquote&gt;“I don't know if you have had the same experience, but the snag I always come up against when I'm telling a story is this dashed difficult problem of where to begin it. It's a thing you don't want to go wrong over, because one false step and you're sunk. I mean, if you fool about too long at the start, trying to establish atmosphere, as they call it, and all that sort of rot, you fail to grip and the customers walk out on you. Get off the mark, on the other hand, like a scalded cat, and your public is at a loss. It simply raises its eyebrows, and can't make out what you're talking about.”                       &lt;br /&gt;                                 --P. G. Wodehouse - Right Ho, Jeeves&lt;/blockquote&gt;&lt;br /&gt;I feel introduction must be the most difficult part of any writing. I actually wrote four posts even before I began this. I just don’t know how to make this interesting. So without further ado I am just plainly writing what I intend .&lt;br /&gt;&lt;br /&gt;        Through this blog I intent to give vent to my feelings and opinions that I have on different topics. I also intend to post info’s on various tech stuff (mainly on computers, IT, internet) that I know about, hoping some one will find it useful.&lt;br /&gt;&lt;br /&gt;I would very much be pleased to hear anyone commenting on my opinions whether it is for or against.  So do post your comments. Welcome to my blog.
+</content>
+ </entry>
+ 
  
 </feed>

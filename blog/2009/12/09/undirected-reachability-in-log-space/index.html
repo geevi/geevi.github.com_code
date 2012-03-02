@@ -1,0 +1,287 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Undirected Reachability in Log Space</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+     <meta name="author" content="Girish Varma">
+
+    <!-- Le styles -->
+    <link href="/assets/themes/cerulean/css/bootstrap.min.css" rel="stylesheet">
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+    </style>
+    <link href="/assets/themes/cerulean/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="/assets/themes/cerulean/css/custom.css" rel="stylesheet">
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" href="/assets/themes/cerulean/img/favicon.ico">
+    <link rel="apple-touch-icon" href="/assets/themes/cerulean/img/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/themes/cerulean/img/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/themes/cerulean/img/apple-touch-icon-114x114.png">
+
+
+
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
+  "HTML-CSS": { scale: 90 }
+  });
+</script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/2.0-beta/MathJax.js?config=TeX-AMS_HTML"></script>
+
+
+
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="/">Girish Varma</a>
+          <div class="nav-collapse">
+            <ul class="nav">
+              	
+            	
+            	
+
+
+
+  
+    
+  
+    
+  
+    
+  
+    
+    	
+    	<li><a href="/code/index.html">Code & Design</a></li>
+    	
+    
+  
+    
+    	
+    	<li><a href="/contact/index.html">Contact</a></li>
+    	
+    
+  
+    
+    	
+    	<li><a href="/photos/index.html">Photos</a></li>
+    	
+    
+  
+    
+    	
+    	<li><a href="/cv/index.html">CV</a></li>
+    	
+    
+  
+    
+    	
+    	<li><a href="/articles/index.html">Articles & Talks</a></li>
+    	
+    
+  
+    
+  
+    
+  
+    
+    	
+    	<li><a href="/blog/index.html">Blog</a></li>
+    	
+    
+  
+    
+  
+    
+  
+    
+  
+    
+    	
+    	<li><a href="/publications/index.html">Publications</a></li>
+    	
+    
+  
+
+
+
+
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+	  <div class="content">
+        
+<div class="page-header">
+  <h1>Undirected Reachability in Log Space <small></small></h1>
+</div>
+
+<div class="row">
+  <div class="span10">
+    <blockquote><strong> Theorem[by <em><a href="http://www.wisdom.weizmann.ac.il/~reingold/">Omer Reingold</a>]</em> : <span style="font-weight:normal;">Given a undirected graph $ {G([n],E)}$ and $ {s,t\in [n]}$, the question ``Is there a path between $ {s}$ and $ {t}$?'' can be answered in space $ {O(\log n)}$</span></strong></blockquote>
+All graphs mentioned in the proof are undirected and may have multiple edges. $ {[n]}$ denotes $ {\{1\cdots n\}}$.
+
+The problem is equivalent to outputting all vertices reachable from $ {s}$ in $ {O(\log n)}$ space, or more generally seperating the connected components in $ {G}$. But one of the vertices may be reachable only by an $ {O(n)}$ length path from $ {s}$, and it might be a degree $ {1}$ vertex. Since this $ {O(n)=\ell}$ length path can be an arbitrary one, the only way i can think of is by brute force checking of all $ {\ell}$ length paths. But the number of such paths can be exponential in $ {n}$ !. If degree is $ {d}$, it can be as large as $ {d^\ell}$. However if the graph is such that all nodes reachable from $ {s}$ are at a distance $ {O(\log n)}$, then brute force is a viable method. Such a property is true in special graphs called expanders which are graphs whose adjacency matrix have small second eigen values. The proof basically constructs an expander from an arbitrary undirected graph preserving the reachability between vertices in $ {O(\log n)}$ space.
+
+My aim is just to show the logic that leads to the proof. So i just state the main lemmas without proofs and some definitions. Proofs of the lemmas could be found in <a href="http://www.ccs.neu.edu/home/viola/classes/gems-08/lectures/le15-18.pdf">Emanuele Viola's Lecture notes</a>.
+
+First step is to reduce the reachability question in $ {G([n],E)}$ between vertices to reachability question between large connected subsets $ {S,T \subset [n^{'}], |S|,|T| \geq \frac{|n^{'}|}{3}}$ in some $ {G^{'}([n^{'}],E^{'})}$ which is $ {4}$-regular graph and has a self loop on every node.
+<blockquote><strong>Reduction 1:</strong>There is an algorithm which on input $ {G([n],E)}$ and $ {s,t \in [n]}$, that uses only $ {O(\log n)}$ spaces and outputs
+<ul>
+	<li> a $ {4}$-regular graph with a self-loop on all verices $ {G^{'}([n^{'}],E^{'})}$</li>
+	<li> $ {S^{'},T^{'} \subset [n^{'}]}$, such that $ {|S^{'}|,|T^{'}|\geq n^{'}/3}$</li>
+	<li> the induced subgraphs of $ {G^{'}}$ on $ {S^{'}}$ and $ {T^{'}}$ are connected</li>
+</ul>
+such that
+<p style="text-align:center;">there is a path between $ {s,t}$ in $ {G}$ $ {\Leftrightarrow}$ there is path between $ {S^{'}}$ to $ {T^{'}}$.</p>
+</blockquote>
+But this is actually not a simpler problem. The trouble I mentioned about $ {G}$ still remains valid here. But this makes the problem simple for spectral analysis.
+
+Note that if you have a graph without self loops and then add self loops to all nodes, $ {k}$ length paths in the latter corresponds to $ {\leq k}$ length paths in the former(this is a many-one, surjective map). Another reason for doing this is to make the graph non-bipartite, which is required for the application of the next result.
+
+Its a well known fact that the second eigen value of the adjacency matrix is related to how connected a graph is. Lower the eigen value, the graph is better connected. Following is how the second eigen value is defined.
+<blockquote><strong>Definition 1 :</strong>
+<p style="text-align:center;">$ \displaystyle \lambda(G) := \max_{||x||=1,x \perp \mathbf{1}} ||Mx||$</p>
+where $ {M=A/D}$ the normailized adjacency matrix of $ {G}$, and $ {\mathbf{1}}$ is the all 1's vector.</blockquote>
+For a complete graph $ {\lambda = 0}$ and $ {\lambda = 1}$ if and only if the graph is disconnected or it is bipartite. For a connected undirected graph $ {\lambda(G)\leq 1 - \frac{1}{n^c}}$.
+<blockquote><strong>Lemma 1 :</strong> For any connected, non-bipartite undirected graph $ {G}$ on $ {n}$ vertices
+<p style="text-align:center;">$ \displaystyle \lambda(G) \leq 1- \frac{1}{n^c}$</p>
+for some constant $ {c}$.</blockquote>
+It is known that if $ {\lambda(G)}$ is small, the number of edges between subsets of the vertex set is proportional to the product sizes of the subsets with a small additive term. This is known as the Expander mixing lemma. The following is a corollary of this lemma
+
+<blockquote><strong>Lemma 2 :</strong> For a $ {D}$-regular graph $ {G([m],E)}$ and $ {S,T \subset [m],\ |S|,|T| \geq m/3}$, if $ {\lambda(G) \leq 1/10}$ then there is an edge between $ {S}$ and $ {T}$.</blockquote>
+So Lemma 2 says that, if $ {\lambda(G^{'})}$ is small, then we just need to check whether there is a direct edge to $ {T}$. This can be done provided the degree of nodes in $ {S}$ are not high ie exponential in $ {n}$(can happen if there are multiple edges). The naive method to do here is to make a graph in which edges consists of length $ {2}$ paths in orginal graph, called $ {G^2}$. Its easy to prove that this will make the second eigen value $ {\lambda^2}$. Doing this $ {O(\log n)}$ times will make $ {\lambda \leq 1/10}$ but the degree becomes $ {D^{2^{O(\log n)}} = D^{O(n)}}$. The above method actually corresponds to making a graph whose edges represent long paths in orginal graph as mentioned in the begining. Next is a method for reducing $ {\lambda(G)}$ without blowing up the degree. This corresponds to considering only a small subset of the exponential number of paths possible and it will be proved that this is good enough.
+<blockquote><strong>Definition 2 :</strong>
+<ul>
+	<li> $ {G}$ is said to be an $ {(m,D,\lambda)}$-graph iff its vertex set is $ {[m]}$, it is $ {D}$-regular, and has $ {\lambda(G) \leq \lambda}$.</li>
+	<li> If $ {X}$ is an $ {(m,D,\lambda)}$-graph and $ {G}$ is an $ {(D,d,\mu)}$-graph then $ {X\circledS G}$ is a $ {(m,Dd,\lambda^{'})}$-graph. For $ {v \in [m]}$ the $ {(a,b)}$th neighbour of $ {v}$ denoted by $ {v[(a,b)]}$ is $ {(v[a])[a[b]]}$ where $ {v[a]}$ is the $ {a}$th neigbour of $ {v}$ in $ {X}$, and $ {a[b]}$ is the $ {b}$th neighbour of $ {a}$ in $ {G}$ (according to the induced ordering on the neighbours due to the ordering on the vertex set).</li>
+</ul>
+</blockquote>
+The $ {\circledS}$ operation is similar to graph squaring but the number of neighbours becomes $ {dD}$ instead of $ {D^2}$ in $ {G^2}$. This is especially good if the $ {D &gt;&gt; d}$. The next lemma states that the $ {\circledS}$ operation also decreases the eigen value.
+<blockquote>
+<p style="text-align:left;"><strong>Lemma 3 :</strong></p>
+<p style="text-align:center;"><strong></strong>$ \displaystyle \lambda(X \circledS G) \leq (1-\mu)\lambda^2+\mu$</p>
+</blockquote>
+Instead of considering all $ {D^2}$ vertices at distance $ {2}$, we are considering only some $ {Dd}$ neigbours. Now we will apply the $ {\circledS}$ operation $ {O(\log n)}$ times to bring down $ {\lambda(G)}$ to $ {\leq 1/10}$ and the degree increases to $ {Dd^{O(\log n)}}$. But after each $ {\circledS}$ operation, the degree increases, and so we need a larger $ {G}$ for doing the next $ {\circledS}$ operation. Next lemma say there exists a sequence of $ {G}$'s with small $ {\mu}$'s.
+<blockquote><strong>Lemma 4 :</strong> There exists a sequence of $ {(d^i,d,\mu)}$-graphs $ {\{ G_i \}_{i\in \mathbb{N}}}$ where $ {\mu \leq \frac{1}{100}}$.</blockquote>
+<blockquote><strong>Corollary</strong> If $ {\lambda = 1 - \gamma \geq 1/10}$ and $ {\mu \leq 1/100}$ then $ {\lambda(X\circledS G) \leq 1 - \frac{12}{11}\gamma}$. So after $ {t}$ $ {\circledS}$ operations,
+
+$ \displaystyle \lambda(X\circledS^t \{G_i\}_{i=1}^t) = \lambda(((X\circledS G_1)\cdots )\circledS G_t) \leq 1 - \left(\frac{12}{11}\right)^t\gamma$
+
+If $ {\gamma \geq 1/n^c}$, for $ {t=O(\log n)}$,
+
+$ \displaystyle \lambda(X\circledS^t \{G_i\}_{i=1}^t) \leq \frac{1}{10}$</blockquote>
+In the above corollary what is effectively done is that we have constructed a graph $ {G^{''}=X\circledS^t \{G_i\}_{i=1}^t}$ , in which edges represent $ {poly(n)}$ long walks in $ {G^{'}}$. Clearly if all $ {poly(n)}$ length paths were considered($ {4^{poly(n)}}$) as edges(this corresponds to squaring the graph many times), one cannot even find all the neighbours of a node in log space. So we consider only a carefully choosen sparse subset($ {poly(n)}$) by means of the $ {\circledS}$ operation. Here is an example of the above procedure done on the board(my mobile has a bad camera, but the image should be viewable at the full size)
+
+<a href="http://girishvarma.files.wordpress.com/2009/12/reign2.jpg"><img class="aligncenter size-medium wp-image-245" title="Reign2" src="http://girishvarma.files.wordpress.com/2009/12/reign2.jpg?w=300" alt="" width="300" height="225" /></a><a href="http://girishvarma.files.wordpress.com/2009/12/reign1.jpg">
+</a>
+
+Now for this to be done by a log space machine, the $ {(a_1,a_2,\cdots a_t)}$th neighbour ($ {a_1 \in [D]}$, and all other $ {a_i \in [d]}$)of any vertex in $ {G^{''}=X\circledS^t \{G_i\}_{i=1}}$ should be computable in log space. Each $ {(a_1,a_2,\cdots a_t)}$th neighbour is obtained by doing a walk of length $ 2^{poly(n)}$ on $ X_0$. This walk is specified by a sequence of choices of neighbours $ b_1,b_2,\cdots b_{2^{poly(n)}}$. The following figure illustrates how to compute $ b_i$ given $ {(a_1,a_2,\cdots a_t)}$ and $ i$.
+
+<a href="http://girishvarma.files.wordpress.com/2009/12/reign1.jpg"><img class="aligncenter size-medium wp-image-243" title="Reign1" src="http://girishvarma.files.wordpress.com/2009/12/reign1.jpg?w=300" alt="" width="300" height="225" /></a>
+
+The $ {(a_1,a_2,\cdots a_t)}$ neighbour ($ {a_1 \in [D]}$, and all other $ {a_i \in [d]}$)of any vertex in $ G^{''}=X\circledS^t \{G_i\}_{i=1}^{t}$ is computable in space $ {O(\log n)}$, for $ {t=O(\log n)}$.
+<blockquote><strong>Lemma 5 : </strong> Reachability question in $ {G^{'}(V^{'},E^{'})}$($ {4}$ regular) between large connected subsets $ {S,T \subset V^{'}, |S|,|T| \geq \frac{|V^{'}|}{3}}$ can be reduced in log space to the question whether there is an edge between large subsets $ {S^{''},T^{''}, |S^{''}|,|T^{''}| \geq \frac{|V^{''}|}{3}}$ in some graph $ {G^{''}(V^{''},E^{''})}$ in which neigbours of any vertex can be computed in log space.</blockquote>
+
+    <hr>
+    <div class="pagination">
+      <ul>
+      
+        <li class="prev"><a href="/blog/2009/12/03/simpler-proof-for-chernoff-bound-using-bernsteins-trick" title="Simpler proof for Chernoff Bound using Bernstein's Trick">&larr; Previous</a></li>
+      
+        <li><a href="/archive.html">Archive</a></li>
+      
+        <li class="next"><a href="/blog/2009/12/22/streaming-algorithms-workshop-at-iitk" title="Streaming Algorithms Workshop at IITK">Next &rarr;</a></li>
+      
+      </ul>
+    </div>
+    <hr>
+    
+
+
+  <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_developer = 1;
+    var disqus_shortname = 'geevi'; // required: replace example with your forum shortname
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+
+  </div>
+  
+  <div class="span4">
+    <h4>Published</h4>
+    <div class="date"><span>09 December 2009</span></div>
+
+    
+  </div>
+</div>
+
+
+
+
+      </div>
+      
+	  <hr>
+
+      <footer>
+        <p>&copy; Girish Varma 2012 
+          with help from <a href="http://jekyllbootstrap.com" target="_blank" title="The Definitive Jekyll Blogging Framework">Jekyll Bootstrap</a>
+          and <a href="http://twitter.github.com/bootstrap/" target="_blank">Twitter Bootstrap</a>
+        </p>
+      </footer>
+
+    </div> <!-- /container -->
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+   <!-- <script src="/assets/themes/cerulean/js/jquery.js"></script>
+    <script src="/assets/themes/cerulean/js/bootstrap-transition.js"></script>
+    <script src="/assets/themes/cerulean/js/bootstrap-alert.js"></script>
+    <script src="/assets/themes/cerulean/js/bootstrap-modal.js"></script>
+    <script src="/assets/themes/cerulean/js/bootstrap-dropdown.js"></script>
+    <script src="/assets/themes/cerulean/js/bootstrap-scrollspy.js"></script>
+    <script src="/assets/themes/cerulean/js/bootstrap-tab.js"></script>
+    <script src="/assets/themes/cerulean/js/bootstrap-tooltip.js"></script>
+    <script src="/assets/themes/cerulean/js/bootstrap-popover.js"></script>
+    <script src="/assets/themes/cerulean/js/bootstrap-button.js"></script>
+    <script src="/assets/themes/cerulean/js/bootstrap-collapse.js"></script>
+    <script src="/assets/themes/cerulean/js/bootstrap-carousel.js"></script>
+    <script src="/assets/themes/cerulean/js/bootstrap-typeahead.js"></script>
+-->
+  </body>
+</html>
+

@@ -1,0 +1,240 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>The Secretary Problem</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+     <meta name="author" content="Girish Varma">
+
+    <!-- Le styles -->
+    <link href="/assets/themes/cerulean/css/bootstrap.min.css" rel="stylesheet">
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+    </style>
+    <link href="/assets/themes/cerulean/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="/assets/themes/cerulean/css/custom.css" rel="stylesheet">
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" href="/assets/themes/cerulean/img/favicon.ico">
+    <link rel="apple-touch-icon" href="/assets/themes/cerulean/img/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/themes/cerulean/img/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/themes/cerulean/img/apple-touch-icon-114x114.png">
+
+
+
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
+  "HTML-CSS": { scale: 90 }
+  });
+</script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/2.0-beta/MathJax.js?config=TeX-AMS_HTML"></script>
+
+
+
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="/">Girish Varma</a>
+          <div class="nav-collapse">
+            <ul class="nav">
+              	
+            	
+            	
+
+
+
+  
+    
+  
+    
+  
+    
+  
+    
+    	
+    	<li><a href="/code/index.html">Code & Design</a></li>
+    	
+    
+  
+    
+    	
+    	<li><a href="/contact/index.html">Contact</a></li>
+    	
+    
+  
+    
+    	
+    	<li><a href="/photos/index.html">Photos</a></li>
+    	
+    
+  
+    
+    	
+    	<li><a href="/cv/index.html">CV</a></li>
+    	
+    
+  
+    
+    	
+    	<li><a href="/articles/index.html">Articles & Talks</a></li>
+    	
+    
+  
+    
+  
+    
+  
+    
+    	
+    	<li><a href="/blog/index.html">Blog</a></li>
+    	
+    
+  
+    
+  
+    
+  
+    
+  
+    
+    	
+    	<li><a href="/publications/index.html">Publications</a></li>
+    	
+    
+  
+
+
+
+
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+	  <div class="content">
+        
+<div class="page-header">
+  <h1>The Secretary Problem <small></small></h1>
+</div>
+
+<div class="row">
+  <div class="span10">
+    <p>Suppose a secretary has to call \(n\) candidates for a job interview. She can choose to call them in a random order. Assuming she does so, and the situation is take him or loose him(ie after having interviewed a person, she has to immediately tell him whether she will take him or not). An additional  assumption is that all candidates will have distinct interview scores. So the question is “What is her best strategy?”(ie the one that maximizes the probability that she gets the candidate with the best score)</p>
+<p>Tne strategy is to interview half the people, find the best score and accept the next guy with a higher score. So if the best guy is in the second half and second best guy is in the first half which happens with probability \(1/4\), she will be able to get the best candidate. One could generalize the above and decide to find the best score among the first $ k$ candidates and choose the next guy who beats this score. With some asymptotic analysis, the probability of finding the best guy comes to \(\alpha\ln(1/ \alpha)\) where \(\alpha = k/n\).(<a href="http://en.wikipedia.org/wiki/Secretary_problem#Deriving_the_optimal_policy">see</a>). This is maximized when \(\alpha = 1/e\) giving a success probability of \(1/e\). It can be proved that this is the best that can be achieved.</p>
+<p>The probabilists way of stating this is a sequence of random variables \(X_1 \cdots X_n\) of scores. Since all candidates have different scores, \(X_1 \cdots X_n\) is a random permutation of the scores(as we assumed that she calls candidates in a random order, and lets also assume that the scores are independent of what time they are taken). To make things slightly more complicated, let $ Y_i$ be the indicator random variable for \(X_i< \max(X_1\cdots X_{i-1})\).  After having seen \(X_1 \cdots X_{i-1}\)(these form $ i–1$ distinct numbers with $ i$ gaps between them),  $ X_i$ is equally likely to be in anyone of  the gaps. Therefore</p>
+<p>\[ \Pr[Y_i = 1] = \Pr[X_i &lt; \max(X_1\cdots X_{i-1})]  = \frac{1}{i}\]</p>
+<blockquote>
+<p><strong>Claim :</strong> $ Y_i$ is independent of $ Y_1  Y_{i–1}$</p>
+</blockquote>
+<p><strong>Proof :</strong> Following the logic which gave the probability above, whether $ X_i$ is the maximum of whats seen till now doesnt depend on the ordering of $ X_1  X_{i–1}$. We want to know what the best stratergy is. Suppose we have already seen $ X_1  X_n$, we have no option but to choose the $ n$th candidate.</p>
+<p>If $ Y_n = 1$, with probability \(1\) we have the best guy, else its \(0\). For later purposes lets define $ V(n,1)=1,V(n,0)=0$ Now again Whats the best strategy to follow once we have seen $ X_1  X_{n–1}$.</p>
+<p>If $ Y_n = 1$, 1. with probability $ n–1/n$ we have the best guy 2. if we skip this guy with probability $  1 +  0$ it will be found in the next step if the best strategy is followed from next step.</p>
+<p>So we can compute these 2  values and choose the option with higher probability.  Let $ V(n–1,1) =  $ above 2 values If $ Y_n = 0$,</p>
+<ol style="list-style-type: decimal">
+<li>with probability $ 0$ we have the best guy</li>
+<li>if we skip this guy with probability $  1 +  0$ it will be found in the next step if the best strategy is followed from next step.</li>
+</ol>
+<p>So the best thing is to skip. Let $ V(n–1,1) = $ second value. And we can continue this inductively. Suppose $ V(i+1,b)$ be the probability of success if the best strategy is  followed from step $ i+1$ given $ Y_{i+1}=b$. $ V(i,b) =  { i/n ,  V(i+1,1) +  V(i+1,0) }$</p>
+<p>If $ b=1$ then $ V(i,1)=  { i/n ,  V(i+1,1) +  V(i+1,0) } $ else $ V(i,0)=i/n$  (ie if current is not the best among the candidates so far seen, he is definitely not best among all and so  we skip, hoping that best guy is yet to come).</p>
+<p>As $ i/n$ is increasing in $ i$, and it can be proved that $  V(i+1,1) +  V(i+1,0)$ is decreasing(i think after some threshold) at some point they cross. So from this point onwards we will choose the first guy that has best score so far(ie max is obtained for option 1). But we had already proved that best among such strategies is obtained by setting the threshold point to $ 1/e$ to obtain a probability of getting best guy as $ 1/e$.[this is slightly rough write up, i hope to improve it later]</p>
+    <hr>
+    <div class="pagination">
+      <ul>
+      
+        <li class="prev"><a href="/blog/2009/10/29/some-facts-about-matchings" title="Some Facts About Matchings">&larr; Previous</a></li>
+      
+        <li><a href="/archive.html">Archive</a></li>
+      
+        <li class="next"><a href="/blog/2009/11/05/protests-are-on-guess-for-what" title="Protests are On : Guess for What?">Next &rarr;</a></li>
+      
+      </ul>
+    </div>
+    <hr>
+    
+
+
+  <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_developer = 1;
+    var disqus_shortname = 'geevi'; // required: replace example with your forum shortname
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+
+  </div>
+  
+  <div class="span4">
+    <h4>Published</h4>
+    <div class="date"><span>03 November 2009</span></div>
+
+    
+  </div>
+</div>
+
+
+
+
+      </div>
+      
+	  <hr>
+
+      <footer>
+        <p>&copy; Girish Varma 2012 
+          with help from <a href="http://jekyllbootstrap.com" target="_blank" title="The Definitive Jekyll Blogging Framework">Jekyll Bootstrap</a>
+          and <a href="http://twitter.github.com/bootstrap/" target="_blank">Twitter Bootstrap</a>
+        </p>
+      </footer>
+
+    </div> <!-- /container -->
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+   <!-- <script src="/assets/themes/cerulean/js/jquery.js"></script>
+    <script src="/assets/themes/cerulean/js/bootstrap-transition.js"></script>
+    <script src="/assets/themes/cerulean/js/bootstrap-alert.js"></script>
+    <script src="/assets/themes/cerulean/js/bootstrap-modal.js"></script>
+    <script src="/assets/themes/cerulean/js/bootstrap-dropdown.js"></script>
+    <script src="/assets/themes/cerulean/js/bootstrap-scrollspy.js"></script>
+    <script src="/assets/themes/cerulean/js/bootstrap-tab.js"></script>
+    <script src="/assets/themes/cerulean/js/bootstrap-tooltip.js"></script>
+    <script src="/assets/themes/cerulean/js/bootstrap-popover.js"></script>
+    <script src="/assets/themes/cerulean/js/bootstrap-button.js"></script>
+    <script src="/assets/themes/cerulean/js/bootstrap-collapse.js"></script>
+    <script src="/assets/themes/cerulean/js/bootstrap-carousel.js"></script>
+    <script src="/assets/themes/cerulean/js/bootstrap-typeahead.js"></script>
+-->
+  </body>
+</html>
+

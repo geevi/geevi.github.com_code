@@ -1,0 +1,281 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Rediscovering Markov Chains[Draft]</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+     <meta name="author" content="Girish Varma">
+
+    <!-- Le styles -->
+    <link href="/assets/themes/cerulean/css/bootstrap.min.css" rel="stylesheet">
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+    </style>
+    <link href="/assets/themes/cerulean/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="/assets/themes/cerulean/css/custom.css" rel="stylesheet">
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" href="/assets/themes/cerulean/img/favicon.ico">
+    <link rel="apple-touch-icon" href="/assets/themes/cerulean/img/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/themes/cerulean/img/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/themes/cerulean/img/apple-touch-icon-114x114.png">
+
+
+
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
+  "HTML-CSS": { scale: 90 }
+  });
+</script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/2.0-beta/MathJax.js?config=TeX-AMS_HTML"></script>
+
+
+
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="/">Girish Varma</a>
+          <div class="nav-collapse">
+            <ul class="nav">
+              	
+            	
+            	
+
+
+
+  
+    
+  
+    
+  
+    
+  
+    
+    	
+    	<li><a href="/code/index.html">Code & Design</a></li>
+    	
+    
+  
+    
+    	
+    	<li><a href="/contact/index.html">Contact</a></li>
+    	
+    
+  
+    
+    	
+    	<li><a href="/photos/index.html">Photos</a></li>
+    	
+    
+  
+    
+    	
+    	<li><a href="/cv/index.html">CV</a></li>
+    	
+    
+  
+    
+    	
+    	<li><a href="/articles/index.html">Articles & Talks</a></li>
+    	
+    
+  
+    
+  
+    
+  
+    
+    	
+    	<li><a href="/blog/index.html">Blog</a></li>
+    	
+    
+  
+    
+  
+    
+  
+    
+  
+    
+    	
+    	<li><a href="/publications/index.html">Publications</a></li>
+    	
+    
+  
+
+
+
+
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+	  <div class="content">
+        
+<div class="page-header">
+  <h1>Rediscovering Markov Chains[Draft] <small></small></h1>
+</div>
+
+<div class="row">
+  <div class="span10">
+    Sometimes when i have read up some topic, it often happens that half way, i understand that "i dont understand it". At this point i try to build up the theory by myself with minimal help from the book(i think its called <a href="http://en.wikipedia.org/wiki/Socratic_questioning">Socratic Questioning</a>). At one such situation i did take the pain of  writing it up and thats whats this post is about. This post will be evolving, ie hopefully some time in the future i will feel like improving on the post. You might find it badly written or formatted for now.
+ 
+
+<p>
+
+
+<p>
+
+<b>1. What is it that we want to model? </b>
+
+<p>
+
+
+<p>
+Suppose we have a system, with $ {S}$ as the set of all possible states(say finite or countably infinite). There is some uncertainity involed in evolution of the system in time. Suppose the time is discrete(that is integer valued and not real valued). Suppose the evolution happens like this : From the current state $ {i}$, it always goes to another state $ {j\in S}$ with probability $ {p_{ji}}$(so surely $ {\sum_{j}p_{ji}=1}$). And this happens independent of how the system came to $ {i}$. Such a system can be represeted by a graph with probabilities associated with edges. And it can be thought of as probabilities flowing through the graph.
+<p>
+See Feller chapter 15 for examples. An interesting example : There is a famous paper on Shuffling cards which can also be modelled according to a Markov Chain.
+<p>
+Suppose we want to invent the mathematics for analysing such a system. With this mathematics we want to answer questions like 
+
+<ul> <li> What is the probability that system is at state $ {j}$ given that it started at $ {i}$? <li> What is the probability that if system starts at $ {i}$, it will visit $ {j}$ at all? <li> What is the probability that if system starts at $ {i}$, it will visit $ {j}$ infinitely often? <li> After sometime does the system attain a equilibrium(ie the probabilty distribution on $ {S}$ will not change with respect to time)? <li> What is the time average of my visits to different states? 
+</ul>
+
+ To start of with we have the basic probability rules. But it will be found that some clever use of matrices and results from linear algebra will help better in answering the questions.
+<p>
+
+
+<p>
+
+<b>2. A Model </b>
+
+<p>
+
+
+<p>
+Here is a nice mathematical model based on basic probability theory:
+<p>
+A Markov Chain is a sequence of random variables $ {(X_{t})_{t\geq0}}$, where each $ {X_{t}}$ is distributed according to the distribution $ {\pi^{t}}$ in $ {S}$ such that
+<p>
+$ {Pr[X_{t}=x_{t}|X_{t-1}=x_{t-1},\ \cdots,\ X_{0}=x_{0}]=Pr[X_{t}=x_{t}|X_{t-1}=x_{t-1}]}$ denote this probability by $ {p_{x_{t}x_{t-1}}}$.
+<p>
+<b>Exercise</b> :$ {Pr[X_{t}=x_{t},\ X_{t-1}=x_{t-1},\ \cdots,\ X_{0}=x_{0}]=p_{x_{t}x_{t-1}}p_{x_{t-1}x_{t-2}}\cdots p_{x_{1}x_{0}}\pi_{x_{0}}^{0}}$
+<p>
+Now let see the the utility of matrices here. Suppose we denote the matrix $ {P=(p_{ij})}$, the columns sum upto 1. Lets assume that $ {S=[n]=\left\{ 1,\ \cdots n\right\} }$ and consider the distributions $ {\pi^{t}}$ as column vectors.
+<p>
+<b>Verify</b> : $ {\pi^{1}=P\pi^{0}}$ (or more generally $ {\pi^{t}=P\pi^{t-1}}$, which implies $ {\pi^{t}=P^{t}\pi^{0}}$)
+<p>
+<b>Exercise </b>: Show that if i denote $ {Pr[X_{t}=i|X_{0}=j]=p_{ij}^{(t)}}$, then $ {p_{ij}^{(t)}}$ is actually the $ {ij}$th entry of $ {P^{t}}$.
+<p>
+<b>Exercise</b> : If i define $ {p_{ij}^{(0)}=\delta_{ij}}$(ie $ {=1}$ if $ {i=j}$ and $ {0}$ otherwise) $ { }$, then $ {p_{ij}^{(n+1)}=\sum_{k}p_{ik}^{(n)}p_{kj}}$
+<p>
+<b>Exercise </b>: Also by the graph model $ {p_{ij}^{(t)}=\sum_{\mbox{all paths from i to j of length t}}Pr[path]}$ (see the prev exercise if you dont understand what is meant by the probability of a path). Reinterpret previous exercise by this method.
+<p>
+<b>Big Idea here is</b> : matrix multiplication can be thought of in terms of a graphs and flows. 
+<p>
+So we saw three ways of thinking about Markov Chains, in terms of sequence of random variables, matrix multiplication and walks on graphs. There is yet another way in terms of trees with degree n, or subintervals of $ {(0,1]}$. Consider the $ {(0,1]}$ interval, divide it into n intervals of size $ {\pi_{1}^{0}\cdots\pi_{n}^{0}}$. Now further subdivide each of the intervals $ {\pi_{i}^{0}}$ into $ {n}$ subintervals of $ {p_{ji}\pi_{i}^{0}}$ for each $ {j}$ (if you are a big time mathematician who knows measure theory, then you would say this is how you construct a sigma algebra for a Markov Chain) and continue ad infinitum. The advantage of this is that any event that you want to talk of about a Markov Chain is the union of disjoint intervals constructed above.
+<p>
+<b>Exercise : </b>What is the probability that the system start in $ {i}$ and reaches $ {j}$ in $ {t}$ steps, in terms of the intervals constructed above, (ie it is the union of disjoint intervals at some $ {t}$th step)? 
+
+    <hr>
+    <div class="pagination">
+      <ul>
+      
+        <li class="prev"><a href="/blog/2009/03/14/van-der-waerdens-theorem" title="van Der Waerden's Theorem">&larr; Previous</a></li>
+      
+        <li><a href="/archive.html">Archive</a></li>
+      
+        <li class="next"><a href="/blog/2009/10/04/graph-entropy" title="Graph Entropy">Next &rarr;</a></li>
+      
+      </ul>
+    </div>
+    <hr>
+    
+
+
+  <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_developer = 1;
+    var disqus_shortname = 'geevi'; // required: replace example with your forum shortname
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+
+  </div>
+  
+  <div class="span4">
+    <h4>Published</h4>
+    <div class="date"><span>21 September 2009</span></div>
+
+    
+  </div>
+</div>
+
+
+
+
+      </div>
+      
+	  <hr>
+
+      <footer>
+        <p>&copy; Girish Varma 2012 
+          with help from <a href="http://jekyllbootstrap.com" target="_blank" title="The Definitive Jekyll Blogging Framework">Jekyll Bootstrap</a>
+          and <a href="http://twitter.github.com/bootstrap/" target="_blank">Twitter Bootstrap</a>
+        </p>
+      </footer>
+
+    </div> <!-- /container -->
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+   <!-- <script src="/assets/themes/cerulean/js/jquery.js"></script>
+    <script src="/assets/themes/cerulean/js/bootstrap-transition.js"></script>
+    <script src="/assets/themes/cerulean/js/bootstrap-alert.js"></script>
+    <script src="/assets/themes/cerulean/js/bootstrap-modal.js"></script>
+    <script src="/assets/themes/cerulean/js/bootstrap-dropdown.js"></script>
+    <script src="/assets/themes/cerulean/js/bootstrap-scrollspy.js"></script>
+    <script src="/assets/themes/cerulean/js/bootstrap-tab.js"></script>
+    <script src="/assets/themes/cerulean/js/bootstrap-tooltip.js"></script>
+    <script src="/assets/themes/cerulean/js/bootstrap-popover.js"></script>
+    <script src="/assets/themes/cerulean/js/bootstrap-button.js"></script>
+    <script src="/assets/themes/cerulean/js/bootstrap-collapse.js"></script>
+    <script src="/assets/themes/cerulean/js/bootstrap-carousel.js"></script>
+    <script src="/assets/themes/cerulean/js/bootstrap-typeahead.js"></script>
+-->
+  </body>
+</html>
+

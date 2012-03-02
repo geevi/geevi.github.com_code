@@ -1,0 +1,266 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Singularity and L4 | Microsoft embraces Microkernels and even goes a step ahead</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+     <meta name="author" content="Girish Varma">
+
+    <!-- Le styles -->
+    <link href="/assets/themes/cerulean/css/bootstrap.min.css" rel="stylesheet">
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+    </style>
+    <link href="/assets/themes/cerulean/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="/assets/themes/cerulean/css/custom.css" rel="stylesheet">
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" href="/assets/themes/cerulean/img/favicon.ico">
+    <link rel="apple-touch-icon" href="/assets/themes/cerulean/img/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/themes/cerulean/img/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/themes/cerulean/img/apple-touch-icon-114x114.png">
+
+
+
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
+  "HTML-CSS": { scale: 90 }
+  });
+</script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/2.0-beta/MathJax.js?config=TeX-AMS_HTML"></script>
+
+
+
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="/">Girish Varma</a>
+          <div class="nav-collapse">
+            <ul class="nav">
+              	
+            	
+            	
+
+
+
+  
+    
+  
+    
+  
+    
+  
+    
+    	
+    	<li><a href="/code/index.html">Code & Design</a></li>
+    	
+    
+  
+    
+    	
+    	<li><a href="/contact/index.html">Contact</a></li>
+    	
+    
+  
+    
+    	
+    	<li><a href="/photos/index.html">Photos</a></li>
+    	
+    
+  
+    
+    	
+    	<li><a href="/cv/index.html">CV</a></li>
+    	
+    
+  
+    
+    	
+    	<li><a href="/articles/index.html">Articles & Talks</a></li>
+    	
+    
+  
+    
+  
+    
+  
+    
+    	
+    	<li><a href="/blog/index.html">Blog</a></li>
+    	
+    
+  
+    
+  
+    
+  
+    
+  
+    
+    	
+    	<li><a href="/publications/index.html">Publications</a></li>
+    	
+    
+  
+
+
+
+
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+	  <div class="content">
+        
+<div class="page-header">
+  <h1>Singularity and L4 | Microsoft embraces Microkernels and even goes a step ahead <small></small></h1>
+</div>
+
+<div class="row">
+  <div class="span10">
+    I recently found out about a project at microsoft research on a new os called singularity. In my previous post i had described how the current os's(linux, windows , macx etc) are incapable of meeting the new requirements of security and reliability. And why the fault lies in the basic design of the os itself, and how microkernels like L4, hurd etc remedies it.
+
+Microsoft started a project on a new os made from scratch, with reliabililty as the primary objective. They have embraced the microkernel design of modularity(seperating fs, drivers etc from kernel). Moreover they have gone a step ahead by solving the major problem with microkernels,ie large time req for address space switches during IPC(inter process communication) by only having a single address space. They use static code verification techniques to ensure isolation of processes.
+
+As said the first great decision they made is embracing the microkernel architecture. The kernel is small and just provides the basic abstrations like
+<ol>
+	<li>Threads(they call it Software Isolated Processs).</li>
+	<li>IPC or Inter Process Communication(they call it contract based messaging).</li>
+	<li>Manifest Based programs(this is an entirely new idea with no prev analog from microkernels).</li>
+</ol>
+Another thing is that they use safe typed languate called Sing#(a variant of C#, with more type safety) for 90% of kernel code(just like L4 is coded in C++ rather than C. Migration from C++ to C# provides even better typed safe code.).
+
+The previous 2 ideas were already brought out by L4. The third great decision is some thing entirely new(as far as i know of). The idea was to have a single address space and provide isolation by relying on the advances in programming languages. The system allows software to be installed only in a language called MSIL. During the installation proccess the system runs a verification on the code checking for memory references. It enforces that all code that runs in an SIP should only refer to itself. Then it converts the code to assmebly. So the system can be sure that all the code that it runs will never refer to another processes code. No checks need to be done at runtime and no address space switches, no flushing of tlbs are required. This solves the problem of slow ipcs which was attributed as the major reason for decline of mircokernel based oss. The performace result shows great improvement over linux and windows(i guess they can be trusted about the performance, they admitted in that paper that windows performs slower that linux). Singularity has also support for hardware based isolation but with higher overhead.
+
+They have a improved IPC system called contract based messaging. The idea is to first have a specification for the messageing. It gives the fields in the messages and their types. It even specifies the states involved with a sequence of message are interchanged. They have verifier programs which verify that a program conforms to a particular specification of messaging.
+
+Manifest is another new feature. A program has to specify the about it needs and give more info about it before it can be installed. It ensures that adding a program doesnt break the system.
+
+<strong>NOTE:</strong> Some of the details above may be inaccurate and doesnt completely give all details. I wrote the post just to give a basic idea of the advantages. For more info refer the the links below.
+
+<a href="http://research.microsoft.com/os/singularity/publications/OSR2007_RethinkingSoftwareStack.pdf">RethinkingSoftwareStack(The</a> next stop if you are interested in the topic :A paper describing in detail about singularity)
+
+<a href="http://www.computer.org/portal/site/computer/menuitem.5d61c1d591162e4b0ef1bd108bcd45f3/index.jsp?&amp;pName=computer_level1_article&amp;TheCat=1005&amp;path=computer/homepage/0506&amp;file=cover1.xml&amp;xsl=article.xsl&amp;">An article by Andrew Tanenbaum</a>
+<h1 style="font-weight:normal;"><span style="font-size:100%;"><a href="http://www.cs.vu.nl/%7East/reliable-os/">Tanenbaum-Torvalds Debate on Microkernels</a>
+</span></h1>
+
+    <hr>
+    <div class="pagination">
+      <ul>
+      
+        <li class="prev"><a href="/blog/2008/01/25/patience-test" title="Patience Test">&larr; Previous</a></li>
+      
+        <li><a href="/archive.html">Archive</a></li>
+      
+        <li class="next"><a href="/blog/2008/06/04/a-request-to-all-believers-of-reason" title="A Request to all Believers of Reason">Next &rarr;</a></li>
+      
+      </ul>
+    </div>
+    <hr>
+    
+
+
+  <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_developer = 1;
+    var disqus_shortname = 'geevi'; // required: replace example with your forum shortname
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+
+  </div>
+  
+  <div class="span4">
+    <h4>Published</h4>
+    <div class="date"><span>08 March 2008</span></div>
+
+  
+    <h4>Tags</h4>
+    <ul class="tag_box">
+    
+    
+
+
+  
+     
+    	<li><a href="/tags.html#computer science-ref">computer science <span>7</span></a></li>
+     
+    	<li><a href="/tags.html#technology-ref">technology <span>4</span></a></li>
+    
+  
+
+
+
+    </ul>
+    
+  </div>
+</div>
+
+
+
+
+      </div>
+      
+	  <hr>
+
+      <footer>
+        <p>&copy; Girish Varma 2012 
+          with help from <a href="http://jekyllbootstrap.com" target="_blank" title="The Definitive Jekyll Blogging Framework">Jekyll Bootstrap</a>
+          and <a href="http://twitter.github.com/bootstrap/" target="_blank">Twitter Bootstrap</a>
+        </p>
+      </footer>
+
+    </div> <!-- /container -->
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+   <!-- <script src="/assets/themes/cerulean/js/jquery.js"></script>
+    <script src="/assets/themes/cerulean/js/bootstrap-transition.js"></script>
+    <script src="/assets/themes/cerulean/js/bootstrap-alert.js"></script>
+    <script src="/assets/themes/cerulean/js/bootstrap-modal.js"></script>
+    <script src="/assets/themes/cerulean/js/bootstrap-dropdown.js"></script>
+    <script src="/assets/themes/cerulean/js/bootstrap-scrollspy.js"></script>
+    <script src="/assets/themes/cerulean/js/bootstrap-tab.js"></script>
+    <script src="/assets/themes/cerulean/js/bootstrap-tooltip.js"></script>
+    <script src="/assets/themes/cerulean/js/bootstrap-popover.js"></script>
+    <script src="/assets/themes/cerulean/js/bootstrap-button.js"></script>
+    <script src="/assets/themes/cerulean/js/bootstrap-collapse.js"></script>
+    <script src="/assets/themes/cerulean/js/bootstrap-carousel.js"></script>
+    <script src="/assets/themes/cerulean/js/bootstrap-typeahead.js"></script>
+-->
+  </body>
+</html>
+
