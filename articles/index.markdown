@@ -5,7 +5,7 @@ group: navigation
 ---
 {% include JB/setup %}
 
-### Talks
+## Talks
 
 [van Der Waerdern&#8217;s Theorem](http://girishvarma.wordpress.com/2009/03/14/van-der-waerdens-theorem/)  
 Notes made for a student seminar at TIFR<
@@ -13,7 +13,7 @@ Notes made for a student seminar at TIFR<
 [Structure Theorem for Finitely Generated Modules](http://girishvarma.in/files/structure_theorem.pdf)  
 Seminar given as a part of STCS Symposium.
 
-### Academic Projects
+## Academic Projects
 
 [Approximate Counting, Almost Uniform Generation and Rapidly Mixing Markov Chains](http://db.tt/BZY0S96)  
 Graduate project done under guidance of Manoj Gopalkrishnan [slides](http://db.tt/mOFYPvT)
