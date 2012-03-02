@@ -1,7 +1,7 @@
 ---
 layout: front
 title: Girish Varma
-image: http://girishvarma.files.wordpress.com/2009/05/me1.jpg
+image: /assets/gv.jpg
 ---
 is a Phd Student in Computer Science at the [Tata Institute of 
 Fundamental Research](http://www.tifr.res.in), Mumbai where he works 

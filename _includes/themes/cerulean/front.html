@@ -7,7 +7,7 @@
 </div>
 
       <div class="row">
-        <div class="span4">
+        <div class="span6">
           <h3>Blog</h3>
 		<ul>
 		{% for post in site.categories.blog limit:10 %}
@@ -16,13 +16,7 @@
 		</ul>
           <p><a class="btn" href="/blog">More »</a></p>
         </div>
-        <div class="span4">
-          <h3>Articles and Talks</h3>
-           {% assign pages_list = site.categories.articles %}
-            {% include JB/pages_list %}
-          <p><a class="btn" href="/articles">More »</a></p>
-       </div>
-        <div class="span4">
+        <div class="span6">
 	<h3>Contact</h3>
 	{{ page.contact }}
           <p><a class="btn" href="/contact/#email">Email »</a></p>

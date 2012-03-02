@@ -30,7 +30,7 @@
 
 {% if page.isphoto %}
 	
-<!-- <link  type="text/css"  rel="stylesheet"  media="screen"  charset="utf-8"  href="{{ ASSET_PATH }}/picasaViewer/css/style.css" />  -->
+<link  type="text/css"  rel="stylesheet"  media="screen"  charset="utf-8"  href="{{ ASSET_PATH }}/picasaViewer/css/style.css" />  
 <link  type="text/css"  rel="stylesheet"  media="screen"  charset="utf-8"  href="{{ ASSET_PATH }}/picasaViewer/css/slimbox.css" />  
 <link  type="text/css"  rel="stylesheet"  media="screen"  charset="utf-8"  href="{{ ASSET_PATH }}/picasaViewer/css/picasaViewer.css" />  
 <script src="{{ ASSET_PATH }}/picasaViewer/js/mootools-core-1.4.0-full-compat-yc.js" >  </script>
